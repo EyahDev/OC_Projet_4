@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,9 +32,13 @@ class TicketType extends AbstractType
 
         // Formulaire
         $builder
-            ->add('name')
-            ->add('lastName')
-            ->add('age')
+            ->add('name', TextType::class)
+            ->add('lastName', TextType::class)
+            ->add('age', DateType::class, array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-y',
+                'data' => $date
+            ))
             ->add('country', CountryType::class, array(
                 'data' => 'FR'
             ))

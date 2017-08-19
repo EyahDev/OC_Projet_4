@@ -1,0 +1,67 @@
+<div class="well">
+    {# Début du formulaire #}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    {# Erreur du formulaire #}
+    {{ form_errors(form) }}
+
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.lastName, "Nom : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.lastName) }}
+
+            <div class="col-sm-10">
+                {# Génération de l'input. #}
+                {{ form_widget(form.lastName) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.name, "Prénom : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.name) }}
+
+            <div class="col-sm-10">
+                {# Génération de l'input. #}
+                {{ form_widget(form.name) }}
+            </div>
+        </div>
+
+    <div class="form-group">
+        {# Génération du label. #}
+        {{ form_label(form.age, "Date de naissance : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.age) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.age) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {# Génération du label. #}
+        {{ form_label(form.country, "Pays :", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.country) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.country) }}
+        </div>
+    </div>
+
+
+    {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+    {# Fermeture de la balise <form> du formulaire HTML #}
+    {{ form_end(form) }}
+
+</div>

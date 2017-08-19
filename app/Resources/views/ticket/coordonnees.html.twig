@@ -4,9 +4,17 @@
     <h3>Page des coordonnées</h3>
 
     <p>
-        Vous prevoyez de visiter le musée du Louvre le {{ app.session.get('visitDate') }}
-        pour la {{ app.session.get('duration') }} avec {{ app.session.get('nbTickets') }} personnes.
+        Vous prevoyez de visiter le musée du Louvre le {#{{ app.session.get('CommandeLouvre').ticket.visitDate }}#}
+        pour la {#{{ app.session.get('CommandeLouvre').ticket.duration  }}#} avec {#{{ app.session.get('nbTickets') }}#} personnes.
         <a href="{{ path('homepage') }}">Modifier</a>
     </p>
+
+    <p>Chaque billet est nominatif, afin definir le tarif de chaque personne, veuillez renseigner les informations suivantes :</p>
+
+    <h3>Coordonnées</h3>
+        <p><strong>Billet n°1</strong></p>
+        {% block form %}
+            {{ include(':ticket/form:coordonnees.html.twig') }}
+        {% endblock %}
 
 {% endblock %}

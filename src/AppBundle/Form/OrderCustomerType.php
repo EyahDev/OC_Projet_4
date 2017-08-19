@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -24,10 +25,7 @@ class OrderCustomerType extends AbstractType
             ->add('nbTickets', IntegerType::class, array(
                 'attr' => array('min' => 0),
                 'data' => $session->get('nbTickets')
-            ))
-            ->add('price')
-            ->add('orderToken')
-            ->add('orderDate');
+            ));
     }
     
     /**

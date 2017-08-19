@@ -28,13 +28,6 @@ class Ticket
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="order_id", type="integer")
-     */
-    private $orderID;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)

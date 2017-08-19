@@ -5,20 +5,23 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class OrderCustomerNbTicketsType extends AbstractType
+class TicketCoordonneesType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+         // Formulaire
         $builder
-            ->remove('email');
+            ->remove('visitDate')
+            ->remove('duration')
+            ->remove('OrderCustomer');
     }
 
     public function getParent()
     {
-        return OrderCustomerType::class;
+        return TicketType::class;
     }
 
     /**
@@ -26,7 +29,7 @@ class OrderCustomerNbTicketsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_ordercustomernbtickets';
+        return 'appbundle_ticketcoordonnees';
     }
 
 
