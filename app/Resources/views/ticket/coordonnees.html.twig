@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Coordonnées{% endblock %}
+{% block body %}
+    <h3>Page des coordonnées</h3>
+
+    <p>
+        Vous prevoyez de visiter le musée du Louvre le {{ app.session.get('visitDate') }}
+        pour la {{ app.session.get('duration') }} avec {{ app.session.get('nbTickets') }} personnes.
+        <a href="{{ path('homepage') }}">Modifier</a>
+    </p>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Billeterie{% endblock %}
+{% block body %}
+    {% for message in app.session.flashbag.get('notice') %}
+        <p class="alert alert-danger">{{ message }}</p>
+    {% endfor %}
+
+    {{ include('Ticket/form/date.html.twig') }}
+
+{% endblock %}

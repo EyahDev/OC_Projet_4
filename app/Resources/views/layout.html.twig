@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="FR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Musée du louvre - {% block title %}{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        {% endblock %}
+    </head>
+
+    <body>
+
+    <div class="container">
+        <div>
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+
+{% block javascripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{% endblock %}
+
+    </body>
+</html>
