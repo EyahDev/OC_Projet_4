@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -22,13 +23,8 @@ class TicketType extends AbstractType
         // Création d'une interface de session
         $session = new Session();
 
-        // Défintion de la date du jour pour l'autoremplissage du champ visitDate
-        if ($session->get('visitDate') != null) {
-            $dateSession = $session->get('visitDate');
-            $date = new \DateTime($dateSession);
-        } else {
-            $date = new \DateTime();
-        }
+        // Date du jour
+        $date = new \DateTime();
 
         // Formulaire
         $builder
@@ -36,7 +32,7 @@ class TicketType extends AbstractType
             ->add('lastName', TextType::class)
             ->add('age', DateType::class, array(
                 'widget' => 'single_text',
-                'format' => 'dd-MM-y',
+                'format' => 'dd/MM/y',
                 'data' => $date
             ))
             ->add('country', CountryType::class, array(
@@ -44,15 +40,20 @@ class TicketType extends AbstractType
             ))
             ->add('visitDate', DateType::class, array(
                 'widget' => 'single_text',
-                'format' => 'dd-MM-y',
+                'format' => 'dd/MM/y',
                 'data' => $date
             ))
             ->add('duration', ChoiceType::class, array(
                 'choices' => array(
                     'Journée' => 'journée',
                     'Demi-journée' => 'demi-journée'),
-                'data' => $session->get('duration'),
+                'data' => $session->get('CommandeLouvre')['ticket']['duration'],
                 'expanded' => true
+            ))
+            ->add('rate', CheckboxType::class, array(
+                'required' => false,
+                'value' => 5,
+                'data' => true
             ))
             ->add('OrderCustomer', OrderCustomerNbTicketsType::class)
             ->add('save', SubmitType::class);

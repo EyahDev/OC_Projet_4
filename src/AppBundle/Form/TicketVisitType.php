@@ -16,7 +16,8 @@ class TicketVisitType extends AbstractType
             ->remove('name')
             ->remove('lastName')
             ->remove('age')
-            ->remove('country');
+            ->remove('country')
+            ->remove('rate');
     }
 
     public function getParent()

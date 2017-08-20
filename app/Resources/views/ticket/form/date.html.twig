@@ -9,7 +9,7 @@
 
     {% if form.visitDate is defined %}
         <div class="form-group">
-            {# Génération du label. #}
+            {# Génération du label #}
             {{ form_label(form.visitDate, "Date de la visite: ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 
             {# Affichage des erreurs pour ce champ précis. #}
@@ -17,7 +17,11 @@
 
             <div class="col-sm-10">
                 {# Génération de l'input. #}
-                {{ form_widget(form.visitDate) }}
+                {% if app.session.get('CommandeLouvre') != null %}
+                    {{ form_widget(form.visitDate, {'value' : app.session.get('CommandeLouvre').ticket.visitDate}) }}
+                {% else %}
+                    {{ form_widget(form.visitDate) }}
+                {% endif %}
             </div>
         </div>
     {% endif %}
@@ -31,7 +35,7 @@
 
             <div class="col-sm-10">
                 {# Génération de l'input. #}
-                {{ form_widget(form.OrderCustomer.nbTickets) }}
+                {{ form_widget(form.OrderCustomer.nbTickets, {'value' : app.session.get('CommandeLouvre').nbTickets}) }}
             </div>
         </div>
 
