@@ -2,80 +2,22 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\OrderCustomer;
 use AppBundle\Entity\Ticket;
-use AppBundle\Form\TicketCoordonneesType;
-use AppBundle\Form\TicketVisitType;
+use AppBundle\Form\OrderCustomerSecondType;
+use AppBundle\Form\TicketFirstType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, Session $session)
     {
-        // Accès à l'entityManager
-        $em = $this->getDoctrine()->getManager();
-
-        // Création de l'entitée OrderCustomer
-        $ticket = new Ticket();
-
-        // Création du formulaire
-        $form = $this->createForm(TicketVisitType::class, $ticket);
-
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
-        {
-            // Récupération du nombre de billets vendus dans la journée
-            $nbTicketsJour = $em->getRepository('AppBundle:Ticket')->getTickets();
-
-            // Récupération du nombre billets commandés
-            $nbTickets = $form->get('OrderCustomer')->get('nbTickets')->getData();
-
-            // Récupération de la date de la visite et formatage de la date
-            $visitDate = $form->get('visitDate')->getData();
-            $visitDate = date_format($visitDate,'d/m/Y');
-
-            // Récupération de la durée de la visite
-            $duration = $form->get('duration')->getData();
-
-            // Préparation de la variable de session
-            $userOrder = array(
-                'nbTickets' => $nbTickets,
-                'ticket' => array(
-                    'visitDate' => $visitDate,
-                    'duration' => $duration
-                ));
-
-
-            if ($nbTicketsJour + $nbTickets >= 1000) {
-                // Création d'un message d'erreur flash
-                $request->getSession()->getFlashBag()->add('notice', 'Le quota de billets vendus dans la journée été atteint, veillez saisir une autre date');
-
-                // Redirection vers la page de la saisie des coordonées
-                return $this->redirectToRoute('homepage');
-            }
-
-
-            // Enregistrement des variables de sessions pour la sauvegarde des données
-            $this->get('session')->set('CommandeLouvre', $userOrder);
-
-            // Redirection vers la page de la saisie des coordonées
-            return $this->redirectToRoute('coordonnees');
-        }
-
-        // Affiche la vue et les éléments nécessaire
-        return $this->render('ticket/index.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * @Route("/coordonnees", name="coordonnees")
-     */
-    public function coordonneesAction(Request $request) {
-
         // Accès à l'entityManager
         $em = $this->getDoctrine()->getManager();
 
@@ -83,79 +25,82 @@ class DefaultController extends Controller
         $ticket = new Ticket();
 
         // Création du formulaire
-        $form = $this->createForm(TicketCoordonneesType::class, $ticket);
+        $form = $this->get('form.factory')->create(TicketFirstType::class, $ticket);
 
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             // Récupération du nombre de billets vendus dans la journée
-            $nbTicketsJour = $em->getRepository('AppBundle:Ticket')->getTickets();
+            $nbTicketsJour = $em->getRepository('AppBundle:Ticket')->getTickets($ticket->getVisitDate());
 
-            // Récupération du nombres de tickets depuis la session
-            $nbTickets =  $this->get('session')->get('CommandeLouvre')['nbTickets'];
+            // Récupération nombre de billet demandé par le client
+            $nbTickets = $ticket->getOrderCustomer()->getNbTickets();
 
             if ($nbTicketsJour + $nbTickets >= 1000) {
                 // Création d'un message d'erreur flash
-                $request->getSession()->getFlashBag()->add('notice', 'Le quota de billets vendus dans la journée été atteint, veillez saisir une autre date');
+                $session->getFlashBag()->add('notice', 'Le quota de billets vendus dans la journée été atteint, veillez saisir une autre date');
 
                 // Redirection vers la page de la saisie des coordonées
                 return $this->redirectToRoute('homepage');
             }
 
+            // Injection des données pour la sauvegarde
+            $session->set('nbTickets', $ticket->getOrderCustomer()->getNbTickets());
+            $session->set('duration', $ticket->getDuration());
+            $session->set('visitDate', $ticket->getVisitDate());
 
-            // Récupération des valeur nominative du billet
-            $name = $form->get('name')->getData();
-            $lastName = $form->get('lastName')->getData();
-            $age = $form->get('age')->getData();
-            $country = $form->get('country')->getData();
-            $rate = $form->get('rate')->getData();
+            // Rédirection vers la page de la sélection des coordonnées
+            return $this->redirectToRoute('coordonnees');
+        }
 
-            // Mise à jour du format de la date de naissance
-            $age = date_format($age,'d/m/Y');
+        // Affiche la vue et les éléments nécessaire
+        return $this->render('ticket/index.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
 
-            // Récupération de la variable de session initial
-            $userOrder = $this->get('session')->get('CommandeLouvre');
+    /**
+     * @Route("/coordonnees", name="coordonnees")
+     */
+    public function coordonneesAction(Request $request, Session $session) {
 
-            // Détermination du tarif et du prix
-            if ($rate === false) {
+        // Accès à l'entityManager
+        $em = $this->getDoctrine()->getManager();
 
-                // transformation de la date en age
-                $birthday = (time() - strtotime($age)) /3600/24/365;
-                $birthday = floor($birthday);
+        $order = new OrderCustomer();
 
-                // Recherche du tarif adapté à l'âge du client
-                $priceAndRate = $em->getRepository('AppBundle:Rate')->getPriceAndRate($birthday);
+        // Création du formulaire
+        $form = $this->get('form.factory')->create(OrderCustomerSecondType::class, $order);
 
-                // Définition du tarif
-                $rate = $priceAndRate->getId();
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            // Récupération du nombre de billets vendus dans la journée
+            $nbTicketsJour = $em->getRepository('AppBundle:Ticket')->getTickets($session->get('visitDate'));
 
-                // Définition du prix
-                $price = $priceAndRate->getPrice();
+            // Récupération nombre de billet demandé par le client
+            $nbTickets = $session->get('nbTickets');
 
-            } else {
-                // Défintion du tarif réduit
-                $rate = 5;
+            if ($nbTicketsJour + $nbTickets >= 1000) {
+                // Création d'un message d'erreur flash
+                $session->getFlashBag()->add('notice', 'Le quota de billets vendus dans la journée été atteint, veillez saisir une autre date');
 
-                // Définition du price, grace au tarif
-                $price = $em->getRepository('AppBundle:Rate')->find($rate)->getPrice();
+                // Redirection vers la page de la saisie des coordonées
+                return $this->redirectToRoute('homepage');
             }
 
-            // Ajout des valeur à la variable de session
-            $userOrder['ticket'] = array_merge($userOrder['ticket'], array(
-                'name' => $name,
-                'lastName' => $lastName,
-                'age' => $age,
-                'country' => $country,
-                'rate' => $rate,
-                'price' => $price
-            ));
+            // Récupération des variables de sessions
+            $nbTicketsSession = $session->get('nbTickets');
 
-            // Enregistrement des variables de sessions pour la sauvegarde des données
-            $this->get('session')->set('CommandeLouvre', $userOrder);
+            $order->setNbTickets($nbTicketsSession);
 
-            // Redirection vers la page de la saisie des coordonées
+            // Sauvegarde des données dans une variable de sessions
+            $session->set('CommandeLouvre', $order);
+
+            // Rédirection vers la page de la sélection des coordonnées
             return $this->redirectToRoute('recapitulatif');
         }
+
+
 
         // Affiche la vue et les éléments nécessaire
         return $this->render('ticket/coordonnees.html.twig', array(
@@ -166,13 +111,45 @@ class DefaultController extends Controller
     /**
      * @Route("/recapitulatif", name="recapitulatif")
      */
-    public function recapitulatifAction() {
+    public function recapitulatifAction(Session $session) {
+
         // Accès à l'entityManager
         $em = $this->getDoctrine()->getManager();
 
-        // Récupération de tous les tarifs existant
-        $rate = $em->getRepository('AppBundle:Rate')->findAll();
+        // Récupération de la variable de sessions
+        $order = $session->get('CommandeLouvre');
 
-        return $this->render('ticket/recapitulatif.html.twig', array('test' => $rate));
+
+
+        // Récupération du tarif en fonction de l'age du titulaire
+        $rates = $em->getRepository('AppBundle:Rate');
+
+        // Parcours de la variable de sessions et attribution des valeurs
+        foreach ($order->getTickets() as $ticket) {
+
+            if ($ticket->getRate()) {
+                // Récupération du prix et du nom du tarif réduit
+                $rate = $rates->findOneBy(array('name' => 'Réduit'));
+
+                // Injection à la variable de session
+                $ticket->setRate($rate->getName());
+                $ticket->setPrice($rate->getPrice());
+
+            } else {
+                // Calcul de l'âge
+                $now = new \DateTime();
+                $birthdayDate = $ticket->getAge();
+                $age = $now->diff($birthdayDate)->y;
+
+                // Récupération du tarif adapté
+                $rate = $rates->getPriceAndRate($age);
+
+                // Injection à la variable de session
+                $ticket->setRate($rate->getName());
+                $ticket->setPrice($rate->getPrice());
+            }
+        };
+
+        return $this->render('ticket/recapitulatif.html.twig');
     }
 }

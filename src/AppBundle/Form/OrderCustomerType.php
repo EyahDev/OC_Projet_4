@@ -4,9 +4,9 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OrderCustomerType extends AbstractType
@@ -16,15 +16,13 @@ class OrderCustomerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Création d'une interface de session
-        $session = new Session();
-
-        // Formulaire
         $builder
-            ->add('email')
-            ->add('nbTickets', IntegerType::class, array(
-                'attr' => array('min' => 0),
-                'data' => $session->get('nbTickets')
+            ->add('email', EmailType::class)
+            ->add('nbTickets', \Symfony\Component\Form\Extension\Core\Type\IntegerType::class, array(
+                'attr' => array('min' => 0, 'max' => 1000)))
+            ->add('save', SubmitType::class)
+            ->add('tickets', CollectionType::class, array(
+                'entry_type' => TicketType::class
             ));
     }
     

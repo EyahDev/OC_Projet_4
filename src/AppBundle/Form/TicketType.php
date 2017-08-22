@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TicketType extends AbstractType
@@ -20,15 +19,12 @@ class TicketType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Création d'une interface de session
-        $session = new Session();
-
-        // Date du jour
+        // Définition de la date du jour
         $date = new \DateTime();
 
         // Formulaire
         $builder
-            ->add('name', TextType::class)
+            ->add('name',TextType::class)
             ->add('lastName', TextType::class)
             ->add('age', DateType::class, array(
                 'widget' => 'single_text',
@@ -38,24 +34,22 @@ class TicketType extends AbstractType
             ->add('country', CountryType::class, array(
                 'data' => 'FR'
             ))
+            ->add('rate', CheckboxType::class, array(
+                'required' => false
+            ))
             ->add('visitDate', DateType::class, array(
                 'widget' => 'single_text',
-                'format' => 'dd/MM/y',
+                'format' => 'd/MM/y',
                 'data' => $date
             ))
             ->add('duration', ChoiceType::class, array(
                 'choices' => array(
                     'Journée' => 'journée',
                     'Demi-journée' => 'demi-journée'),
-                'data' => $session->get('CommandeLouvre')['ticket']['duration'],
-                'expanded' => true
+                'expanded' => true,
+                'multiple' => false
             ))
-            ->add('rate', CheckboxType::class, array(
-                'required' => false,
-                'value' => 5,
-                'data' => true
-            ))
-            ->add('OrderCustomer', OrderCustomerNbTicketsType::class)
+            ->add('orderCustomer', OrderCustomerType::class)
             ->add('save', SubmitType::class);
     }
     
@@ -65,7 +59,7 @@ class TicketType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Ticket',
+            'data_class' => 'AppBundle\Entity\Ticket'
         ));
     }
 

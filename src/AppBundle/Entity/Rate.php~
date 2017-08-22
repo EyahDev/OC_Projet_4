@@ -13,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Rate
 {
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="rate")
+     */
+    private $tickets;
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

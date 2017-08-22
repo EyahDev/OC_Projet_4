@@ -2,19 +2,23 @@
 {% block title %}Récapitulatif{% endblock %}
 {% block body %}
     <h3>Page récapitulative</h3>
-    {{ dump(app.session.get('CommandeLouvre')) }}
-
     <p>
-        Vous prevoyez de visiter le musée du Louvre le {{ app.session.get('CommandeLouvre').ticket.visitDate }}
-        pour la {{ app.session.get('CommandeLouvre').ticket.duration  }} avec {{ app.session.get('CommandeLouvre').nbTickets }} personnes.
+        Vous prevoyez de visiter le musée du Louvre le
+        pour la avec  personnes.
         <a href="{{ path('homepage') }}">Modifier</a>
     </p>
-
+    {{ dump(app.session.get('CommandeLouvre')) }}
     <h3>Billet </h3>
-    <p><strong>Billet n°1</strong><a href="{{ path('coordonnees') }}">Modifier</a></p>
-    <p>Nom : {{ app.session.get('CommandeLouvre').ticket.lastName }}</p>
-    <p>Prénom : {{ app.session.get('CommandeLouvre').ticket.name }}</p>
-    <p>Tarif : {{test[app.session.get('CommandeLouvre').ticket.rate-1].name }}</p>
-    <p>Prix : {{ app.session.get('CommandeLouvre').ticket.price }} €</p>
+    <p><strong>Billet n°1</strong></p>
+    <div class="well">
+        {% for ticket in app.session.get('CommandeLouvre').tickets %}
+            <p>Nom : {{ ticket.name }}</p>
+            <p>Prénom : {{ ticket.lastName }}</p>
+            <p>age : {{ ticket.age|age }}</p>
+            <p>Tarif : {{ ticket.rate }}</p>
+            <p>Prix : {{ ticket.price }} €</p>
+        {% endfor %}
+    </div>
+
 
 {% endblock %}

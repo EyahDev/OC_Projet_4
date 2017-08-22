@@ -1,97 +1,77 @@
-<div class="well">
-    {# Début du formulaire #}
-    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-
-    {# Erreur du formulaire #}
-    {{ form_errors(form) }}
-
-        <div class="form-group">
-            {# Génération du label. #}
-            {{ form_label(form.lastName, "Nom : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-            {# Affichage des erreurs pour ce champ précis. #}
-            {{ form_errors(form.lastName) }}
-
-            <div class="col-sm-10">
-                {# Génération de l'input. #}
-                {% if app.session.get('CommandeLouvre') != null %}
-                    {{ form_widget(form.lastName, {'value' : app.session.get('CommandeLouvre').ticket.lastName}) }}
-                {% else %}
-                    {{ form_widget(form.lastName) }}
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="form-group">
-            {# Génération du label. #}
-            {{ form_label(form.name, "Prénom : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-            {# Affichage des erreurs pour ce champ précis. #}
-            {{ form_errors(form.name) }}
-
-            <div class="col-sm-10">
-                {# Génération de l'input. #}
-                {% if app.session.get('CommandeLouvre') != null %}
-                    {{ form_widget(form.name, {'value' : app.session.get('CommandeLouvre').ticket.name}) }}
-                {% else %}
-                    {{ form_widget(form.name) }}
-                {% endif %}
-            </div>
-        </div>
 
     <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.age, "Date de naissance : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {# Génération du label #}
+        {{ form_label(form.tickets.vars.prototype.name, "Prénom : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
 
         {# Affichage des erreurs pour ce champ précis. #}
-        {{ form_errors(form.age) }}
+        {{ form_errors(form.tickets.vars.prototype.name) }}
 
         <div class="col-sm-10">
             {# Génération de l'input. #}
-            {% if app.session.get('CommandeLouvre') != null %}
-                {{ form_widget(form.age, {'value' : app.session.get('CommandeLouvre').ticket.age}) }}
-            {% else %}
-                {{ form_widget(form.age) }}
-            {% endif %}
+            {{ form_widget(form.tickets.vars.prototype.name) }}
+
         </div>
     </div>
 
     <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.country, "Pays :", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {# Génération du label #}
+        {{ form_label(form.tickets.vars.prototype.lastName, "Nom : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
 
         {# Affichage des erreurs pour ce champ précis. #}
-        {{ form_errors(form.country) }}
+        {{ form_errors(form.tickets.vars.prototype.lastName) }}
 
         <div class="col-sm-10">
             {# Génération de l'input. #}
-            {% if app.session.get('CommandeLouvre') != null %}
-                {{ form_widget(form.country, {'value' : app.session.get('CommandeLouvre').ticket.country}) }}
-            {% else %}
-                {{ form_widget(form.country) }}
-            {% endif %}
+            {{ form_widget(form.tickets.vars.prototype.lastName) }}
+
         </div>
     </div>
 
     <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.rate, "Tarif réduit :", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {# Génération du label #}
+        {{ form_label(form.tickets.vars.prototype.age, "Date de naissance : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+
         {# Affichage des erreurs pour ce champ précis. #}
-        {{ form_errors(form.rate) }}
+        {{ form_errors(form.tickets.vars.prototype.age) }}
 
         <div class="col-sm-10">
             {# Génération de l'input. #}
-            {{ form_widget(form.rate)}}
-            <p>Pour les étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…</p>
-            <p><strong>Un justificatif vous sera demandé à l'entrée du musée</strong></p>
+            {{ form_widget(form.tickets.vars.prototype.age) }}
+
         </div>
     </div>
 
+    <div class="form-group">
+        {# Génération du label #}
+        {{ form_label(form.tickets.vars.prototype.country, "Pays : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 
-    {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
-    {# Fermeture de la balise <form> du formulaire HTML #}
-    {{ form_end(form) }}
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.tickets.vars.prototype.country) }}
 
-</div>
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.tickets.vars.prototype.country) }}
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        {# Génération du label #}
+        {{ form_label(form.tickets.vars.prototype.rate, "Tarif réduit : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.tickets.vars.prototype.rate) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.tickets.vars.prototype.rate) }}
+            {{ form_widget(form.tickets.vars.prototype.duration) }}
+            {{ form_widget(form.tickets.vars.prototype.visitDate) }}
+        </div>
+    </div>
+

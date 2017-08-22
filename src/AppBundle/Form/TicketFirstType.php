@@ -5,7 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class TicketVisitType extends AbstractType
+class TicketFirstType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -17,20 +17,23 @@ class TicketVisitType extends AbstractType
             ->remove('lastName')
             ->remove('age')
             ->remove('country')
-            ->remove('rate');
+            ->remove('rate')
+            ->remove('price')
+            ->remove('orderCustomer')
+            ->add('orderCustomer', OrderCustomerFirstType::class);
     }
-
-    public function getParent()
-    {
-        return TicketType::class;
-    }
+    
+   public function getParent()
+   {
+       return TicketType::class;
+   }
 
     /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_ticketvisit';
+        return 'appbundle_ticketfirst';
     }
 
 

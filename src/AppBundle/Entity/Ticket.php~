@@ -56,9 +56,11 @@ class Ticket
     private $country;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="rate", type="string", length=255)
+     * @ORM\Column(name="rate", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rate", inversedBy="tickets")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $rate;
 

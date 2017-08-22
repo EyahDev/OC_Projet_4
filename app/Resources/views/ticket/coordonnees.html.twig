@@ -2,20 +2,37 @@
 {% block title %}Coordonnées{% endblock %}
 {% block body %}
     <h3>Page des coordonnées</h3>
-     {{ dump(app.session.get('CommandeLouvre')) }}
 
     <p>
-        Vous prevoyez de visiter le musée du Louvre le {{ app.session.get('CommandeLouvre').ticket.visitDate }}
-        pour la {{ app.session.get('CommandeLouvre').ticket.duration  }} avec {{ app.session.get('CommandeLouvre').nbTickets }} personnes.
+        Vous prevoyez de visiter le musée du Louvre le {{ app.session.get('visitDate')|date('d/m/Y') }}
+        pour la {{ app.session.get('duration') }} avec {{ app.session.get('nbTickets') }} personnes.
         <a href="{{ path('homepage') }}">Modifier</a>
     </p>
 
     <p>Chaque billet est nominatif, afin definir le tarif de chaque personne, veuillez renseigner les informations suivantes :</p>
 
     <h3>Coordonnées</h3>
-        <p><strong>Billet n°1</strong></p>
+
+
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {# Erreur du formulaire #}
+        {{ form_errors(form) }}
+
         {% block form %}
-            {{ include(':ticket/form:coordonnees.html.twig') }}
+            {% for i in 1..app.session.get('nbTickets') %}
+                <p><strong>Billet n°{{ loop.index }}</strong></p>
+    <div class="well">
+        {# Début du formulaire #}
+                {{ include('Ticket/form/coordonnees.html.twig') }}
+    </div>
+            {% endfor %}
         {% endblock %}
 
+    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+    {# Fermeture de la balise <form> du formulaire HTML #}
+    {{ form_end(form) }}
+
 {% endblock %}
+

@@ -13,13 +13,10 @@ class TicketRepository extends \Doctrine\ORM\EntityRepository
     /**
      * Récupération du nombre de billets vendus à la date du jour
      */
-    public function getTickets()
+    public function getTickets($date)
     {
         // Accès au QueryBuilder
         $qb = $this->createQueryBuilder('t');
-
-        // Récupération de la date du jour
-        $date = date('Y-m-d');
 
         // Recherche de billets avec la date du jour concernée
         $qb->where('t.visitDate = :date')->setParameter('date', $date);
