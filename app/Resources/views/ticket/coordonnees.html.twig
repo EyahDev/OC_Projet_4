@@ -3,8 +3,9 @@
 {% block body %}
     <h3>Page des coordonnées</h3>
 
+
     <p>
-        Vous prevoyez de visiter le musée du Louvre le {{ app.session.get('visitDate')|date('d/m/Y') }}
+        Vous prevoyez de visiter le musée du Louvre le
         pour la {{ app.session.get('duration') }} avec {{ app.session.get('nbTickets') }} personnes.
         <a href="{{ path('homepage') }}">Modifier</a>
     </p>
@@ -13,25 +14,19 @@
 
     <h3>Coordonnées</h3>
 
+    {{dump(app.session.get('CommandeLouvre'))}}
 
-        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {# Début du formulaire #}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {# Erreur du formulaire #}
+    {{ form_errors(form) }}
 
-        {# Erreur du formulaire #}
-        {{ form_errors(form) }}
-
-        {% block form %}
-            {% for i in 1..app.session.get('nbTickets') %}
-                <p><strong>Billet n°{{ loop.index }}</strong></p>
-    <div class="well">
-        {# Début du formulaire #}
-                {{ include('Ticket/form/coordonnees.html.twig') }}
-    </div>
-            {% endfor %}
-        {% endblock %}
+    {% for ticket in form.tickets %}
+        <p>Billet n°{{ loop.index }}</p>
+        {{ include('ticket/form/secondstep.html.twig') }}
+    {% endfor %}
 
     {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-    {# Fermeture de la balise <form> du formulaire HTML #}
     {{ form_end(form) }}
 
 {% endblock %}

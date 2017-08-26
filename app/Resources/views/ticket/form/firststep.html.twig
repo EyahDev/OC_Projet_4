@@ -8,29 +8,58 @@
 
 
         <div class="form-group">
+
             {# Génération du label #}
-            {{ form_label(form.visitDate, "Date de la visite: ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_label(form.email.first, "Email : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 
             {# Affichage des erreurs pour ce champ précis. #}
-            {{ form_errors(form.visitDate) }}
+            {{ form_errors(form.email.first) }}
 
             <div class="col-sm-10">
                 {# Génération de l'input. #}
-                {{ form_widget(form.visitDate) }}
-
+                {{ form_widget(form.email.first) }}
             </div>
         </div>
 
-        <div class="form-group">
+    <div class="form-group">
+
+        {# Génération du label #}
+        {{ form_label(form.email.second, "Répétez votre email : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.email.second) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.email.second) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {# Génération du label #}
+        {{ form_label(form.visitDate, "Date de la visite : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.visitDate) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.visitDate) }}
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
             {# Génération du label #}
-            {{ form_label(form.orderCustomer.nbTickets, "Nombre de billet : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_label(form.nbTickets, "Nombre de billet : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 
             {# Affichage des erreurs pour ce champ précis. #}
-            {{ form_errors(form.orderCustomer.nbTickets) }}
+            {{ form_errors(form.nbTickets) }}
 
             <div class="col-sm-10">
                 {# Génération de l'input. #}
-                {{ form_widget(form.orderCustomer.nbTickets) }}
+                {{ form_widget(form.nbTickets) }}
 
             </div>
         </div>

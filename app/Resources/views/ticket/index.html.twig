@@ -5,6 +5,7 @@
         <p class="alert alert-danger">{{ message }}</p>
     {% endfor %}
 
-    {{ include('Ticket/form/date.html.twig') }}
+    {{ dump(app.session.get('CommandeLouvre')) }}
+    {{ include('Ticket/form/firststep.html.twig') }}
 
 {% endblock %}

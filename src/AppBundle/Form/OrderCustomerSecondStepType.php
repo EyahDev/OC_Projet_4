@@ -4,10 +4,10 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-
-class OrderCustomerThirdType extends AbstractType
+class OrderCustomerSecondStepType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -16,28 +16,11 @@ class OrderCustomerThirdType extends AbstractType
     {
 
         $builder
-            ->remove('email')
-            ->remove('nbTickets')
-            ->remove('tickets')
             ->add('tickets', CollectionType::class, array(
-                'entry_type' => TicketThirdType::class,
+                'entry_type' => TicketSecondStepType::class,
                 'allow_add' => true,
                 'allow_delete' => true
-            ));
+            ))
+            ->add('save', SubmitType::class);
     }
-
-    public function getParent()
-    {
-        return OrderCustomerType::class;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_ordercustomerthird';
-    }
-
-
 }

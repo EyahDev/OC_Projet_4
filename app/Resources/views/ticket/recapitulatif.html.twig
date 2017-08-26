@@ -2,23 +2,41 @@
 {% block title %}Récapitulatif{% endblock %}
 {% block body %}
     <h3>Page récapitulative</h3>
+    {{ dump(app.session.get('CommandeLouvre')) }}
     <p>
         Vous prevoyez de visiter le musée du Louvre le
         pour la avec  personnes.
         <a href="{{ path('homepage') }}">Modifier</a>
     </p>
-    {{ dump(app.session.get('CommandeLouvre')) }}
     <h3>Billet </h3>
     <p><strong>Billet n°1</strong></p>
-    <div class="well">
-        {% for ticket in app.session.get('CommandeLouvre').tickets %}
-            <p>Nom : {{ ticket.name }}</p>
-            <p>Prénom : {{ ticket.lastName }}</p>
-            <p>age : {{ ticket.age|age }}</p>
-            <p>Tarif : {{ ticket.rate }}</p>
-            <p>Prix : {{ ticket.price }} €</p>
-        {% endfor %}
-    </div>
 
+        {% for ticket in app.session.get('CommandeLouvre').tickets %}
+            <div class="well">
+                <p>Nom : {{ ticket.name }}</p>
+                <p>Prénom : {{ ticket.lastName }}</p>
+                <p>age : {{ ticket.age|age }}</p>
+                <p>Tarif : {{ ticket.rate }}</p>
+                <p>Prix : {{ ticket.price }} €</p>
+            </div>
+        {% endfor %}
+
+
+    <p>TOTAL : {{ app.session.get('CommandeLouvre').price }} €</p>
+
+
+    <form action="{{ path('confirmation') }}" method="POST">
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_UkrYg88qxXhhJYayypUNfFuk"
+                data-amount="{{ app.session.get('CommandeLouvre').price }}00"
+                data-name="Musée du louvre"
+                data-description="Paiement de vos billets d'entrée"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto"
+                data-zip-code="false"
+                data-currency="eur">
+        </script>
+    </form>
 
 {% endblock %}

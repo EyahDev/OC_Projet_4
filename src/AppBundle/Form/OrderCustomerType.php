@@ -19,7 +19,7 @@ class OrderCustomerType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('nbTickets', \Symfony\Component\Form\Extension\Core\Type\IntegerType::class, array(
-                'attr' => array('min' => 0, 'max' => 1000)))
+                'attr' => array('min' => 0, 'max' => 10)))
             ->add('save', SubmitType::class)
             ->add('tickets', CollectionType::class, array(
                 'entry_type' => TicketType::class

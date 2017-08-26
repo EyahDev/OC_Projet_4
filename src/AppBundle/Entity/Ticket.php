@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ticket
@@ -15,6 +16,7 @@ class Ticket
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\OrderCustomer", inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $orderCustomer;
 
@@ -42,9 +44,9 @@ class Ticket
     private $lastName;
 
     /**
-     * @var int
+     * @var \DateTime
      *
-     * @ORM\Column(name="age", type="integer")
+     * @ORM\Column(name="age", type="datetime")
      */
     private $age;
 
@@ -63,25 +65,18 @@ class Ticket
     private $rate;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="reduced_price", type="boolean")
+     */
+    private $reducedPrice;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="visitDate", type="datetime")
-     */
-    private $visitDate;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="duration", type="string", length=255)
-     */
-    private $duration;
 
     /**
      * Get id
@@ -262,53 +257,6 @@ class Ticket
         return $this->tickets;
     }
 
-    /**
-     * Set visitDate
-     *
-     * @param \DateTime $visitDate
-     *
-     * @return Ticket
-     */
-    public function setVisitDate($visitDate)
-    {
-        $this->visitDate = $visitDate;
-
-        return $this;
-    }
-
-    /**
-     * Get visitDate
-     *
-     * @return \DateTime
-     */
-    public function getVisitDate()
-    {
-        return $this->visitDate;
-    }
-
-    /**
-     * Set duration
-     *
-     * @param string $duration
-     *
-     * @return Ticket
-     */
-    public function setDuration($duration)
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
-    /**
-     * Get duration
-     *
-     * @return string
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
 
     /**
      * Set orderCustomer
@@ -332,5 +280,29 @@ class Ticket
     public function getOrderCustomer()
     {
         return $this->orderCustomer;
+    }
+
+    /**
+     * Set reducedPrice
+     *
+     * @param boolean $reducedPrice
+     *
+     * @return Ticket
+     */
+    public function setReducedPrice($reducedPrice)
+    {
+        $this->reducedPrice = $reducedPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get reducedPrice
+     *
+     * @return boolean
+     */
+    public function getReducedPrice()
+    {
+        return $this->reducedPrice;
     }
 }
