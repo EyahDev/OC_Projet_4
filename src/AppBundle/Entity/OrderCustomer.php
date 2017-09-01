@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Validator as CustomAssert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,6 +16,7 @@ class OrderCustomer
 {
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="orderCustomer", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $tickets;
 
@@ -39,6 +41,12 @@ class OrderCustomer
      * @var int
      *
      * @ORM\Column(name="nbTickets", type="integer")
+     * @Assert\GreaterThanOrEqual(
+     *     value = 1,
+     *     message="Vous devez choisir un nombre de billet valide")
+     * @Assert\LessThanOrEqual(
+     *     value = 10,
+     *     message = "Si vous souhaitez acheter plus de 10 billets, veuillez nous contacter")
      */
     private $nbTickets;
 
@@ -67,6 +75,9 @@ class OrderCustomer
      * @var \DateTime
      *
      * @ORM\Column(name="visitDate", type="datetime")
+     * @Assert\GreaterThanOrEqual("today", message = "Veuillez choisir une date supérieur à la date du jour")
+     * @CustomAssert\VisitDate\ContainsVisitDateDimanche()
+     * @CustomAssert\VisitDate\ContainsVisitDateFerie()
      */
     private $visitDate;
 
@@ -214,6 +225,7 @@ class OrderCustomer
     public function __construct()
     {
         $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->visitDate = new \DateTime();
     }
 
     /**

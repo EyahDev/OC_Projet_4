@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\OrderCustomer;
+
 use AppBundle\Entity\Ticket;
-use AppBundle\Form\OrderCustomerFirstStepType;
 use AppBundle\Form\OrderCustomerSecondStepType;
+use AppBundle\Services\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,29 +16,29 @@ class BilletterieController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request, Session $session)
+    public function indexAction(Request $request, OrderManager $orderManager)
     {
-        // Création de l'entitée Ticket
-        $order = new OrderCustomer();
-
-        // Création du formulaire
-        $form = $this->get('form.factory')->create(OrderCustomerFirstStepType::class, $order);
+        $form = $orderManager->indexAction();
 
         $form->handleRequest($request);
-        // Lors de la transmission du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            // Création de la variable de session
-            $session->set('CommandeLouvre', $order);
+        if ($form->isSubmitted() && $form->isValid()) {
 
             // Redirige vers la page des coordonnées
             return $this->redirectToRoute('coordonnees');
         }
 
         // Affiche la vue et les éléments nécessaire
-        return $this->render('ticket/index.html.twig', array(
+        return $this->render('ticket/firststep.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function testAction () {
+        return $this->render('ticket/confirmation.html.twig');
     }
 
     /**
@@ -46,91 +46,107 @@ class BilletterieController extends Controller
      */
     public function coordonneesAction(Request $request, Session $session) {
 
-        // Récupération de la commande depuis la session
-        $order = $session->get('CommandeLouvre');
+        if ($session->has('CommandeLouvre')) {
+            // Récupération de la commande depuis la session
+            $order = $session->get('CommandeLouvre');
 
-        // Récupération du nombres de billets demandé par l'utilisateur
-        $nbTickets = $order->getNbTickets();
+            // Récupération du nombres de billets demandé par l'utilisateur
+            $nbTickets = $order->getNbTickets();
 
-        // Création du nombre de billet demandé par l'utilisateur
-        for ($i = 1; $i <= $nbTickets; $i++) {
-            // Vérification si le nombre de billet créé correspond au nombre de billet demandé par l'utilisateur
-            if (count($order->getTickets()) != $nbTickets) {
+            // Création du nombre de billet demandé par l'utilisateur
+            for ($i = 1; $i <= $nbTickets; $i++) {
+                // Vérification si le nombre de billet créé correspond au nombre de billet demandé par l'utilisateur
+                if (count($order->getTickets()) != $nbTickets) {
 
-                // Ajout d'un nouveau ticket
-                $order->addTicket(new Ticket());
+                    // Ajout d'un nouveau ticket
+                    $order->addTicket(new Ticket());
+                }
             }
+
+            // Création du formulaire
+            $form = $this->get('form.factory')->create(OrderCustomerSecondStepType::class, $order);
+
+            $form->handleRequest($request);
+            // Lors de la transmission du formulaire
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                // Redirige vers la page des coordonnées
+                return $this->redirectToRoute('recapitulatif');
+
+            }
+
+            // Affiche la vue et les éléments nécessaire
+            return $this->render('secondstep.html.twig', array(
+                'form' => $form->createView()
+            ));
+
         }
+            // Génération du message de notification
+            $session->getFlashBag()->add("notice", "Veuillez remplir cette partie avant d'aller plus loin");
 
-        // Création du formulaire
-        $form = $this->get('form.factory')->create(OrderCustomerSecondStepType::class, $order);
-
-        $form->handleRequest($request);
-        // Lors de la transmission du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            dump($order);
-            // Redirige vers la page des coordonnées
-            return $this->redirectToRoute('recapitulatif');
-
-        }
-
-        // Affiche la vue et les éléments nécessaire
-        return $this->render('ticket/coordonnees.html.twig', array(
-            'form' => $form->createView()
-        ));
+            // Rédirection vers la page d'accueil
+            return $this->redirectToRoute('homepage');
     }
 
     /**
      * @Route("/recapitulatif", name="recapitulatif")
      */
-    public function recapitulatifsAction(Request $request, Session $session)
+    public function recapitulatifAction(Request $request, Session $session)
     {
-        // Accès à l'entityManager
-        $em = $this->getDoctrine()->getManager();
+        if ($session->has('CommandeLouvre') && $session->get('CommandeLouvre')->getPrice() != null) {
+            // Accès à l'entityManager
+            $em = $this->getDoctrine()->getManager();
 
-        // Récupération de la variable de session
-        $order = $session->get('CommandeLouvre');
+            // Récupération de la variable de session
+            $order = $session->get('CommandeLouvre');
 
-        // Récupération du tarif en fonction de l'age du titulaire
-        $rates = $em->getRepository('AppBundle:Rate');
+            // Récupération du tarif en fonction de l'age du titulaire
+            $rates = $em->getRepository('AppBundle:Rate');
 
-        // Mise à 0 du total de la commande
-        $total = 0;
+            // Mise à 0 du total de la commande
+            $total = 0;
 
-        // Parcours de la variable de sessions et attribution des valeurs
-        foreach ($order->getTickets() as $ticket) {
+            // Parcours de la variable de sessions et attribution des valeurs
+            foreach ($order->getTickets() as $ticket) {
 
-            // Vérification si la coche tarif réduit a été coché
-            if ($ticket->getReducedPrice() === true) {
+                // Vérification si la coche tarif réduit a été coché
+                if ($ticket->getReducedPrice() === true) {
 
-                // Récupération du prix et du nom du tarif réduit
-                $rate = $rates->findOneBy(array('name' => 'Réduit'));
+                    // Récupération du prix et du nom du tarif réduit
+                    $rate = $rates->findOneBy(array('name' => 'Réduit'));
 
-                // Injection à la variable de session
-                $ticket->setRate($rate->getName());
-                $ticket->setPrice($rate->getPrice());
+                    // Injection à la variable de session
+                    $ticket->setRate($rate->getName());
+                    $ticket->setPrice($rate->getPrice());
 
-            } else {
-                // Calcul de l'âge
-                $now = new \DateTime();
-                $birthdayDate = $ticket->getAge();
-                $age = $now->diff($birthdayDate)->y;
+                } else {
+                    // Calcul de l'âge
+                    $now = new \DateTime();
+                    $birthdayDate = $ticket->getAge();
+                    $age = $now->diff($birthdayDate)->y;
 
-                // Récupération du tarif adapté
-                $rate = $rates->getPriceAndRate($age);
+                    // Récupération du tarif adapté
+                    $rate = $rates->getPriceAndRate($age);
 
-                // Injection à la variable de session
-                $ticket->setRate($rate->getName());
-                $ticket->setPrice($rate->getPrice());
-            }
-            // Calcul du montant total à payer
-            $ticketPrice = $ticket->getPrice();
-            $total = $total + $ticketPrice;
-            $order->setPrice($total);
-        };
+                    // Injection à la variable de session
+                    $ticket->setRate($rate->getName());
+                    $ticket->setPrice($rate->getPrice());
+                }
+                // Calcul du montant total à payer
+                $ticketPrice = $ticket->getPrice();
+                $total = $total + $ticketPrice;
+                $order->setPrice($total);
+            };
 
-        return $this->render('ticket/recapitulatif.html.twig');
+            return $this->render('summary.html.twig');
+        }
+
+        // Génération du message de notification
+        $session->getFlashBag()->add("notice", "Veuillez remplir cette partie avant d'aller plus loin");
+
+        // Rédirection vers la page d'accueil
+        return $this->redirectToRoute('coordonnees');
+
     }
 
     /**

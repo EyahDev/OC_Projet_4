@@ -3,7 +3,7 @@
 namespace AppBundle\Services;
 
 
-class ageExtension extends \Twig_Extension
+class AgeExtension extends \Twig_Extension
 {
     // Création du filtre twig
     public function getFilters()

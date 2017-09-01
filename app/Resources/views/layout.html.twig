@@ -1,30 +1,171 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="FR">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Musée du louvre - {% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Musée du Louvre - {% block title %}{% endblock %}</title>
+
         {% block stylesheets %}
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+            <!-- Bootstrap Core CSS -->
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+            <!-- DatePicker -->
+            <link href="{{asset('datepicker/css/bootstrap-datepicker3.standalone.min.css')}}" rel="stylesheet">
+
+            <!-- StepWizard -->
+            <link href="{{asset('stepwizard/progress-wizard.min.css')}}" rel="stylesheet">
+
+            <!-- Theme CSS -->
+            <link href="{{asset('css/theme.css')}}" rel="stylesheet">
+
+            <!-- Custom CSS -->
+            <link href="{{asset('css/custom.css')}}" rel="stylesheet" type="text/css">
+
+            <!-- Custom Fonts -->
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic" rel="stylesheet" type="text/css">
+            <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         {% endblock %}
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="index.html">
+                    LOUVRE</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Informations</a>
+                    </li>
+                    <li>
+                        <a href="#">Visites</a>
+                    </li>
+                    <li>
+                        <a href="#">Expositions</a>
+                    </li>
+                    <li>
+                        <a href="#">Oeuvres</a>
+                    </li>
+                    <li>
+                        <a href="#">Arts</a>
+                    </li>
+                    <li>
+                        <a href="#">Billetterie <i class="fa fa-ticket" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Intro Header -->
+    <header class="intro" id="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <a href="#">
+                            <h1 class="brand-heading">Billetterie</h1>
+                            <p class="intro-text">
+                                Achetez vos billets
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <body>
+    <!-- Billetterie Section -->
+    <section id="page-sample">
+        <div class="container content-section text-left">
+            <div class="row">
 
-    <div class="container">
-        <div>
-            {% block body %}
-                {% block form %}
-                {% endblock %}
+                <div class="row">
+                    <ul class="progress-indicator">
+                        <li class="warning"><div class="stepWarning"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</a></div></li>
+                        <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</div></li>
+                        <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> Récapitulatif & paiement</div></li>
+                        <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmation</div></li>
+                    </ul>
+                </div>
+                <hr/>
+                <div class="stepInfo" style="text-align: center">
+                    <h2 class="text-center">
+                        {% block informationTitle %}
+                        {% endblock %}
+                    </h2>
+                    <p class="informationText">
+                        {% block informationText %}
+                        {% endblock %}
+                    </p>
+                </div>
+                <hr/>
+                {#<div class="col-lg-8 col-lg-offset-2">#}
+                    {#<p>#}
+                        {#{% block informationText %}#}
+                        {#{% endblock %}#}
+                    {#</p>#}
+                    {#<hr/>#}
+                {#</div>#}
+            </div>
+
+            {% block form %}
+
             {% endblock %}
         </div>
-    </div>
+    </section>
 
-{% block javascripts %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-{% endblock %}
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="credits">
+                Copyright &copy; Adrien Desmet - 2017<br/>
+                "Aries" Template by WowThemes.net modifié par <a href="adriendesmet.com">Adrien Desmet</a>
+            </p>
+        </div>
+    </footer>
 
+    {% block javascripts %}
+        <!-- jQuery -->
+        <script src="{{asset('js/jquery.js')}}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+        <!-- Plugin JavaScript -->
+        <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="{{asset('js/theme.js')}}"></script>
+
+        <script src="{{asset('datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+        <script src="{{asset('datepicker/locales/bootstrap-datepicker.fr.min.js')}}"></script>
+        <script>
+            $('.datepicker').datepicker({
+                setDate: new Date(),
+                startDate: "today",
+                language: "fr",
+                daysOfWeekDisabled: "0,2"
+            });
+        </script>
+    {% endblock %}
     </body>
 </html>

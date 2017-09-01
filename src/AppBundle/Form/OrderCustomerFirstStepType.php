@@ -18,8 +18,6 @@ class OrderCustomerFirstStepType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $date = new \DateTime();
-
         $builder
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,
@@ -27,16 +25,15 @@ class OrderCustomerFirstStepType extends AbstractType
                 'required' => true
             ))
             ->add('nbTickets', IntegerType::class, array(
-                'attr' => array('min' => 0, 'max' => 10)))
+                'attr' => array('min' => 0, 'max' => 100)))
             ->add('visitDate', DateType::class, array(
                 'widget' => 'single_text',
-                'format' => 'dd/MM/y',
-                'data' => $date
+                'format' => 'dd/MM/yyyy'
             ))
             ->add('duration', ChoiceType::class, array(
                 'choices' => array(
                     'Journée' => 'journée',
-                    'Demi-journée' => 'demi-journée'),
+                    'Demi-journée (a partir de 14h)' => 'demi-journée'),
                 'expanded' => true,
                 'multiple' => false
             ))

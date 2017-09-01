@@ -16,7 +16,6 @@ class Ticket
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\OrderCustomer", inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\Valid()
      */
     private $orderCustomer;
 
@@ -47,6 +46,7 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="age", type="datetime")
+     * @Assert\LessThan("today", message = "Veuillez saisir une date de naissance valide")
      */
     private $age;
 

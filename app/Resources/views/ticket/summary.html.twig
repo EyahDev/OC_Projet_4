@@ -28,12 +28,15 @@
     <form action="{{ path('confirmation') }}" method="POST">
         <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-label="Paiement par carte"
                 data-key="pk_test_UkrYg88qxXhhJYayypUNfFuk"
+                data-email = "{{ app.session.get('CommandeLouvre').email }}"
                 data-amount="{{ app.session.get('CommandeLouvre').price }}00"
                 data-name="Musée du louvre"
                 data-description="Paiement de vos billets d'entrée"
-                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-image="{{ asset('img/logo-louvre.jpg') }}"
                 data-locale="auto"
+                data-allow-remember-me="false"
                 data-zip-code="false"
                 data-currency="eur">
         </script>

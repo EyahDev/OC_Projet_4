@@ -1,0 +1,80 @@
+#intro {
+    height: 370px;
+    background-image: url(../img/pres.jpg);
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 25px;
+}
+
+.col-lg-8 {
+    width: auto;
+}
+.col-lg-8 p{
+    font-size: 18px;
+}
+
+.col-lg-offset-2 {
+    margin-left: 0;
+}
+
+/* Custom */
+
+@media (min-width: 767px) {
+    .content-section {
+        padding-top: 50px;
+    }
+}
+
+.stepInfo {
+    text-align: center;
+}
+
+.titleForm {
+    margin-top: 50px;
+}
+
+.informationText {
+    text-align: center;
+}
+
+/* Custom StepWizard */
+
+.progress-indicator {
+    margin-bottom: 25px;
+}
+
+.progress-indicator>li .stepWarning a:hover .bubble, .progress-indicator>li .stepWarning a:hover .bubble:after, .progress-indicator>li .stepWarning a:hover .bubble:before {
+    background-color: #edb10a;
+    border-color: #5a4304;
+}
+
+.progress-indicator>li .stepWarning a {
+    color: #6f6f6f;
+}
+
+.progress-indicator>li .stepCompleted a:hover .bubble, .progress-indicator>li .stepCompleted a:hover #bubble:after, .progress-indicator>li .stepCompleted a:hover .bubble:before {
+    background-color: #65d074;
+    border-color: #247830;
+}
+
+.progress-indicator>li:hover>.stepDisabled{
+    color: #bbb;
+}
+
+/* test */
+table {
+    margin: auto;
+    width: 325px;
+}
+
+.day {
+    border: 1px solid black;
+    font-weight: 600;
+}
+
+.disabled-date, .new, .old {
+    font-weight: 500;
+}
