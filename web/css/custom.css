@@ -22,10 +22,68 @@
 
 /* Custom */
 
+::selection {
+    color: white;
+    background-color: #1ba39c;
+}
+
+@media (min-width: 280px) {
+    input[type=email] {
+        width: 90%;
+    }
+
+    input[type=number] {
+        width: 30%;
+    }
+
+}
+
+@media (min-width: 460px) {
+    input[type=email] {
+        width: 65%;
+    }
+
+    input[type=number] {
+        width: 15%;
+    }
+
+}
+
 @media (min-width: 767px) {
     .content-section {
         padding-top: 50px;
     }
+
+}
+
+@media (min-width: 991px) {
+    .content-section {
+        padding-top: 50px;
+    }
+
+    input[type=email] {
+        width: 35%;
+    }
+
+    input[type=number] {
+        width: 10%;
+    }
+
+}
+
+@media (min-width: 1199px) {
+    .content-section {
+        padding-top: 50px;
+    }
+
+    input[type=email] {
+        width: 25%;
+    }
+
+    input[type=number] {
+        width: 10%;
+    }
+
 }
 
 .stepInfo {
@@ -34,16 +92,123 @@
 
 .titleForm {
     margin-top: 50px;
+    padding-left: 25px;
 }
 
 .informationText {
+    margin: auto;
+    width: 90%;
     text-align: center;
 }
 
+.hiddenInput {
+    display: none;
+}
+
+.formCenter {
+    text-align: center;
+}
+
+.suivant {
+    text-align: right;
+}
+.btnSuivant {
+    margin-right: 10px;
+    width: 90px;
+    border: 1px solid black;
+    background-color: white;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 1px 0 0 #eee, -1px 0 0 #eee, 0 1px 0 #eee, 0 -1px 0 #eee, 0 3px 13px rgba(0,0,0,0.08);
+}
+
+input[type=email], input[type=number] {
+    border: 1px solid black;
+    background-color: white;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 1px 0 0 #eee, -1px 0 0 #eee, 0 1px 0 #eee, 0 -1px 0 #eee, 0 3px 13px rgba(0,0,0,0.08);
+}
+
+input[type=number]:focus,  input[type=email]:focus {
+    border: 1px solid #1ba39c;
+    outline: 0;
+    outline: none;
+}
+
+.btnSuivant:hover {
+    background-color: #333;
+    border: 1px solid black;
+    color: #fff;
+}
+
+.btn {
+    border: 1px solid #1a1a1a;
+    background-color: white;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: background 400ms ease, color 400ms ease;
+    transition: background 400ms ease, color 400ms ease;
+}
+
+input[type="radio"].toggle {
+    display: none;
+}
+
+input[type="radio"].toggle + label {
+    cursor: pointer;
+    min-width: 150px;
+}
+
+input[type="radio"].toggle + label:after {
+    background: #1a1a1a;
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    -webkit-transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+    transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+    width: 100%;
+    z-index: -1;
+}
+input[type="radio"].toggle.radio-left + label {
+    border-right: 0;
+}
+input[type="radio"].toggle.radio-left + label:after {
+    left: 100%;
+}
+input[type="radio"].toggle.radio-left-right + label {
+    margin-left: -5px;
+}
+input[type="radio"].toggle.radio-left + label:after {
+    left: -100%;
+}
+input[type="radio"].toggle:checked + label {
+    cursor: default;
+    background-color: #1ba39c;
+    color: white;
+    -webkit-transition: color 200ms;
+    transition: color 200ms;
+}
+input[type="radio"].toggle:checked + label:after {
+    left: 0;
+}
+
+
 /* Custom StepWizard */
 
-.progress-indicator {
+#stepblock {
+    width: 95%;
+    margin: auto;
     margin-bottom: 25px;
+}
+
+.progress-indicator {
+
 }
 
 .progress-indicator>li .stepWarning a:hover .bubble, .progress-indicator>li .stepWarning a:hover .bubble:after, .progress-indicator>li .stepWarning a:hover .bubble:before {
@@ -64,17 +229,32 @@
     color: #bbb;
 }
 
-/* test */
-table {
+/* DatePicker */
+
+.flatpickr-calendar {
     margin: auto;
-    width: 325px;
 }
 
-.day {
-    border: 1px solid black;
-    font-weight: 600;
+.flatpickr-day.selected, .flatpickr-day.startRange,
+.flatpickr-day.endRange, .flatpickr-day.selected.inRange,
+.flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange,
+.flatpickr-day.selected:focus, .flatpickr-day.startRange:focus,
+.flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay,
+.flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay,
+.flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay,
+.flatpickr-day.endRange.nextMonthDay {
+    background: #1ba39c;
+    border-color: #1ba39c;
 }
 
-.disabled-date, .new, .old {
-    font-weight: 500;
+span.flatpickr-day.today:not(.selected), span.flatpickr-day.prevMonthDay.today:not(.selected),
+span.flatpickr-day.nextMonthDay.today:not(.selected) {
+    border-bottom-color: #1ba39c;
+}
+
+span.flatpickr-day.today:not(.selected):hover, span.flatpickr-day.prevMonthDay.today:not(.selected):hover,
+span.flatpickr-day.nextMonthDay.today:not(.selected):hover {
+    border-color: #1ba39c;
+    background-color: #1ba39c;
 }

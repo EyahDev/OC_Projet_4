@@ -18,7 +18,7 @@ class BilletterieController extends Controller
      */
     public function indexAction(Request $request, OrderManager $orderManager)
     {
-        $form = $orderManager->indexAction();
+        $form = $orderManager->firstStepAction();
 
         $form->handleRequest($request);
 
@@ -32,13 +32,6 @@ class BilletterieController extends Controller
         return $this->render('ticket/firststep.html.twig', array(
             'form' => $form->createView()
         ));
-    }
-
-    /**
-     * @Route("/test", name="test")
-     */
-    public function testAction () {
-        return $this->render('ticket/confirmation.html.twig');
     }
 
     /**
@@ -76,7 +69,7 @@ class BilletterieController extends Controller
             }
 
             // Affiche la vue et les éléments nécessaire
-            return $this->render('secondstep.html.twig', array(
+            return $this->render('ticket/secondstep.html.twig', array(
                 'form' => $form->createView()
             ));
 

@@ -7,45 +7,18 @@
 {% endblock %}
 
 {% block informationText %}
-    Définissez la date de visite et votre horaire d'accès
+    Définissez votre date de visite, votre horaire d'accès et le nombre de billets
 {% endblock %}
 
 
 
 {% block form %}
-    {#{% for message in app.session.flashbag.get('notice') %}#}
-        {#<p class="alert alert-danger">{{ message }}</p>#}
-    {#{% endfor %}#}
+    {% for message in app.session.flashbag.get('notice') %}
+        <p class="alert alert-danger">{{ message }}</p>
+    {% endfor %}
 
-    {#{{ dump(app.session.get('CommandeLouvre')) }}#}
-    <h3 class="titleForm">Votre email</h3>
+    {{ dump(app.session.get('CommandeLouvre')) }}
 
-    <div style="margin: auto; text-align: center">
-        <input type="email" name="email" required style="width: 25%;height: 40px; border-bottom: 2px solid black; padding: 5px; border-top: none; border-left: none; border-right: none" placeholder="exemple@mail.com">
-        <input type="email" name="email" required style="width: 25%" placeholder="Répétez votre email">
-    </div>
-
-    <h3 class="titleForm">Date de la visite</h3>
-
-    <div style="margin: auto; text-align: center">
-
-        <form action="{{ path('test') }}" method="post">
-        <div class="datepicker"></div>
-        <input type="submit" value="test">
-        </form>
-    </div>
-
-    <h3 class="titleForm">Horaire d'accès</h3>
-
-    <div style="margin: auto; text-align: center">
-
-    </div>
-
-    <h3 class="titleForm">Nombre de billets</h3>
-
-    <div style="margin: auto; text-align: center">
-        <input style="width: 25%" type="range" name="email" required value="0" max="10" min="0" step="1" >
-    </div>
-
+    {{ include('ticket/form/firststepformtest.html.twig') }}
 
 {% endblock %}

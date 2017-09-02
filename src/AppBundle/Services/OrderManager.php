@@ -54,7 +54,7 @@ class OrderManager
         }
     }
 
-    public function indexAction()
+    public function firstStepAction()
     {
         // Création de l'entitée Order
         $order = $this->createOrder();
@@ -63,36 +63,5 @@ class OrderManager
         $form = $this->formBuilder->create(OrderCustomerFirstStepType::class, $order);
 
         return $form;
-
-//        $form->handleRequest($request);
-//        // Lors de la transmission du formulaire
-//        if ($form->isSubmitted() && $form->isValid()) {
-//
-//            // Récupération de la date de visite
-//            $visitDate = $order->getVisitDate();
-//
-//            // Récupération de la date du jour
-//            $today = new \DateTime();
-//            // Récupération de l'heure actuel
-//            $time = $today->format("H:i");
-//
-//            // Vérification si la date de visite est inférieur à la date du jour
-//            if ($visitDate < $today) {
-//
-//                // Vérification si l'heure actuel est supérieur à 14h
-//                if ($time >= "14:00") {
-//
-//                    // Mise en place du billet demi journée après 14H
-//                    if ($order->getDuration() != 'demi-journée')
-//                        $order->setDuration('demi-journée');
-//
-//                    // Génération du message de notification
-//                    $session->getFlashBag()->add("notice", "il est plus de 14h, votre billet pour la journée à été remplacé par un billet pour la démi-journée");
-//                }
-//            }
-//
-//            // Création de la variable de session
-//            $session->set('CommandeLouvre', $order);
-//
-        }
+    }
 }

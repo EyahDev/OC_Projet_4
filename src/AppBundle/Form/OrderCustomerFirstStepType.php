@@ -28,12 +28,15 @@ class OrderCustomerFirstStepType extends AbstractType
                 'attr' => array('min' => 0, 'max' => 100)))
             ->add('visitDate', DateType::class, array(
                 'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy'
             ))
             ->add('duration', ChoiceType::class, array(
                 'choices' => array(
                     'Journée' => 'journée',
-                    'Demi-journée (a partir de 14h)' => 'demi-journée'),
+                    'Demi-journée' => 'demi-journée'),
+                'choice_attr' => function($key) {
+                    return ['class' => 'toggle radio-'.$key.' toggle-'.$key];
+
+                },
                 'expanded' => true,
                 'multiple' => false
             ))

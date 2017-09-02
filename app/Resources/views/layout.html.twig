@@ -13,7 +13,8 @@
             <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
             <!-- DatePicker -->
-            <link href="{{asset('datepicker/css/bootstrap-datepicker3.standalone.min.css')}}" rel="stylesheet">
+            {#<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">#}
+            <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
 
             <!-- StepWizard -->
             <link href="{{asset('stepwizard/progress-wizard.min.css')}}" rel="stylesheet">
@@ -96,12 +97,23 @@
     <!-- Billetterie Section -->
     <section id="page-sample">
         <div class="container content-section text-left">
-            <div class="row">
+            <div class="row" id="stepblock">
 
                 <div class="row">
                     <ul class="progress-indicator">
-                        <li class="warning"><div class="stepWarning"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</a></div></li>
-                        <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</div></li>
+                        {% if app.session.get('CommandeLouvre').nbTickets %}
+                            <li class="completed"><div class="stepCompleted"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</a></div></li>
+                        {% else %}
+                            <li class="warning"><div class="stepWarning"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</a></div></li>
+                        {% endif %}
+                        {% if app.session.get('CommandeLouvre').nbTickets %}
+                            <li class="warning"><div class="stepWarning"><a href="{{ path('coordonnees')}}"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</a></div></li>
+                        {% elseif app.session.get('CommandeLouvre').price %}
+                            <li class="completed"><div class="stepCompleted"><a href="{{ path('coordonnees')}}"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</a></div></li>
+                        {% else %}
+                            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</div></li>
+                        {% endif %}
+
                         <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> Récapitulatif & paiement</div></li>
                         <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmation</div></li>
                     </ul>
@@ -156,14 +168,20 @@
         <!-- Custom Theme JavaScript -->
         <script src="{{asset('js/theme.js')}}"></script>
 
-        <script src="{{asset('datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-        <script src="{{asset('datepicker/locales/bootstrap-datepicker.fr.min.js')}}"></script>
+        <script src="https://unpkg.com/flatpickr"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
         <script>
-            $('.datepicker').datepicker({
-                setDate: new Date(),
-                startDate: "today",
-                language: "fr",
-                daysOfWeekDisabled: "0,2"
+            $('.required').addClass('btn');
+
+            $(".datepicker").flatpickr({
+                locale: "fr",
+                inline: true,
+                minDate: 'today',
+                disable: [
+                    function(date) {
+                    // return true to disable
+                    return (date.getDay() === 2 || date.getDay() === 0); }]
+
             });
         </script>
     {% endblock %}

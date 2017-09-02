@@ -1,0 +1,32 @@
+
+{# Début du formulaire #}
+{{ form_start(form) }}
+
+{# Erreur du formulaire #}
+{{ form_errors(form) }}
+
+<h3 class="titleForm">Votre email</h3>
+
+<div class="formCenter">
+    {{ form_widget(form.email.first, { 'attr' : {'placeholder' : 'mail@exemple.com'}}) }}
+    {{ form_widget(form.email.second, { 'attr' : {'placeholder' : 'Répétez votre email'}}) }}
+</div>
+
+<h3 class="titleForm">Date de la visite</h3>
+
+<div class="formCenter">
+    {{ form_widget(form.visitDate, { 'attr' : { 'class' : 'datepicker hiddenInput' }}) }}<br/>
+
+    {{ form_widget(form.duration) }}
+</div>
+
+<h3 class="titleForm">Nombre de billets</h3>
+
+<div class="formCenter">
+    {{ form_widget(form.nbTickets) }}
+</div>
+<div class="suivant">
+    {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'Suivant'}) }}
+</div>
+
+    {{ form_end(form) }}
