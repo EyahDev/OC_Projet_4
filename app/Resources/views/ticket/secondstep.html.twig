@@ -32,39 +32,25 @@
         {{ form_start(form) }}
 
         {% for ticket in form.tickets %}
-            <div class="containerSecondStepForm">
-                <div class="secondStepForm">
+            <div class="containerSecondStepForm" id="secondStep">
+                <div class="secondStepForm" id="secondStepForm">
                     <h3 class="titleForm">Billet n°{{ loop.index }}</h3>
-                    {{ form_widget(ticket.lastName, { 'attr' : {'placeholder' : 'Nom'}}) }}
-                    {{ form_widget(ticket.name, { 'attr' : {'placeholder' : 'Prénom'}}) }}
-                    {{ form_widget(ticket.age, { 'attr' : {'placeholder' : 'Date de naissance (jj/mm/aaaa)'}}) }}
+                    {{ form_widget(ticket.lastName, { 'attr' : {'placeholder' : 'Nom', 'class' : 'textForm'}}) }}
+                    {{ form_widget(ticket.name, { 'attr' : {'placeholder' : 'Prénom', 'class' : 'textForm'}}) }}
+                    {{ form_widget(ticket.age, { 'attr' : {'placeholder' : 'Date de naissance (jj/mm/aaaa)', 'class' : 'textForm'}}) }}
                     {{ form_widget(ticket.country) }}
                     {{ form_widget(ticket.reduced_price) }}
+                    {{ form_label(ticket.reduced_price) }}
                 </div>
             </div>
 
 
         {% endfor %}
+
             <div class="suivant">
                 {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'Suivant'}) }}
             </div>
         {{ form_end(form) }}
 
 
-
-        <div id="verra" style="width: 100%">
-            <h3 class="titleForm">Votre email</h3>
-            <input style="width: 40%" type="email" placeholder="Nom">
-            <input style="width: 40%" type="email" placeholder="Prénom">
-            <input style="width: 40%" type="email" placeholder="Date de naissance">
-            <select name="test" id="">
-                <option value="qsdqsdqsd">test</option>
-            </select>
-            <input class="test" id="test" type="checkbox" value="1">
-            <label class="btn" for="test">Tarif réduit</label>
-        </div>
-
-    </div>
-
 {% endblock %}
-

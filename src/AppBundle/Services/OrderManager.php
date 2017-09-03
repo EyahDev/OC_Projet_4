@@ -36,8 +36,7 @@ class OrderManager
             $order = new OrderCustomer();
             $this->session->set('CommandeLouvre', $order);
         }
-
-        return $order;
+            return $order;
     }
 
     /**
@@ -77,6 +76,15 @@ class OrderManager
             // Vérification si le nombre de billet créé correspond au nombre de billet demandé par l'utilisateur
             if (count($order->getTickets()) != $nbTickets) {
 
+                // Vérification si le nombre de billet existant n'est pas supérieure au nombre de billet demandé
+                // (Dans le cas d'un retour en arrière pour retirer des billets)
+                if (count($order->getTickets()) > $nbTickets) {
+
+                    // Parcours des billets et suppression
+                    foreach ($order->getTickets() as $ticket) {
+                        $order->removeTicket($ticket);
+                    }
+                }
                 // Ajout d'un nouveau ticket
                 $order->addTicket(new Ticket());
             }

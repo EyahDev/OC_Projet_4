@@ -67,60 +67,52 @@ class BilletterieController extends Controller
      */
     public function recapitulatifAction(Request $request, Session $session)
     {
-        if ($session->has('CommandeLouvre') && $session->get('CommandeLouvre')->getPrice() != null) {
-            // Accès à l'entityManager
-            $em = $this->getDoctrine()->getManager();
 
-            // Récupération de la variable de session
-            $order = $session->get('CommandeLouvre');
+        // Accès à l'entityManager
+        $em = $this->getDoctrine()->getManager();
 
-            // Récupération du tarif en fonction de l'age du titulaire
-            $rates = $em->getRepository('AppBundle:Rate');
+        // Récupération de la variable de session
+        $order = $session->get('CommandeLouvre');
 
-            // Mise à 0 du total de la commande
-            $total = 0;
+        // Récupération du tarif en fonction de l'age du titulaire
+        $rates = $em->getRepository('AppBundle:Rate');
 
-            // Parcours de la variable de sessions et attribution des valeurs
-            foreach ($order->getTickets() as $ticket) {
+        // Mise à 0 du total de la commande
+        $total = 0;
 
-                // Vérification si la coche tarif réduit a été coché
-                if ($ticket->getReducedPrice() === true) {
+        // Parcours de la variable de sessions et attribution des valeurs
+        foreach ($order->getTickets() as $ticket) {
 
-                    // Récupération du prix et du nom du tarif réduit
-                    $rate = $rates->findOneBy(array('name' => 'Réduit'));
+            // Vérification si la coche tarif réduit a été coché
+            if ($ticket->getReducedPrice() === true) {
 
-                    // Injection à la variable de session
-                    $ticket->setRate($rate->getName());
-                    $ticket->setPrice($rate->getPrice());
+                // Récupération du prix et du nom du tarif réduit
+                $rate = $rates->findOneBy(array('name' => 'Réduit'));
 
-                } else {
-                    // Calcul de l'âge
-                    $now = new \DateTime();
-                    $birthdayDate = $ticket->getAge();
-                    $age = $now->diff($birthdayDate)->y;
+                // Injection à la variable de session
+                $ticket->setRate($rate->getName());
+                $ticket->setPrice($rate->getPrice());
 
-                    // Récupération du tarif adapté
-                    $rate = $rates->getPriceAndRate($age);
+            } else {
+                // Calcul de l'âge
+                $now = new \DateTime();
+                $birthdayDate = $ticket->getAge();
+                $age = $now->diff($birthdayDate)->y;
 
-                    // Injection à la variable de session
-                    $ticket->setRate($rate->getName());
-                    $ticket->setPrice($rate->getPrice());
-                }
-                // Calcul du montant total à payer
-                $ticketPrice = $ticket->getPrice();
-                $total = $total + $ticketPrice;
-                $order->setPrice($total);
-            };
+                // Récupération du tarif adapté
+                $rate = $rates->getPriceAndRate($age);
 
-            return $this->render('summary.html.twig');
-        }
+                // Injection à la variable de session
+                $ticket->setRate($rate->getName());
+                $ticket->setPrice($rate->getPrice());
+            }
+            // Calcul du montant total à payer
+            $ticketPrice = $ticket->getPrice();
+            $total = $total + $ticketPrice;
+            $order->setPrice($total);
+        };
 
-        // Génération du message de notification
-        $session->getFlashBag()->add("notice", "Veuillez remplir cette partie avant d'aller plus loin");
-
-        // Rédirection vers la page d'accueil
-        return $this->redirectToRoute('coordonnees');
-
+        return $this->render('ticket/summary.html.twig');
     }
 
     /**

@@ -32,6 +32,8 @@ class TicketSecondStepType extends AbstractType
                 'data' => 'FR'
             ))
             ->add('reduced_price', CheckboxType::class, array(
+                'label' => 'Tarif réduit',
+                'label_attr' => array( 'class' => 'btn', 'data-info'),
                 'required' => false
             ));
     }
