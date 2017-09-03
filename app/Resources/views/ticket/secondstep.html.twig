@@ -7,23 +7,11 @@
 {% endblock %}
 
 {% block informationText %}
-    Le billet acheté en ligne est horodaté et nominatif, un document d’identité peut être demandé.
+    Définissez les informations nominatives de chaque billets
 {% endblock %}
 
 
-{% block body %}
-    <h3>Page des coordonnées</h3>
-
-
-    <p>
-        Vous prevoyez de visiter le musée du Louvre le
-        pour la {{ app.session.get('duration') }} avec {{ app.session.get('nbTickets') }} personnes.
-        <a href="{{ path('homepage') }}">Modifier</a>
-    </p>
-
-    <p>Chaque billet est nominatif, afin definir le tarif de chaque personne, veuillez renseigner les informations suivantes :</p>
-
-    <h3>Coordonnées</h3>
+{% block form %}
 
     {% for message in app.session.flashbag.get('notice') %}
         <p class="alert alert-danger">{{ message }}</p>
@@ -31,18 +19,52 @@
 
     {{dump(app.session.get('CommandeLouvre'))}}
 
-    {# Début du formulaire #}
-    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-    {# Erreur du formulaire #}
-    {{ form_errors(form) }}
+    <div style="width: 100%">
 
-    {% for ticket in form.tickets %}
-        <p>Billet n°{{ loop.index }}</p>
-        {{ include('ticket/form/secondstep.html.twig') }}
-    {% endfor %}
+        <div style="width: 100%" >
+            <h3 class="titleForm">Informations</h3>
+            <p class="infoLouvreText">Le billet acheté en ligne est horodaté et nominatif, un document d’identité peut être demandé.
+                Il est valable exclusivement pour la prestation, la date et à compter de l'heure mentionnée. <br/>
+                Il ne constitue pas un coupe file mais permet un accès à la pyramide du Louvre dans la demi-heure de l'horaire indiqué.
+                En cas de non-respect de ce créneau horaire, le porteur du e-billet est soumis aux mêmes conditions d'accès et d'attente que les visiteurs sans billet.
+        </div>
 
-    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+
+        {% for ticket in form.tickets %}
+            <div class="containerSecondStepForm">
+                <div class="secondStepForm">
+                    <h3 class="titleForm">Billet n°{{ loop.index }}</h3>
+                    {{ form_widget(ticket.lastName, { 'attr' : {'placeholder' : 'Nom'}}) }}
+                    {{ form_widget(ticket.name, { 'attr' : {'placeholder' : 'Prénom'}}) }}
+                    {{ form_widget(ticket.age, { 'attr' : {'placeholder' : 'Date de naissance (jj/mm/aaaa)'}}) }}
+                    {{ form_widget(ticket.country) }}
+                    {{ form_widget(ticket.reduced_price) }}
+                </div>
+            </div>
+
+
+        {% endfor %}
+            <div class="suivant">
+                {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'Suivant'}) }}
+            </div>
+        {{ form_end(form) }}
+
+
+
+        <div id="verra" style="width: 100%">
+            <h3 class="titleForm">Votre email</h3>
+            <input style="width: 40%" type="email" placeholder="Nom">
+            <input style="width: 40%" type="email" placeholder="Prénom">
+            <input style="width: 40%" type="email" placeholder="Date de naissance">
+            <select name="test" id="">
+                <option value="qsdqsdqsd">test</option>
+            </select>
+            <input class="test" id="test" type="checkbox" value="1">
+            <label class="btn" for="test">Tarif réduit</label>
+        </div>
+
+    </div>
 
 {% endblock %}
 

@@ -2,13 +2,12 @@
 
 namespace AppBundle\Services;
 
-
 use AppBundle\Entity\OrderCustomer;
+use AppBundle\Entity\Ticket;
 use AppBundle\Form\OrderCustomerFirstStepType;
+use AppBundle\Form\OrderCustomerSecondStepType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactory;
-use Symfony\Component\Form\FormFactoryBuilderInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -63,5 +62,30 @@ class OrderManager
         $form = $this->formBuilder->create(OrderCustomerFirstStepType::class, $order);
 
         return $form;
+    }
+
+    public function secondStepAction() {
+
+        // Récupération de la commande depuis la session
+        $order = $this->session->get('CommandeLouvre');
+
+        // Récupération du nombres de billets demandé par l'utilisateur
+        $nbTickets = $order->getNbTickets();
+
+        // Création du nombre de billet demandé par l'utilisateur
+        for ($i = 1; $i <= $nbTickets; $i++) {
+            // Vérification si le nombre de billet créé correspond au nombre de billet demandé par l'utilisateur
+            if (count($order->getTickets()) != $nbTickets) {
+
+                // Ajout d'un nouveau ticket
+                $order->addTicket(new Ticket());
+            }
+        }
+
+        // Création du formulaire
+        $form = $this->formBuilder->create(OrderCustomerSecondStepType::class, $order);
+
+        return $form;
+
     }
 }

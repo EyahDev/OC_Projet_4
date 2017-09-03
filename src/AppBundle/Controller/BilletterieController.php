@@ -10,19 +10,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class BilletterieController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request, OrderManager $orderManager)
+    public function indexAction(Request $request, OrderManager $orderManager, SessionInterface $session)
     {
         $form = $orderManager->firstStepAction();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Création d'une variable de session
+            $session->set('step_1', 'check');
 
             // Redirige vers la page des coordonnées
             return $this->redirectToRoute('coordonnees');
@@ -37,48 +41,25 @@ class BilletterieController extends Controller
     /**
      * @Route("/coordonnees", name="coordonnees")
      */
-    public function coordonneesAction(Request $request, Session $session) {
+    public function coordonneesAction(Request $request, OrderManager $orderManager,  SessionInterface $session) {
 
-        if ($session->has('CommandeLouvre')) {
-            // Récupération de la commande depuis la session
-            $order = $session->get('CommandeLouvre');
+        $form = $orderManager->secondStepAction();
 
-            // Récupération du nombres de billets demandé par l'utilisateur
-            $nbTickets = $order->getNbTickets();
+        $form->handleRequest($request);
 
-            // Création du nombre de billet demandé par l'utilisateur
-            for ($i = 1; $i <= $nbTickets; $i++) {
-                // Vérification si le nombre de billet créé correspond au nombre de billet demandé par l'utilisateur
-                if (count($order->getTickets()) != $nbTickets) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-                    // Ajout d'un nouveau ticket
-                    $order->addTicket(new Ticket());
-                }
-            }
+            // Création d'une variable de session
+            $session->set('step_2', 'check');
 
-            // Création du formulaire
-            $form = $this->get('form.factory')->create(OrderCustomerSecondStepType::class, $order);
-
-            $form->handleRequest($request);
-            // Lors de la transmission du formulaire
-            if ($form->isSubmitted() && $form->isValid()) {
-
-                // Redirige vers la page des coordonnées
-                return $this->redirectToRoute('recapitulatif');
-
-            }
-
-            // Affiche la vue et les éléments nécessaire
-            return $this->render('ticket/secondstep.html.twig', array(
-                'form' => $form->createView()
-            ));
+            // Redirige vers la page des coordonnées
+            return $this->redirectToRoute('recapitulatif');
 
         }
-            // Génération du message de notification
-            $session->getFlashBag()->add("notice", "Veuillez remplir cette partie avant d'aller plus loin");
 
-            // Rédirection vers la page d'accueil
-            return $this->redirectToRoute('homepage');
+        // Affiche la vue et les éléments nécessaire
+        return $this->render('ticket/secondstep.html.twig', array(
+            'form' => $form->createView()));
     }
 
     /**

@@ -1,122 +1,39 @@
 
 {# Début du formulaire #}
-{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_start(form) }}
 
 {# Erreur du formulaire #}
 {{ form_errors(form) }}
 
-<h3 class="titleForm">Votre email</h3>
+<div class="containerFirstStepForm">
 
-<div class="formCenter">
-    <input type="email" name="email" required placeholder="exemple@mail.com">
-    <input type="email" name="email" required placeholder="Répétez votre email">
-    {{ form_widget(form.email.first, attr {'placeholder' : 'mail@exemple.com'}) }}
-    {{ form_widget(form.email.second, attr {'placeholder' : 'Répétez votre email'}) }}
-</div>
+    <div class="firstStepForm">
+        <h3 class="titleForm">Votre email</h3>
+        {{ form_widget(form.email.first, { 'attr' : {'placeholder' : 'mail@exemple.com'}}) }}<br/>
+        {{ form_widget(form.email.second, { 'attr' : {'placeholder' : 'Répétez votre email'}}) }}
 
-<h3 class="titleForm">Date de la visite</h3>
+        <h3 class="titleForm">Nombre de billets</h3>
+        {{ form_widget(form.nbTickets) }}
+    </div>
 
-<div class="formCenter">
-    {{ form_widget(form.visitDate, attr{ 'class' : 'datepicker hiddenInput' }) }}<br/>
-    <input type="text" class="datepicker hiddenInput" name="test">
+    <div class="firstStepForm">
+        <h3 class="titleForm">Date de la visite</h3>
+        {{ form_widget(form.visitDate, { 'attr' : { 'class' : 'datepicker hiddenInput' }}) }}<br/>
+        {{ form_widget(form.duration) }}
+    </div>
 
+    <div class="infoLouvre">
+        <h3 class="titleForm">Informations</h3>
+        <p class="infoLouvreText">Le musée du Louvre est ouvert tous les jours, sauf les mardis et les 1 er novembre, 1 er mai et 25 décembre,
+            de 9h à 18h, jusqu'à 21h45 les mercredis et vendredis, à l’exception des jours fériés.
+            La fermeture des salles débute à 17h30 et à 21h30 les mercredis et vendredis.</p>
+        <p class="infoLouvreText" >En raison de forte affluence les dimanches et les jours fériés, il est impossible de reserver en ligne.
+            Les ventes se feront au guichet.</p>
+    </div>
 
-    {{ form_widget(form.duration) }}
-
-    <input id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio">
-    <label for="toggle-on" class="btn">Journée</label>
-    <input id="toggle-off" class="toggle toggle-right" name="toggle" value="true" type="radio">
-    <label for="toggle-off" class="btn">Demi-journée</label>
-</div>
-
-<h3 class="titleForm">Nombre de billets</h3>
-
-<div class="formCenter">
-    <input type="number" name="email" required value="0" max="10" min="0" step="1" >
-    {{ form_widget(form.nbTickets) }}
 </div>
 <div class="suivant">
-    {{ form_widget(form.save, {'attr': {'class': 'btnSuivant', 'value' : 'Suivant'}}) }}
-    <input type="submit" class="btnSuivant" value="Suivant">
+    {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'Suivant'}) }}
 </div>
 
-<div class="well">
-
-
-    <div class="form-group">
-
-        {# Génération du label #}
-        {{ form_label(form.email.first, "Email : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
-        {{ form_errors(form.email.first) }}
-
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.email.first) }}
-        </div>
-    </div>
-
-    <div class="form-group">
-
-        {# Génération du label #}
-        {{ form_label(form.email.second, "Répétez votre email : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
-        {{ form_errors(form.email.second) }}
-
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.email.second) }}
-        </div>
-    </div>
-
-    <div class="form-group">
-        {# Génération du label #}
-        {{ form_label(form.visitDate, "Date de la visite : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
-        {{ form_errors(form.visitDate) }}
-
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.visitDate) }}
-            <div class="calendar"></div>
-
-        </div>
-    </div>
-
-    {# Affichage des erreurs pour ce champ précis. #}
-    {{ form_errors(form.nbTickets) }}
-    <div class="form-group">
-            {# Génération du label #}
-            {{ form_label(form.nbTickets, "Nombre de billet : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-            <div class="col-sm-10">
-                {# Génération de l'input. #}
-                {{ form_widget(form.nbTickets) }}
-            </div>
-        </div>
-
-    <div class="form-group">
-        {# Génération du label #}
-        {{ form_label(form.duration, "Durée de la visite : ", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
-        {{ form_errors(form.duration) }}
-
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.duration) }}
-
-        </div>
-    </div>
-
-
-    {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-    {# Fermeture de la balise <form> du formulaire HTML #}
-    {{ form_end(form) }}
-
-</div>
+{{ form_end(form) }}
