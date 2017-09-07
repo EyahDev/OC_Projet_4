@@ -3,7 +3,14 @@
 {{ form_start(form) }}
 
 {# Erreur du formulaire #}
-{{ form_errors(form) }}
+<div class="alert alert-danger">
+    {{ form_errors(form) }}
+    {{ form_errors(form.email.first) }}
+    {{ form_errors(form.email.second) }}
+    {{ form_errors(form.visitDate) }}
+    {{ form_errors(form.duration) }}
+    {{ form_errors(form.nbTickets) }}
+</div>
 
 <div class="containerFirstStepForm">
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Validator as CustomAssert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,6 +16,7 @@ class OrderCustomer
 {
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="orderCustomer", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $tickets;
 
@@ -39,6 +41,12 @@ class OrderCustomer
      * @var int
      *
      * @ORM\Column(name="nbTickets", type="integer")
+     * @Assert\GreaterThanOrEqual(
+     *     value = 1,
+     *     message="Vous devez choisir un nombre de billet valide")
+     * @Assert\LessThanOrEqual(
+     *     value = 10,
+     *     message = "Si vous souhaitez acheter plus de 10 billets, veuillez nous contacter")
      */
     private $nbTickets;
 
@@ -67,6 +75,9 @@ class OrderCustomer
      * @var \DateTime
      *
      * @ORM\Column(name="visitDate", type="datetime")
+     * @Assert\GreaterThanOrEqual("today", message = "Veuillez choisir une date supérieur à la date du jour")
+     * @CustomAssert\VisitDate\ContainsVisitDateDimanche()
+     * @CustomAssert\VisitDate\ContainsVisitDateFerie()
      */
     private $visitDate;
 
@@ -76,6 +87,13 @@ class OrderCustomer
      * @ORM\Column(name="duration", type="string", length=255)
      */
     private $duration;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="access", type="string", length=255)
+     */
+    private $access;
 
 
     /**
@@ -214,6 +232,7 @@ class OrderCustomer
     public function __construct()
     {
         $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->visitDate = new \DateTime();
     }
 
     /**
@@ -249,5 +268,53 @@ class OrderCustomer
     public function getTickets()
     {
         return $this->tickets;
+    }
+
+    /**
+     * Set visitDate
+     *
+     * @param \DateTime $visitDate
+     *
+     * @return OrderCustomer
+     */
+    public function setVisitDate($visitDate)
+    {
+        $this->visitDate = $visitDate;
+
+        return $this;
+    }
+
+    /**
+     * Get visitDate
+     *
+     * @return \DateTime
+     */
+    public function getVisitDate()
+    {
+        return $this->visitDate;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param string $duration
+     *
+     * @return OrderCustomer
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return string
+     */
+    public function getDuration()
+    {
+        return $this->duration;
     }
 }

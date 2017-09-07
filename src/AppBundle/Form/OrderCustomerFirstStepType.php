@@ -6,6 +6,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,7 +26,7 @@ class OrderCustomerFirstStepType extends AbstractType
                 'required' => true
             ))
             ->add('nbTickets', IntegerType::class, array(
-                'attr' => array('min' => 0, 'max' => 100)))
+                'attr' => array('min' => 1, 'max' => 10)))
             ->add('visitDate', DateType::class, array(
                 'widget' => 'single_text',
             ))

@@ -22,6 +22,10 @@
     <div style="width: 100%">
 
         <div style="width: 100%" >
+            <h3>Votre réservation </h3>
+            <p class="infoLouvreText">Vous prévoyez de visiter le musée du Louvre le <b>{{ app.session.get('CommandeLouvre').visitDate|date('d/m/Y') }}</b> pour la
+                {{ app.session.get('CommandeLouvre').duration }}. L'accès au musée se fera à partir de {{ app.session.get('CommandeLouvre').access }}.</p>
+
             <h3 class="titleForm">Informations</h3>
             <p class="infoLouvreText">Le billet acheté en ligne est horodaté et nominatif, un document d’identité peut être demandé.
                 Il est valable exclusivement pour la prestation, la date et à compter de l'heure mentionnée. <br/>

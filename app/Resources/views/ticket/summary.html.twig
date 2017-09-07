@@ -24,6 +24,7 @@
                 <th>Titulaire du billet</th>
                 <th>Age</th>
                 <th>Tarification</th>
+                <th>Remise spéciale</th>
                 <th>Prix</th>
             </tr>
             </thead>
@@ -34,6 +35,7 @@
                     <td data-title="Titulaire du billet">{{ ticket.name }} {{ ticket.lastName }}</td>
                     <td data-title="Age">{{ ticket.age|age }} ans</td>
                     <td data-title="Tarification">{{ ticket.rate }}</td>
+                    <td data-title="Remise spéciale">{{ specialRate }}</td>
                     <td data-title="Prix">{{ ticket.price }} €</td>
                 </tr>
             {% endfor %}
@@ -46,19 +48,19 @@
         <table id="table" class="table table-hover table-mc-light-blue">
             <thead>
             <tr>
-                <th>Nombre de billets</th>
                 <th>Date de visite</th>
                 <th>Horaire d'accès</th>
-                <th>Remise</th>
+                <th>Nombre de billets</th>
+                <th>Remise spéciale</th>
                 <th>Prix total</th>
             </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td data-title="Nombre de billets">{{ app.session.get('CommandeLouvre').nbTickets }}</td>
                     <td data-title="Date de visite">{{ app.session.get('CommandeLouvre').visitDate|date('d/m/Y') }}</td>
                     <td data-title="Horaire d'accès">{{ app.session.get('CommandeLouvre').duration }}</td>
-                    <td data-title="Remise">N/A</td>
+                    <td data-title="Nombre de billets">{{ app.session.get('CommandeLouvre').nbTickets }}</td>
+                    <td data-title="Remise spéciale">{{ specialRate }}</td>
                     <td data-title="Prix total">{{ app.session.get('CommandeLouvre').price }} €</td>
                 </tr>
             </tbody>

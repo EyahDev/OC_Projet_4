@@ -1,5 +1,23 @@
 {% extends 'layout.html.twig' %}
-{% block title %}Récapitulatif{% endblock %}
-{% block body %}
-    <h3>Confirmation</h3>
+
+{% block title %}confirmation{% endblock %}
+
+{% block informationTitle %}
+    Confirmation
+{% endblock %}
+
+{% block informationText %}
+    Confirmation de votre réservation : retrouvez les informations importante de votre commande
+{% endblock %}
+
+{% block form %}
+
+    <h3>Confirmation de réservation</h3>
+    <p class="informationText">Votre réservation a bien effectué voici le votre numéro de réservation : <b>{{ order.orderToken|replace({'tok_': ''}) }}</b> <br/>
+    Vous allez recevoir un email avec vos e-billet d'ici quelques minutes
+    </p>
+    <h3>Votre billet</h3>
+
+    {{ order.price }}
+
 {% endblock %}

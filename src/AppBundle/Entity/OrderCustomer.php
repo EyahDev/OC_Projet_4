@@ -43,10 +43,10 @@ class OrderCustomer
      * @ORM\Column(name="nbTickets", type="integer")
      * @Assert\GreaterThanOrEqual(
      *     value = 1,
-     *     message="Vous devez choisir un nombre de billet valide")
+     *     message="Veuillez choisir un nombre de billet valide")
      * @Assert\LessThanOrEqual(
      *     value = 10,
-     *     message = "Si vous souhaitez acheter plus de 10 billets, veuillez nous contacter")
+     *     message = "Si vous souhaitez réserver plus de 10 billets, veuillez nous contacter")
      */
     private $nbTickets;
 
@@ -78,6 +78,8 @@ class OrderCustomer
      * @Assert\GreaterThanOrEqual("today", message = "Veuillez choisir une date supérieur à la date du jour")
      * @CustomAssert\VisitDate\ContainsVisitDateDimanche()
      * @CustomAssert\VisitDate\ContainsVisitDateFerie()
+     * @CustomAssert\VisitDate\ContainsVisitDateCloseHours17H30()
+     * @CustomAssert\VisitDate\ContainsVisitDateCloseHours21H30()
      */
     private $visitDate;
 
@@ -85,8 +87,16 @@ class OrderCustomer
      * @var string
      *
      * @ORM\Column(name="duration", type="string", length=255)
+     * @CustomAssert\Duration\ContainsDuration()
      */
     private $duration;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="access", type="string", length=255)
+     */
+    private $access;
 
 
     /**
@@ -309,5 +319,29 @@ class OrderCustomer
     public function getDuration()
     {
         return $this->duration;
+    }
+
+    /**
+     * Set access
+     *
+     * @param string $access
+     *
+     * @return OrderCustomer
+     */
+    public function setAccess($access)
+    {
+        $this->access = $access;
+
+        return $this;
+    }
+
+    /**
+     * Get access
+     *
+     * @return string
+     */
+    public function getAccess()
+    {
+        return $this->access;
     }
 }
