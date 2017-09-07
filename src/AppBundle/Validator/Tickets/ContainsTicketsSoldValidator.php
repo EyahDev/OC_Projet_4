@@ -10,11 +10,9 @@ use Symfony\Component\Validator\ConstraintValidator;
 class ContainsTicketsSoldValidator extends ConstraintValidator {
 
     private $em;
-    private $request;
 
-    public function __construct(EntityManagerInterface $em, RequestStack $request) {
+    public function __construct(EntityManagerInterface $em) {
         $this->em = $em;
-        $this->request = $request;
     }
 
     public function validate($value, Constraint $constraint)
@@ -22,7 +20,9 @@ class ContainsTicketsSoldValidator extends ConstraintValidator {
         // Récupération du nombre de tickets vendu dans la journée selectionné
         $orderCustomers = $this->em->getRepository('AppBundle:OrderCustomer')->findBy(array('visitDate' => $value ));
 
-        $nbTickets = $this->request->getCurrentRequest()->request->get('order_customer_first_step')->get('email');
+        $order2 = $this->context->getRoot()->getData();
+        $order2->getNbTickets();
+
         $tickets = 0;
         foreach($orderCustomers as $order) {
             $tickets = $tickets + $order->getNbTickets();

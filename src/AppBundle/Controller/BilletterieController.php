@@ -78,7 +78,7 @@ class BilletterieController extends Controller
         $sendMail = (new \Swift_Message("Confirmation de commande"))
             ->setFrom('adrien.desmet@hotmail.fr')
             ->setTo($order->getEmail())
-            ->setBody($this->render('ticket/email/recapitulatif.html.twig', array(
+            ->setBody($this->renderView('ticket/email/recapitulatif.html.twig', array(
                 'order' => $order,
                 'tickets' => $order->getTickets()
             )), 'text/html');

@@ -207,9 +207,9 @@
             $('input:checkbox').change(
                 function(){
                     if ($(this).is(':checked')) {
-                       $('.secondStepForm').append('<p class="infoTR" id="infoTR">Pour les étudiants, employés de musées, sans-emploi, militaires... Un justificatif vous sera demandé. </p>');
+                       $(this).parent().append('<p class="infoTR" id="infoTR">Pour les étudiants, employés de musées, sans-emploi, militaires... Un justificatif vous sera demandé. </p>');
                     } else {
-                        $('.secondStepForm').find('#infoTR').remove();
+                        $(this).parent().find('#infoTR').remove();
                     }
                 });
 

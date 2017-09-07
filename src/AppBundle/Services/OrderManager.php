@@ -7,6 +7,8 @@ use AppBundle\Entity\Ticket;
 use AppBundle\Form\OrderCustomerFirstStepType;
 use AppBundle\Form\OrderCustomerSecondStepType;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Charge;
+use Stripe\Stripe;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -181,6 +183,17 @@ class OrderManager
 
         // Mise à jour de la commande avec les données POST
         if ($this->request->isMethod('POST')) {
+
+            // Récupération de la commande en session
+            $order = $this->getOrder();
+
+            // Création de la charge dans stripe
+            Stripe::setApiKey("sk_test_CEPeRcQzGSnOsmgIG0zAuhxS");
+            Charge::create(array(
+                "amount" => $order->getPrice()."00",
+                "currency" => "eur",
+                "source" => $token,
+                "description" => "Réservation de" .$order->getPrice(). " billet(s) en" .$order->getDuration(). " horaires d'accès : ".$order->getAccess()."."));
 
             // Récupération de la commande en session
             $order = $this->getOrder();

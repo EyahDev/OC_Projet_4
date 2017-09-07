@@ -25,8 +25,8 @@ class AgeExtension extends \Twig_Extension
         return $interval->y;
     }
 
-    // Définition du nom de l'extension
-    public function getName() {
-        return 'age_extension';
-    }
+//    // Définition du nom de l'extension
+//    public function getName() {
+//        return 'age_extension';
+//    }
 }

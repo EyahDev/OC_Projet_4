@@ -14,9 +14,11 @@ class ContainsDurationValidator extends ConstraintValidator {
         $time = $time->format('H:i');
 
         // Vérification si l'heure est supérieure à 14h
-        if ($time >= '14:00') {
-            $this->context->buildViolation($constraint->message)
-                ->addViolation();
+        if ($value == 'journée') {
+            if ($time >= '14:00') {
+                $this->context->buildViolation($constraint->message)
+                    ->addViolation();
+            }
         }
     }
 }

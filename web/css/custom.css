@@ -200,6 +200,10 @@
 
 /* Form */
 
+#testPaiement .stripe-button-el span{
+    background: red;
+}
+
 .suivant {
     text-align: right;
 }
