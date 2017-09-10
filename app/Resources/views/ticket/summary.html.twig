@@ -13,8 +13,8 @@
 {% block form %}
     {{ dump(app.session.get('CommandeLouvre')) }}
     <h3>Votre réservation </h3>
-    <p>Vous prévoyez de visiter le musée du Louvre le <b>{{ app.session.get('CommandeLouvre').visitDate|date('d/m/Y') }}</b> pour la
-        {{  app.session.get('CommandeLouvre').duration }}.</p>
+    <p class="infoLouvreText">Vous prévoyez de visiter le musée du Louvre le <b>{{ app.session.get('CommandeLouvre').visitDate|date('d/m/Y') }}</b> pour la
+        {{  app.session.get('CommandeLouvre').duration }} soit à partir de {{  app.session.get('CommandeLouvre').access }}.</p>
     <h3>Votre billet</h3>
     <div class="table-responsive-vertical shadow-z-1">
         <table id="table" class="table table-hover table-mc-light-blue">
@@ -49,6 +49,7 @@
             <thead>
             <tr>
                 <th>Date de visite</th>
+                <th>Accès</th>
                 <th>Horaire d'accès</th>
                 <th>Nombre de billets</th>
                 <th>Remise spéciale</th>
@@ -58,7 +59,8 @@
             <tbody>
                 <tr>
                     <td data-title="Date de visite">{{ app.session.get('CommandeLouvre').visitDate|date('d/m/Y') }}</td>
-                    <td data-title="Horaire d'accès">{{ app.session.get('CommandeLouvre').duration }}</td>
+                    <td data-title="Accès">En {{ app.session.get('CommandeLouvre').duration }}</td>
+                    <td data-title="Horaire d'accès">A partir de {{ app.session.get('CommandeLouvre').access }}</td>
                     <td data-title="Nombre de billets">{{ app.session.get('CommandeLouvre').nbTickets }}</td>
                     <td data-title="Remise spéciale">{{ specialRate }}</td>
                     <td data-title="Prix total">{{ app.session.get('CommandeLouvre').price }} €</td>
@@ -66,11 +68,14 @@
             </tbody>
         </table>
     </div>
-    <div id="testPaiement">
-    <form action="{{ path('confirmation') }}" method="POST">
+    <div class="stepNav">
+    <div class="precedent">
+        <a href="{{ path('coordonnees') }}"><button type="button" class="btnPrecedent">Précédent</button></a>
+    </div>
+    <form action="{{path('paiement')}}" method="POST">
         <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-label="Paiement par carte"
+                data-label="Paiement"
                 data-key="pk_test_UkrYg88qxXhhJYayypUNfFuk"
                 data-email = "{{ app.session.get('CommandeLouvre').email }}"
                 data-amount="{{ app.session.get('CommandeLouvre').price }}00"

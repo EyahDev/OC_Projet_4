@@ -32,6 +32,13 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message = "Le champ prénom ne peut être vide")
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 50,
+     *     minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères.",
+     *     maxMessage = "Votre prénom doit contenir un maximun de {{ limit }} caractères."
+     * )
      */
     private $name;
 
@@ -39,6 +46,13 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
+     * @Assert\NotBlank(message = "Le champ nom ne peut être vide")
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 50,
+     *     minMessage = "Votre nom doit contenir au moins {{ limit }} caractères.",
+     *     maxMessage = "Votre nom doit contenir un maximun de {{ limit }} caractères."
+     * )
      */
     private $lastName;
 
@@ -46,7 +60,9 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="age", type="datetime")
-     * @Assert\LessThan("today", message = "Veuillez saisir une date de naissance valide")
+     * @Assert\NotBlank(message = "Le champ date de naissance ne peut être vide.")
+     * @Assert\DateTime(message = "Veuillez saisir une date de naissance valide.")
+     * @Assert\LessThan("today", message = "Veuillez saisir une date de naissance valide.")
      */
     private $age;
 
@@ -54,6 +70,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\Country(message = "Veuillez choisir un pays valide")
      */
     private $country;
 

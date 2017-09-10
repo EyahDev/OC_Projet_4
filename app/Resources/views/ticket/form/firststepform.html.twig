@@ -3,29 +3,28 @@
 {{ form_start(form) }}
 
 {# Erreur du formulaire #}
-<div class="alert alert-danger">
-    {{ form_errors(form) }}
-    {{ form_errors(form.email.first) }}
-    {{ form_errors(form.email.second) }}
-    {{ form_errors(form.visitDate) }}
-    {{ form_errors(form.duration) }}
-    {{ form_errors(form.nbTickets) }}
-</div>
+
+{{ form_errors(form) }}
 
 <div class="containerFirstStepForm">
 
     <div class="firstStepForm">
         <h3 class="titleForm">Votre email</h3>
+        {{ form_errors(form.email.first) }}
+        {{ form_errors(form.email.second) }}
         {{ form_widget(form.email.first, { 'attr' : {'placeholder' : 'mail@exemple.com'}}) }}<br/>
         {{ form_widget(form.email.second, { 'attr' : {'placeholder' : 'Répétez votre email'}}) }}
 
         <h3 class="titleForm">Nombre de billets</h3>
+        {{ form_errors(form.nbTickets) }}
         {{ form_widget(form.nbTickets) }}
     </div>
 
     <div class="firstStepForm">
         <h3 class="titleForm">Date de la visite</h3>
+        {{ form_errors(form.visitDate) }}
         {{ form_widget(form.visitDate, { 'attr' : { 'class' : 'datepicker hiddenInput' }}) }}<br/>
+        {{ form_errors(form.duration) }}
         {{ form_widget(form.duration) }}
     </div>
 

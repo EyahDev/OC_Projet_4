@@ -103,34 +103,32 @@
                 <div class="row">
                     <ul class="progress-indicator">
                         {# Step 1 #}
-                        {% if app.session.get('step_1') %}
+                        {% if app.session.get('step_1') == "check" or app.session.get('step_3') == "check" %}
                             <li class="completed"><div class="stepCompleted"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</a></div></li>
                         {% else %}
                             <li class="warning"><div class="stepWarning"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</a></div></li>
                         {% endif %}
 
                         {# Step 2 #}
-                        {% if app.session.get('step_1') and not app.session.get('step_2')  %}
+                        {% if app.session.get('step_1') == "check" and app.session.get('step_2') == "uncheck"  %}
                             <li class="warning"><div class="stepWarning"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</a></div></li>
-                        {% elseif app.session.get('step_2') %}
+                        {% elseif app.session.get('step_2') == "check" or app.session.get('step_3') == "check" %}
                             <li class="completed"><div class="stepCompleted"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</a></div></li>
                         {% else %}
                             <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</div></li>
                         {% endif %}
 
                         {# Step 3 #}
-                        {% if app.session.get('step_2') %}
+                        {% if app.session.get('step_2') == "check" and app.session.get('step_3') == "uncheck" %}
                             <li class="warning"><div class="stepWarning"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> Récapitulatif & paiement</a></div></li>
-                        {% elseif app.session.get('step_3') %}
+                        {% elseif app.session.get('step_3') == "check" %}
                             <li class="completed"><div class="stepCompleted"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> Récapitulatif & paiement</a></div></li>
                         {% else %}
                             <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> Récapitulatif & paiement</div></li>
                         {% endif %}
 
                         {# Step 4 #}
-                        {% if app.session.get('step_3') %}
-                            <li class="warning"><div class="stepWarning"><a href="{{ path('confirmation')}}"><span class="bubble" id="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmation</a></div></li>
-                        {% elseif app.session.get('step_4') %}
+                        {% if app.session.get('step_3') == "check" %}
                             <li class="completed"><div class="stepCompleted"><a href="{{ path('confirmation')}}"><span class="bubble" id="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmation</a></div></li>
                         {% else %}
                             <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmation</div></li>
@@ -150,13 +148,6 @@
                     </p>
                 </div>
                 <hr/>
-                {#<div class="col-lg-8 col-lg-offset-2">#}
-                    {#<p>#}
-                        {#{% block informationText %}#}
-                        {#{% endblock %}#}
-                    {#</p>#}
-                    {#<hr/>#}
-                {#</div>#}
             </div>
 
             {% block form %}
@@ -188,88 +179,12 @@
         <!-- Custom Theme JavaScript -->
         <script src="{{asset('js/theme.js')}}"></script>
 
+        <!-- FlatPickr-->
         <script src="https://unpkg.com/flatpickr"></script>
         <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
-        <script>
-            $('.required').addClass('btn');
 
-            $(".datepicker").flatpickr({
-                locale: "fr",
-                inline: true,
-                minDate: 'today',
-                disable: [
-                    function(date) {
-                    // return true to disable
-                    return (date.getDay() === 2 || date.getDay() === 0); }]
-            });
-
-
-            $('input:checkbox').change(
-                function(){
-                    if ($(this).is(':checked')) {
-                       $(this).parent().append('<p class="infoTR" id="infoTR">Pour les étudiants, employés de musées, sans-emploi, militaires... Un justificatif vous sera demandé. </p>');
-                    } else {
-                        $(this).parent().find('#infoTR').remove();
-                    }
-                });
-
-            $(document).ready(function() {
-
-                var table = $('#table');
-
-                // Table bordered
-                $('#table-bordered').change(function() {
-                    var value = $( this ).val();
-                    table.removeClass('table-bordered').addClass(value);
-                });
-
-                // Table striped
-                $('#table-striped').change(function() {
-                    var value = $( this ).val();
-                    table.removeClass('table-striped').addClass(value);
-                });
-
-                // Table hover
-                $('#table-hover').change(function() {
-                    var value = $( this ).val();
-                    table.removeClass('table-hover').addClass(value);
-                });
-
-                // Table color
-                $('#table-color').change(function() {
-                    var value = $(this).val();
-                    table.removeClass(/^table-mc-/).addClass(value);
-                });
-            });
-
-            // jQuery’s hasClass and removeClass on steroids
-            // by Nikita Vasilyev
-            // https://github.com/NV/jquery-regexp-classes
-            (function(removeClass) {
-
-                jQuery.fn.removeClass = function( value ) {
-                    if ( value && typeof value.test === "function" ) {
-                        for ( var i = 0, l = this.length; i < l; i++ ) {
-                            var elem = this[i];
-                            if ( elem.nodeType === 1 && elem.className ) {
-                                var classNames = elem.className.split( /\s+/ );
-
-                                for ( var n = classNames.length; n--; ) {
-                                    if ( value.test(classNames[n]) ) {
-                                        classNames.splice(n, 1);
-                                    }
-                                }
-                                elem.className = jQuery.trim( classNames.join(" ") );
-                            }
-                        }
-                    } else {
-                        removeClass.call(this, value);
-                    }
-                    return this;
-                }
-
-            })(jQuery.fn.removeClass);
-        </script>
+        <!-- Custom -->
+        <script src="{{asset('js/custom.js')}}"></script>
     {% endblock %}
     </body>
 </html>

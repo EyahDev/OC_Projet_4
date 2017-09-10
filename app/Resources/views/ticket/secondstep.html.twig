@@ -33,28 +33,6 @@
                 En cas de non-respect de ce créneau horaire, le porteur du e-billet est soumis aux mêmes conditions d'accès et d'attente que les visiteurs sans billet.
         </div>
 
-        {{ form_start(form) }}
-
-        {% for ticket in form.tickets %}
-            <div class="containerSecondStepForm" id="secondStep">
-                <div class="secondStepForm" id="secondStepForm">
-                    <h3 class="titleForm">Billet n°{{ loop.index }}</h3>
-                    {{ form_widget(ticket.lastName, { 'attr' : {'placeholder' : 'Nom', 'class' : 'textForm'}}) }}
-                    {{ form_widget(ticket.name, { 'attr' : {'placeholder' : 'Prénom', 'class' : 'textForm'}}) }}
-                    {{ form_widget(ticket.age, { 'attr' : {'placeholder' : 'Date de naissance (jj/mm/aaaa)', 'class' : 'textForm'}}) }}
-                    {{ form_widget(ticket.country) }}
-                    {{ form_widget(ticket.reduced_price) }}
-                    {{ form_label(ticket.reduced_price) }}
-                </div>
-            </div>
-
-
-        {% endfor %}
-
-            <div class="suivant">
-                {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'Suivant'}) }}
-            </div>
-        {{ form_end(form) }}
-
+        {{ include(':ticket/form:secondstepform.html.twig') }}
 
 {% endblock %}
