@@ -4,15 +4,16 @@ namespace AppBundle\Services;
 
 use AppBundle\Entity\OrderCustomer;
 use AppBundle\Entity\Ticket;
-use AppBundle\Form\OrderCustomerFirstStepType;
-use AppBundle\Form\OrderCustomerSecondStepType;
+use AppBundle\Form\Type\OrderCustomerFirstStepType;
+use AppBundle\Form\Type\OrderCustomerSecondStepType;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Charge;
 use Stripe\Stripe;
-use Symfony\Component\Form\FormFactory;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Twig\Environment;
 
 class OrderManager
 {
@@ -183,93 +184,73 @@ class OrderManager
     }
 
     public function paiement() {
+        // Mise à jour de la commande avec les données POST
+        if ($this->request->isMethod('POST')) {
 
-        try {
-            // Mise à jour de la commande avec les données POST
-            if ($this->request->isMethod('POST')) {
+            // Récupération du token de paiement
+            $token = $this->request->get('stripeToken');
 
-                // Récupération du token de paiement
-                $token = $this->request->get('stripeToken');
+            // Récupération de la commande en session
+            $order = $this->getOrder();
 
-                // Récupération de la commande en session
-                $order = $this->getOrder();
+            // Vérification si le paiement s'est passé
+            try {
+                    // Création de la charge dans stripe
+                    Stripe::setApiKey("sk_test_CEPeRcQzGSnOsmgIG0zAuhxS");
+                    Charge::create(array(
+                        "amount" => $order->getPrice() . "00",
+                        "currency" => "eur",
+                        "source" => $token,
+                        "description" => "Réservation de " . $order->getNbTickets() . " billet(s) en " . $order->getDuration() . " horaires d'accès : " . $order->getAccess() . "."));
 
-                // Création de la charge dans stripe
-                Stripe::setApiKey("sk_test_CEPeRcQzGSnOsmgIG0zAuhxS");
-                Charge::create(array(
-                    "amount" => $order->getPrice() . "00",
-                    "currency" => "eur",
-                    "source" => $token,
-                    "description" => "Réservation de " . $order->getNbTickets() . " billet(s) en " . $order->getDuration() . " horaires d'accès : " . $order->getAccess() . "."));
+                    return $paiement = 'check';
 
-
-                // Création de la date de paiement de la commande
-                $date = new \DateTime();
-
-                // Mise à jour de la commande avec la date du paiement et le token
-                $order->setOrderDate($date);
-                $order->setOrderToken($token);
-
-                // Enregistrement des données
-                $this->em->persist($order);
-
-                // Injection en base de données
-                $this->em->flush();
-
-                return $paiement = 'check';
+            } catch (\Exception $e) {
+                return $paiement = 'uncheck';
             }
+        }
+        return $paiement = 'uncheck';
+    }
 
-        } catch (\Exception $e) {
-            return $paiement = 'uncheck';
+    public function enregistrement() {
+
+        // Mise à jour de la commande avec les données POST
+        if ($this->request->isMethod('POST')) {
+
+            //Récupération du token de paiement
+            $token = $this->request->get('stripeToken');
+
+            // Récupération de la commande en session
+            $order = $this->getOrder();
+
+            // Création de la date de paiement de la commande
+            $date = new \DateTime();
+
+            // Mise à jour de la commande avec la date du paiement et le token
+            $order->setOrderDate($date);
+            $order->setOrderToken($token);
+
+            // Création d'une variable de session individuel pour le token de paiement
+            $this->session->set('token', $order->getOrderToken());
+
+            // Enregistrement des données
+            $this->em->persist($order);
+
+            // Injection en base de données
+            $this->em->flush();
+
+            // Destruction de la commande en session
+            $this->session->remove('CommandeLouvre');
         }
     }
 
     public function confirmationAction() {
-//
-//        // Récupération du token de paiement
-//        $token = $this->request->get('stripeToken');
-//
-//        // Mise à jour de la commande avec les données POST
-//        if ($this->request->isMethod('POST')) {
-//
-//            // Récupération de la commande en session
-//            $order = $this->getOrder();
-//
-//            // Création de la charge dans stripe
-//            Stripe::setApiKey("sk_test_CEPeRcQzGSnOsmgIG0zAuhxS");
-//            Charge::create(array(
-//                "amount" => $order->getPrice()."00",
-//                "currency" => "eur",
-//                "source" => $token,
-//                "description" => "Réservation de" .$order->getPrice(). " billet(s) en" .$order->getDuration(). " horaires d'accès : ".$order->getAccess()."."));
-//
-//            // Récupération de la commande en session
-//            $order = $this->getOrder();
-//
-//            // Création de la date de paiement de la commande
-//            $date = new \DateTime();
-//
-//            // Mise à jour de la commande avec la date du paiement et le token
-//            $order->setOrderDate($date);
-//            $order->setOrderToken($token);
-//
-//            // Enregistrement des données
-//            $this->em->persist($order);
-//
-//            // Injection en base de données
-//            $this->em->flush();
-//
-//            // Destruction de la session en cours
-//            $this->session->invalidate();
-//        }
 
-        $token = $this->session->get('CommandeLouvre')->getOrderToken();
+        // Création d'une variable individuel concernant le token
+        $token = $this->session->get('token');
 
         // Récupération de la commande en base de données grace au token
         $order = $this->em->getRepository('AppBundle:OrderCustomer')->findOneBy(array('orderToken' => $token));
-
-        // Destruction de la session en cours
-        $this->session->invalidate();
 
         // Retourne la commande pour l'affichage
         return $order;

@@ -13,11 +13,44 @@
 {% block form %}
 
     <h3>Confirmation de réservation</h3>
-    <p class="informationText">Votre réservation a bien effectué voici le votre numéro de réservation : <b>{{ order.orderToken|replace({'tok_': ''}) }}</b> <br/>
+    <p class="infoLouvreText">Votre réservation a bien effectué voici le votre numéro de réservation : <b>{{ order.orderToken|replace({'tok_': ''}) }}</b> <br/>
     Vous allez recevoir un email avec vos e-billet d'ici quelques minutes
     </p>
     <h3>Votre billet</h3>
 
-    {{ order.price }}
+    <div class="listBillets" style="text-align: center">
+
+        <div class="billetsEdites">
+            <img class="logoLouvre" src="{{ asset('img/logo-louvre.jpg') }}" alt="logoLouvre">
+            <p class="textSMBillets">www.louvre.fr</p>
+            <p class="textLGBillets"><b>MUSÉE {{ order.duration|upper }} - 09h</b><br/>
+            <b>{{ order.visitDate|date('d/m/Y') }}</b></p>
+            <p class="textSMBilletsLeft">Adrien Desmet - 23/05/1986 - FR</p>
+            <p class="textSMBilletsLeft">Tarif : normal -<b> 16€</b></p>
+            <img class="codeBarre" src="{{ asset('img/code_barre.png') }}" alt="codeBarre">
+            <p class="textSMBillets">0000 00 00 00000 00 00 </p>
+        </div>
+        <div class="billetsEdites">
+            <img class="logoLouvre" src="{{ asset('img/logo-louvre.jpg') }}" alt="logoLouvre">
+            <p class="textSMBillets">www.louvre.fr</p>
+            <p class="textLGBillets"><b>MUSÉE {{ order.duration|upper }}</b><br/>
+                <b>{{ order.visitDate|date('d/m/Y') }}</b></p>
+            <p class="textSMBilletsLeft">Adrien Desmet - 23/05/1986 - FR</p>
+            <p class="textSMBilletsLeft">Tarif : normal -<b> 16€</b></p>
+            <img class="codeBarre" src="{{ asset('img/code_barre.png') }}" alt="codeBarre">
+            <p class="textSMBillets">0000 00 00 00000 00 00 </p>
+        </div>
+        <div class="billetsEdites">
+            <img class="logoLouvre" src="{{ asset('img/logo-louvre.jpg') }}" alt="logoLouvre">
+            <p class="textSMBillets">www.louvre.fr</p>
+            <p class="textLGBillets"><b>MUSÉE {{ order.duration|upper }}</b><br/>
+                <b>{{ order.visitDate|date('d/m/Y') }}</b></p>
+            <p class="textSMBilletsLeft">Adrien Desmet - 23/05/1986 - FR</p>
+            <p class="textSMBilletsLeft">Tarif : normal -<b> 16€</b></p>
+            <img class="codeBarre" src="{{ asset('img/code_barre.png') }}" alt="codeBarre">
+            <p class="textSMBillets">0000 00 00 00000 00 00 </p>
+        </div>
+
+    </div>
 
 {% endblock %}

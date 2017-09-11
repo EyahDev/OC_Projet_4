@@ -16,13 +16,19 @@ class BilletterieController extends Controller
     public function indexAction(Request $request, OrderManager $orderManager, SessionInterface $session)
     {
         // uncheck de toutes les variables d'étapes
+        $session->set('step_all', 'uncheck');
         $session->set('step_1', 'uncheck');
         $session->set('step_2', 'uncheck');
         $session->set('step_3', 'uncheck');
         $session->set('step_4', 'uncheck');
 
+        // Retrait de la variable token si elle existe
+        $session->remove('token');
+
+        // Récupération du formulaire de la première étape
         $form = $orderManager->firstStepAction();
 
+        // Hydratation de la commande avec les valeur du formulaire
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,37 +56,45 @@ class BilletterieController extends Controller
         $session->set('step_3', 'uncheck');
         $session->set('step_4', 'uncheck');
 
-        $form = $orderManager->secondStepAction();
+        if ($session->get('step_1') == "check") {
+            $form = $orderManager->secondStepAction();
 
-        $form->handleRequest($request);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            // Création d'une variable de session
-            $session->set('step_2', 'check');
+                // Création d'une variable de session
+                $session->set('step_2', 'check');
 
-            // Redirige vers la page des coordonnées
-            return $this->redirectToRoute('recapitulatif');
+                // Redirige vers la page des coordonnées
+                return $this->redirectToRoute('recapitulatif');
 
+            }
+
+            // Affiche la vue et les éléments nécessaire
+            return $this->render('ticket/secondstep.html.twig', array(
+                'form' => $form->createView()));
         }
-
-        // Affiche la vue et les éléments nécessaire
-        return $this->render('ticket/secondstep.html.twig', array(
-            'form' => $form->createView()));
+        return $this->redirectToRoute('homepage');
     }
 
     /**
      * @Route("/recapitulatif", name="recapitulatif")
      */
-    public function recapitulatifAction(OrderManager $orderManager, SessionInterface $session)
-    {
+    public function recapitulatifAction(OrderManager $orderManager, SessionInterface $session) {
         // uncheck de toutes les variables d'étapes
         $session->set('step_3', 'uncheck');
         $session->set('step_4', 'uncheck');
 
-        $specialRate = $orderManager->summaryAction();
+        if ($session->get('step_2') == "check") {
 
-        return $this->render('ticket/summary.html.twig', array('specialRate' => $specialRate));
+            $specialRate = $orderManager->summaryAction();
+
+            $session->set('step_3', 'check');
+
+            return $this->render('ticket/summary.html.twig', array('specialRate' => $specialRate));
+        }
+        return $this->redirectToRoute('coordonnees');
     }
 
     /**
@@ -88,29 +102,46 @@ class BilletterieController extends Controller
      */
     public function paiementAction(OrderManager $orderManager, SessionInterface $session, \Swift_Mailer $mailer) {
 
-        $paiement = $orderManager->paiement();
-        $order = $session->get('CommandeLouvre');
+        // uncheck de toutes les variables d'étapes
+        $session->set('step_4', "uncheck");
 
-        if ($paiement == 'check') {
+        if ($session->get('step_3') == "check") {
+            // Lancement du paiement
+            $paiement = $orderManager->paiement();
 
-            // Préparation d'un email de confirmation
-            $sendMail = (new \Swift_Message("Confirmation de commande"))
-                ->setFrom('adrien.desmet@hotmail.fr')
-                ->setTo($order->getEmail())
-                ->setBody($this->renderView('ticket/email/recapitulatif.html.twig', array(
-                    'order' => $order,
-                    'tickets' => $order->getTickets()
-                )), 'text/html');
+            // Vérification si le paiement s'est bien déroulé
+            if ($paiement == 'check') {
 
-            // Envoi de l'email
-            $mailer->send($sendMail);
+                // Récupération de la commande en session
+                $order = $session->get('CommandeLouvre');
 
-            return $this->redirectToRoute('confirmation');
+                // Préparation d'un email de confirmation
+                $sendMail = (new \Swift_Message("Confirmation de commande"))
+                    ->setFrom('adrien.desmet@hotmail.fr')
+                    ->setTo($order->getEmail())
+                    ->setBody($this->renderView('ticket/email/recapitulatif.html.twig', array(
+                        'order' => $order,
+                        'tickets' => $order->getTickets()
+                    )), 'text/html');
+
+                // Envoi de l'email
+                $mailer->send($sendMail);
+
+                // Enregistrement de la commande
+                $orderManager->enregistrement();
+
+                // Check de l'étape 3
+                $session->set('step_4', "check");
+
+                return $this->redirectToRoute('confirmation');
+            }
+
+            $error = $session->getFlashBag()->add('Une erreur s\'est produit avec le paiement, veuillez réessayer. Si le problème persiste, merci de nous contacter');
+
+            return $this->redirectToRoute('confirmation', array('error' => $error));
         }
 
-        $error = $session->getFlashBag()->add('Une erreur s\'est produit avec le paiement, veuillez réessayer. Si le problème persiste, merci de nous contacter');
-
-        $this->redirectToRoute('recapitulatif', array('error' => $error));
+        return $this->redirectToRoute('recapitulatif');
     }
 
     /**
@@ -118,12 +149,19 @@ class BilletterieController extends Controller
      */
     public function confirmationAction(OrderManager $orderManager, SessionInterface $session)
     {
-        $order = $orderManager->confirmationAction();
+        if ($session->get('step_4') == "check" || $session->get('step_all') == "check") {
+            // Récupération des informations importante de la commande
+            $order = $orderManager->confirmationAction();
 
-        // Check de l'étape 3
-        $session->set('step_3', "check");
+            $session->set('step_all', 'check');
+            $session->set('step_1', 'uncheck');
+            $session->set('step_2', 'uncheck');
+            $session->set('step_3', 'uncheck');
+            $session->set('step_4', 'uncheck');
 
-        return $this->render('ticket/confirmation.html.twig', array('order' => $order));
+            return $this->render('ticket/confirmation.html.twig', array('order' => $order));
+        }
+        return $this->redirectToRoute('recapitulatif');
     }
 
 }
