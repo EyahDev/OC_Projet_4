@@ -44,6 +44,5 @@ class OrderCustomerType extends AbstractType
     {
         return 'appbundle_ordercustomer';
     }
-
-
 }
+

@@ -82,4 +82,4 @@ jQuery(document).ready(function ($) {
 		//cancel the submit button default behaviours
 		return false;
 	});	
-});	
+});

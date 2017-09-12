@@ -163,5 +163,4 @@ class BilletterieController extends Controller
         }
         return $this->redirectToRoute('recapitulatif');
     }
-
 }
