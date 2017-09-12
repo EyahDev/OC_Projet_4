@@ -18,9 +18,7 @@ class TicketSecondStepType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $date = new \DateTime();
 
-        // Formulaire
         $builder
             ->add('name',TextType::class)
             ->add('lastName', TextType::class)
@@ -33,7 +31,7 @@ class TicketSecondStepType extends AbstractType
             ))
             ->add('reduced_price', CheckboxType::class, array(
                 'label' => 'Tarif réduit',
-                'label_attr' => array( 'class' => 'btn', 'data-info'),
+                'label_attr' => array( 'class' => 'btn'),
                 'required' => false
             ));
     }

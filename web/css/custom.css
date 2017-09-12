@@ -176,8 +176,8 @@
     background-color: white;
     border: 1px grey solid;
     padding: 10px;
-    min-width: 300px;
-    height: 300px;
+    width: 300px;
+    min-height: 300px;
 }
 
 .logoLouvre, .codeBarre {

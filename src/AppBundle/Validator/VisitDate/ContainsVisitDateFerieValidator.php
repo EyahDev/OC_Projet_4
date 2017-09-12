@@ -47,22 +47,12 @@ class ContainsVisitDateFerieValidator extends ConstraintValidator {
         $visitDate = $value;
         $visitDate = $visitDate->getTimestamp();
 
-//        // Vérification si l'année de la date et egale à l'année en cours
-//        $test = new \DateTime();
-//        $test = $test->format('Y');
-//
-//        $test2 = $value->format('Y');
-//
-//        $interval = intval($test2) - intval($test);
-//
-//        dump($interval);
-//
-//
-//        dump($visitDate);
+        // Récupération de l'année de la date
+        $years = $value->format('Y');
 
-        foreach (self::getHolidays() as $holiday) {
+        foreach (self::getHolidays($years) as $holiday) {
             // Vérification si la date de visite n'est pas un jour férié
-            if ($visitDate == $holiday ) {
+            if ($visitDate == $holiday) {
                 $this->context->buildViolation($constraint->message)
                     ->addViolation();
             }

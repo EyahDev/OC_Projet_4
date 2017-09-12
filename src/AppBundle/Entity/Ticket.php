@@ -96,6 +96,13 @@ class Ticket
     private $price;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="token_ticket", type="string", length=255)
+     */
+    private $tokenTicket;
+
+    /**
      * Get id
      *
      * @return int
@@ -321,5 +328,29 @@ class Ticket
     public function getReducedPrice()
     {
         return $this->reducedPrice;
+    }
+
+    /**
+     * Set tokenTicket
+     *
+     * @param string $tokenTicket
+     *
+     * @return Ticket
+     */
+    public function setTokenTicket($tokenTicket)
+    {
+        $this->tokenTicket = $tokenTicket;
+
+        return $this;
+    }
+
+    /**
+     * Get tokenTicket
+     *
+     * @return string
+     */
+    public function getTokenTicket()
+    {
+        return $this->tokenTicket;
     }
 }

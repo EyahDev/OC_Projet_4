@@ -136,7 +136,7 @@ class BilletterieController extends Controller
                 return $this->redirectToRoute('confirmation');
             }
 
-            $error = $session->getFlashBag()->add('Une erreur s\'est produit avec le paiement, veuillez réessayer. Si le problème persiste, merci de nous contacter');
+            $error = $session->getFlashBag()->add('notice', 'Une erreur s\'est produit avec le paiement, veuillez réessayer. Si le problème persiste, merci de nous contacter');
 
             return $this->redirectToRoute('confirmation', array('error' => $error));
         }

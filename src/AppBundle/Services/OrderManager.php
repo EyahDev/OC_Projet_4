@@ -39,7 +39,7 @@ class OrderManager
         if ($this->session->has('CommandeLouvre')) {
             $order = $this->session->get('CommandeLouvre');
             foreach ($order->getTickets() as $ticket) {
-                if ($ticket->getName() == null || $ticket->getlastName() == null || $ticket->getAge() == null) {
+                if ($ticket->getName() === null || $ticket->getlastName() === null || $ticket->getAge() === null) {
                     $order->removeTicket($ticket);
                 }
             }
@@ -132,6 +132,10 @@ class OrderManager
         // Parcours de la variable de sessions et attribution des valeurs
         foreach ($order->getTickets() as $ticket) {
 
+            // Création d'un token unique pour le code barre du billets
+            $codeBarreToken = bin2hex(random_bytes(10));
+            dump($codeBarreToken);
+
             // Vérification si la coche tarif réduit a été coché
             if ($ticket->getReducedPrice() === true) {
 
@@ -149,6 +153,7 @@ class OrderManager
                 // Injection à la variable de session
                 $ticket->setRate($rate->getName());
                 $ticket->setPrice($price);
+                $ticket->setTokenTicket($codeBarreToken);
 
             } else {
                 // Calcul de l'âge
@@ -170,6 +175,7 @@ class OrderManager
                 // Injection à la variable de session
                 $ticket->setRate($rate->getName());
                 $ticket->setPrice($price);
+                $ticket->setTokenTicket($codeBarreToken);
             }
 
             // Calcul du montant total à payer
