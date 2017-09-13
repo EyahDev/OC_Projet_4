@@ -15,7 +15,7 @@
     <h3>Votre réservation </h3>
     <p class="infoLouvreText">Vous prévoyez de visiter le musée du Louvre le <b>{{ app.session.get('CommandeLouvre').visitDate|date('d/m/Y') }}</b> pour la
         {{  app.session.get('CommandeLouvre').duration }} soit à partir de {{  app.session.get('CommandeLouvre').access }}.</p>
-    <h3>Votre billet</h3>
+    <h3>{{ 'appbundle.step.3.tickets'|transchoice(app.session.get('CommandeLouvre').nbTickets) }}</h3>
     <div class="table-responsive-vertical shadow-z-1">
         <table id="table" class="table table-hover table-mc-light-blue">
             <thead>
@@ -82,7 +82,7 @@
                 data-name="Musée du louvre"
                 data-description="Paiement de vos billets d'entrée"
                 data-image="{{ asset('img/logo-louvre.jpg') }}"
-                data-locale="auto"
+                data-locale="en"
                 data-allow-remember-me="false"
                 data-zip-code="false"
                 data-currency="eur">

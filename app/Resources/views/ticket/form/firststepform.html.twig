@@ -12,8 +12,8 @@
         <h3 class="titleForm">Votre email</h3>
         {{ form_errors(form.email.first) }}
         {{ form_errors(form.email.second) }}
-        {{ form_widget(form.email.first, { 'attr' : {'placeholder' : 'mail@exemple.com'}}) }}<br/>
-        {{ form_widget(form.email.second, { 'attr' : {'placeholder' : 'Répétez votre email'}}) }}
+        {{ form_widget(form.email.first, { 'attr' : {'placeholder' : 'appbundle.step.1.form.placeholder.email.first'|trans }}) }}<br/>
+        {{ form_widget(form.email.second, { 'attr' : {'placeholder' : 'appbundle.step.1.form.placeholder.email.second'|trans}}) }}
 
         <h3 class="titleForm">Nombre de billets</h3>
         {{ form_errors(form.nbTickets) }}
@@ -30,16 +30,13 @@
 
     <div class="infoLouvre">
         <h3 class="titleForm">Informations</h3>
-        <p class="infoLouvreText">Le musée du Louvre est ouvert tous les jours, sauf les mardis et les 1 er novembre, 1 er mai et 25 décembre,
-            de 9h à 18h, jusqu'à 21h45 les mercredis et vendredis, à l’exception des jours fériés.
-            La fermeture des salles débute à 17h30 et à 21h30 les mercredis et vendredis.</p>
-        <p class="infoLouvreText" >En raison de forte affluence les dimanches et les jours fériés, il est impossible de reserver en ligne.
-            Les ventes se feront au guichet.</p>
+        <p class="infoLouvreText">{{ 'appbundle.step.1.text.information.first'|trans }}</p>
+        <p class="infoLouvreText" >{{ 'appbundle.step.1.text.information.second'|trans }}</p>
     </div>
 
 </div>
 <div class="suivant">
-    {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'Suivant'}) }}
+    {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'appbundle.form.generic.next'|trans }) }}
 </div>
 
 {{ form_end(form) }}

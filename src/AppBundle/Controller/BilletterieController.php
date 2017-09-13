@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class BilletterieController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("{_locale}/", requirements={"_locale" = "fr|en"}, name="homepage")
      */
     public function indexAction(Request $request, OrderManager $orderManager, SessionInterface $session)
     {

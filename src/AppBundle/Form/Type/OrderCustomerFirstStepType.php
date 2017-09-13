@@ -31,8 +31,8 @@ class OrderCustomerFirstStepType extends AbstractType
             ))
             ->add('duration', ChoiceType::class, array(
                 'choices' => array(
-                    'Journée' => 'journée',
-                    'Demi-journée' => 'demi-journée'),
+                    'appbundle.step.1.form.placeholder.duration.first' => 'journée',
+                    'appbundle.step.1.form.placeholder.duration.second' => 'demi-journée'),
                 'choice_attr' => function($key) {
                     return ['class' => 'toggle radio-'.$key.' toggle-'.$key];
 

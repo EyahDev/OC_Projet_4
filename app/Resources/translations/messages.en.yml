@@ -1,0 +1,63 @@
+appbundle:
+    nav:
+        informations: informations
+        visites: visites
+        expositions: expositions
+        oeuvres: oeuvres
+        arts: arts
+        billetterie: billetterie
+
+    pres.billetterie:
+        title: billetterie
+        pres.section: Achetez vos billets
+
+    step.wizard:
+        step.1: votre visite
+        step.2: vos billets
+        step.3: récapitulatif & paiement
+        step.4: confirmation
+
+    form.generic:
+        next: Next
+
+    step.1:
+        pres.title: votre visite
+        pres.step: Indiquez la date de votre visite, votre horaire d'accès et le nombre de billets
+        text.information:
+            first:
+                Le musée du Louvre est ouvert tous les jours, sauf les mardis et les 1 er novembre,
+                1 er mai et 25 décembre, de 9h à 18h, jusqu'à 21h45 les mercredis et vendredis, à l’exception des jours fériés.
+                La fermeture des salles débute à 17h30 et à 21h30 les mercredis et vendredis.
+            second:
+                En raison de forte affluence les dimanches et les jours fériés, il est impossible de reserver en ligne. Les ventes se feront au guichet.
+        form.title:
+            email: votre email
+            billets: nombres de billets
+            email: date de la visite
+            informations: informations
+        form.placeholder:
+            email.first: mail@exemple.com
+            email.second: Répétez votre email
+            duration.first: Journée
+            duration.second: Demi-journée
+
+        step.2:
+            pres.title: vos billets
+            pres.step: Renseignez les informations nominatives de chaque billets
+            text.information:
+                first:
+                    Le musée du Louvre est ouvert tous les jours, sauf les mardis et les 1 er novembre,
+                    1 er mai et 25 décembre, de 9h à 18h, jusqu'à 21h45 les mercredis et vendredis, à l’exception des jours fériés.
+                    La fermeture des salles débute à 17h30 et à 21h30 les mercredis et vendredis.
+                second:
+                    En raison de forte affluence les dimanches et les jours fériés, il est impossible de reserver en ligne. Les ventes se feront au guichet.
+            form.title:
+                email: votre email
+                billets: nombres de billets
+                email: date de la visite
+                informations: informations
+            form.placeholder:
+                email.first: mail@exemple.com
+                email.second: Répétez votre email
+                duration.first: Journée
+                duration.second: Demi-journée

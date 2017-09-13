@@ -1,0 +1,97 @@
+appbundle:
+    nav:
+        informations: informations
+        visites: visites
+        expositions: expositions
+        oeuvres: oeuvres
+        arts: arts
+        billetterie: billetterie
+
+    pres.billetterie:
+        title: billetterie
+        pres.section: Achetez vos billets
+
+    step.wizard:
+        step.1: votre visite
+        step.2: vos billets
+        step.3: récapitulatif & paiement
+        step.4: confirmation
+
+    form.generic:
+        next: Suivant
+        prev: Précédent
+        payment: Paiement
+
+    step.1:
+        pres.title: votre visite
+        pres.step: Indiquez la date de votre visite, votre horaire d'accès et le nombre de billets
+        text.information:
+            first:
+                Le musée du Louvre est ouvert tous les jours, sauf les mardis et les 1 er novembre,
+                1 er mai et 25 décembre, de 9h à 18h, jusqu'à 21h45 les mercredis et vendredis, à l’exception des jours fériés.
+                La fermeture des salles débute à 17h30 et à 21h30 les mercredis et vendredis.
+            second:
+                En raison de forte affluence les dimanches et les jours fériés, il est impossible de reserver en ligne. Les ventes se feront au guichet.
+        form.title:
+            email: votre email
+            billets: nombres de billets
+            email: date de la visite
+            informations: informations
+        form.placeholder:
+            email.first: mail@exemple.com
+            email.second: Répétez votre email
+            duration.first: Journée
+            duration.second: Demi-journée
+
+    step.2:
+        pres.title: vos billets
+        pres.step: Renseignez les informations nominatives de chaque billets
+        text.information.first.title: votre réservation
+        text.information.first:
+            Vous prévoyez de visiter le musée du Louvre le %date% pour la %duration% L'accès au musée se fera à partir de %access%.
+        text.information.second.title: Informations
+        text.information.second:
+            Le billet acheté en ligne est horodaté et nominatif, un document d’identité peut être demandé.
+            Il est valable exclusivement pour la prestation, la date et à compter de l'heure mentionnée.
+
+            Il ne constitue pas un coupe file mais permet un accès à la pyramide du Louvre dans la demi-heure de l'horaire indiqué.
+            En cas de non-respect de ce créneau horaire, le porteur du e-billet est soumis aux mêmes conditions d'accès et d'attente que les visiteurs sans billet.
+        form.placeholder:
+            name: Prénom
+            lastname: Nom
+            birthday.date: Date de naissance (jj/mm/aaaa)
+            reduced.price: Tarif réduit
+            reduced.price.message: Pour les étudiants, employés de musées, sans-emploi, militaires... Un justificatif vous sera demandé.
+
+    step.3:
+            pres.title: Récapitulatif et paiement
+            pres.step: Récapitulatif et paiement de votre réservation
+            text.information.title: votre réservation
+            text.information:
+                Vous prévoyez de visiter le musée du Louvre le %date% pour la %duration% L'accès au musée se fera à partir de %access%.
+            tickets: "Votre billet|Vos billets"
+            tickets.table:
+                ticket: Billet
+                titu: Titulaire du billet
+                age: Age
+                rate: Tarification
+                special.rate: Remise spéciale
+                rate: Prix
+
+                tickets.content:
+                    age: ans
+                    rate: Réduit
+                    special.rate: Aucun
+
+            total.table:
+                visite.date: Date de visite
+                duration: Accès
+                access: Horaires d'accès
+                nb.tickets: Nombre de billets
+                special.rate: Remise spéciale
+                total: Prix total
+
+                total.content:
+                    duration: En %duration%
+                    access: A partir de %access%
+                    special.rate: Aucune

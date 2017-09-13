@@ -27,10 +27,7 @@
                 {{ app.session.get('CommandeLouvre').duration }}. L'accès au musée se fera à partir de {{ app.session.get('CommandeLouvre').access }}.</p>
 
             <h3 class="titleForm">Informations</h3>
-            <p class="infoLouvreText">Le billet acheté en ligne est horodaté et nominatif, un document d’identité peut être demandé.
-                Il est valable exclusivement pour la prestation, la date et à compter de l'heure mentionnée. <br/>
-                Il ne constitue pas un coupe file mais permet un accès à la pyramide du Louvre dans la demi-heure de l'horaire indiqué.
-                En cas de non-respect de ce créneau horaire, le porteur du e-billet est soumis aux mêmes conditions d'accès et d'attente que les visiteurs sans billet.
+            <p class="infoLouvreText">{{ 'appbundle.step.2.text.information.second'|trans}}
         </div>
 
         {{ include(':ticket/form:secondstepform.html.twig') }}
