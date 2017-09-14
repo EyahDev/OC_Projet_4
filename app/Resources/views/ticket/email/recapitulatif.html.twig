@@ -1,27 +1,39 @@
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-    </head>
-    <body>
-        <h3>Mail de confirmation de paiement</h3>
-        <br/>
-        <p>Référence de paiement : {{ order.orderToken }}</p>
-        <br/>
-        <p>Vous venez de passer commande pour {{ order.nbTickets }} billets au musée du Louvre pour une visite le {{ order.visitDate|date('d/m/Y') }}</p>
+{% extends 'layout_mail.html.twig' %}
 
-        {% for ticket in tickets %}
-            <div class="well">
-                <p>Nom : {{ ticket.name }}</p>
-                <p>Prénom : {{ ticket.lastName }}</p>
-                <p>age : {{ ticket.age|age }}</p>
-                <p>Tarif : {{ ticket.rate }}</p>
-                <p>Prix : {{ ticket.price }} €</p>
+{% block title %}Confirmation de réservation{% endblock %}
+
+{% block content %}
+
+
+    <div class="MailLogo">
+        <img class="logoLouvre" src="{{ asset('img/mail_logo.png') }}" alt="Logo du louvre">
+    </div>
+    <h3>{{ "appbundle.mail.text.information.title"|trans }}</h3>
+
+    <p>{{ "appbundle.mail.text.information"|trans({'%token%': order.orderToken|replace({'tok_': ''})}) }}<br/>
+
+    <b>{{ "appbundle.mail.text.reduced.rate"|trans }}</b></p>
+
+    <h3>{{ 'appbundle.step.3.tickets'|transchoice(order.nbTickets) }}</h3>
+
+    <div class="listBillets" style="text-align: center">
+        {% for ticket in order.tickets %}
+            <div class="billetsEdites">
+                <img class="logoLouvre" src="{{ asset('img/logo-louvre.jpg') }}" alt="logoLouvre">
+                <p class="textSMBillets">www.louvre.fr</p>
+                <p class="textLGBillets"><b>MUSÉE {{ order.duration|upper }}</b><br/>
+                    <b>{{ order.visitDate|date('d/m/Y') }}  - {{ order.access}}</b></p>
+                <p class="textSMBilletsLeft">{{ ticket.name }} {{ ticket.lastName }}<br/>{{ ticket.age|date('d/m/Y') }} ({{ ticket.age|age }} ans) - {{ ticket.country }}</p>
+                <p class="textSMBilletsLeft">Tarif : {{ ticket.rate }} -<b> {{ ticket.price }}€</b></p>
+                <img class="codeBarre" src="{{ asset('img/code_barre.png') }}" alt="codeBarre">
+                <p class="textSMBillets">{{ ticket.tokenTicket }}</p>
             </div>
         {% endfor %}
-    </body>
-</html>
+    </div>
+
+    <h3>{{ "appbundle.mail.text.important.title"|trans }}</h3>
+    <p>{{ "appbundle.mail.text.important"|trans }}</p>
+
+    <h3>{{ "appbundle.mail.text.advices.title"|trans }}</h3>
+    <p>{{ "appbundle.mail.text.advices"|trans }}</p>
+{% endblock %}

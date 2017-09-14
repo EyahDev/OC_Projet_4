@@ -163,4 +163,15 @@ class BilletterieController extends Controller
         }
         return $this->redirectToRoute('recapitulatif');
     }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function testAction(OrderManager $orderManager)
+    {
+        // Récupération des informations importante de la commande
+        $order = $orderManager->confirmationAction();
+
+        return $this->render('ticket/email/recapitulatif.html.twig', array('order' => $order));
+    }
 }

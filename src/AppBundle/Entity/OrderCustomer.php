@@ -78,6 +78,7 @@ class OrderCustomer
      * @Assert\GreaterThanOrEqual("today", message = "Veuillez choisir une date supérieur à la date du jour")
      * @CustomAssert\VisitDate\ContainsVisitDateDimanche()
      * @CustomAssert\VisitDate\ContainsVisitDateFerie()
+     * @CustomAssert\VisitDate\ContainsVisitCloseFeries()
      * @CustomAssert\VisitDate\ContainsVisitDateCloseHours()
      * @CustomAssert\Tickets\ContainsTicketsSold()
      */

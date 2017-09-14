@@ -204,7 +204,7 @@ class OrderManager
                     // Création de la charge dans stripe
                     Stripe::setApiKey("sk_test_CEPeRcQzGSnOsmgIG0zAuhxS");
                     Charge::create(array(
-                        "amount" => $order->getPrice() . "00",
+                        "amount" => $order->getPrice() * 100,
                         "currency" => "eur",
                         "source" => $token,
                         "description" => "Réservation de " . $order->getNbTickets() . " billet(s) en " . $order->getDuration() . " horaires d'accès : " . $order->getAccess() . "."));

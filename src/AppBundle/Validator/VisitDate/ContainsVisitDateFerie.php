@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class ContainsVisitDateFerie extends Constraint {
 
-    public $message = "Le musée est fermé ce jour férié, veuillez choisir une autre date";
+    public $message = "La vente de billets ne se fera qu'au gichet pour la date que vous avez choisi, veuillez choisir une autre date";
 
     public function validatedBy()
     {
