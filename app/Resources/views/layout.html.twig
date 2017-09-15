@@ -99,7 +99,8 @@
     <section id="page-sample">
         <div class="container content-section text-left">
             <div class="row" id="stepblock">
-                {{ include('stepwizard.html.twig') }}
+                {% block stepwizard %}
+                {% endblock %}
                 <hr/>
                 <div class="stepInfo" style="text-align: center">
                     <h2 class="text-center">

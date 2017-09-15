@@ -2,6 +2,25 @@
 
 {% block title %}{{ 'appbundle.step.step.4'|trans }}{% endblock %}
 
+{% block stepwizard %}
+    <div class="row">
+        <ul class="progress-indicator">
+            {# Step 1 #}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</div></li>
+
+            {# Step 2 #}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</div></li>
+
+            {# Step 3 #}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</div></li>
+
+            {# Step 4 #}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
+
+        </ul>
+    </div>
+{% endblock %}
+
 {% block informationTitle %}
     {{ 'appbundle.step.4.pres.title'|trans }}
 {% endblock %}
