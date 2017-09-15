@@ -33,7 +33,7 @@
 
     <h3>{{ 'appbundle.step.4.text.information.title'|trans }}</h3>
     <p class="infoLouvreText">
-        {{ 'appbundle.step.4.text.information'|trans({'%token%':  order.orderToken|replace({'tok_': ''}) })|raw|nl2br}}
+        {{ 'appbundle.step.4.text.information'|trans({'%token%':  order.orderToken|replace({'tok_': ''}) })|nl2br}}
     </p>
     <h3>{{ 'appbundle.step.4.tickets'|transchoice(order.nbTickets) }}</h3>
 

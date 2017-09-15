@@ -37,7 +37,7 @@
             '%date%': app.session.get('CommandeLouvre').visitDate|date('d/m/Y'),
             '%duration%': app.session.get('CommandeLouvre').duration,
             '%access%': app.session.get('CommandeLouvre').access }
-        )|raw}}
+        )}}
     </p>
 
     <h3>{{ 'appbundle.step.3.tickets'|transchoice(app.session.get('CommandeLouvre').nbTickets) }}</h3>
