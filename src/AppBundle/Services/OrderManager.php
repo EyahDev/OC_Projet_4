@@ -23,15 +23,17 @@ class OrderManager
     private $formBuilder;
     private $mailer;
     private $em;
+    private $env;
 
     public function __construct(SessionInterface $session, RequestStack $request, FormFactoryInterface $formBuilder,
-                                \Swift_Mailer $mailer, EntityManagerInterface $em)
+                                \Swift_Mailer $mailer, EntityManagerInterface $em, Environment $environment)
     {
         $this->session = $session;
         $this->request = $request->getCurrentRequest();
         $this->formBuilder = $formBuilder;
         $this->mailer = $mailer;
         $this->em = $em;
+        $this->env = $environment;
     }
 
     public function createOrder()
@@ -63,8 +65,66 @@ class OrderManager
         }
     }
 
+    /* Gestion des étapes */
+
+    public function stepUncheck($uncheck) {
+        if ($uncheck == 'all') {
+            $this->session->set('step_all', 'uncheck');
+            $this->session->set('step_1', 'uncheck');
+            $this->session->set('step_2', 'uncheck');
+            $this->session->set('step_3', 'uncheck');
+            $this->session->set('step_4', 'uncheck');
+        }
+
+        // uncheck d'un groupe de variables d'étapes
+        if (is_array($uncheck)) {
+            foreach ($uncheck as $item) {
+                $this->session->set('step_'.$item, 'uncheck');
+            }
+        }
+
+        // uncheck d'une seule variable d'étape
+        if (is_int($uncheck)) {
+            $this->session->set('step_'.$uncheck, 'uncheck');
+        }
+    }
+
+    public function stepCheck($check) {
+        // uncheck d'un groupe de variables d'étapes
+        if (is_array($check)) {
+            foreach ($check as $item) {
+                $this->session->set('step_'.$item, 'check');
+            }
+        }
+
+        // uncheck d'une seule variable d'étape
+        if (is_int($check)) {
+            $this->session->set('step_'.$check, 'check');
+        }
+
+        // uncheck d'une seule variable d'étape
+        if ($check == 'all') {
+            $this->session->set('step_'.$check, 'check');
+        }
+    }
+
+    public function getStepIsCheck($stepNumber) {
+        if ($this->session->get('step_'.$stepNumber) == 'check') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /* Action lié au controller */
+
     public function firstStepAction()
     {
+        $this->stepUncheck('all');
+
+        // Retrait de la variable token si elle existe
+        $this->session->remove('token');
+
         // Création de l'entitée Order
         $order = $this->createOrder();
 
@@ -75,6 +135,8 @@ class OrderManager
     }
 
     public function secondStepAction() {
+
+        $this->stepUncheck(array(2, 3, 4));
 
         // Récupération de la commande depuis la session
         $order = $this->getOrder();
@@ -112,6 +174,8 @@ class OrderManager
     }
 
     public function summaryAction () {
+
+        $this->stepUncheck(array(3, 4));
 
         // Récupération de la variable de session
         $order = $this->getOrder();
@@ -186,6 +250,8 @@ class OrderManager
 
         $order->setPrice($total);
 
+        $this->stepCheck(3);
+
         return $specialRate;
     }
 
@@ -199,7 +265,7 @@ class OrderManager
             // Récupération de la commande en session
             $order = $this->getOrder();
 
-            // Vérification si le paiement s'est passé
+            // Vérification si le paiement à bien été chargé dans stripe
             try {
                     // Création de la charge dans stripe
                     Stripe::setApiKey("sk_test_CEPeRcQzGSnOsmgIG0zAuhxS");
@@ -209,13 +275,13 @@ class OrderManager
                         "source" => $token,
                         "description" => "Réservation de " . $order->getNbTickets() . " billet(s) en " . $order->getDuration() . " horaires d'accès : " . $order->getAccess() . "."));
 
-                    return $paiement = 'check';
+                    return true;
 
             } catch (\Exception $e) {
-                return $paiement = 'uncheck';
+                return false;
             }
         }
-        return $paiement = 'uncheck';
+        return false;
     }
 
     public function enregistrement() {
@@ -223,11 +289,23 @@ class OrderManager
         // Mise à jour de la commande avec les données POST
         if ($this->request->isMethod('POST')) {
 
-            //Récupération du token de paiement
-            $token = $this->request->get('stripeToken');
-
             // Récupération de la commande en session
             $order = $this->getOrder();
+
+            // Préparation d'un email de confirmation
+            $sendMail = (new \Swift_Message("Confirmation de commande"))
+                ->setFrom('adrien.desmet@hotmail.fr')
+                ->setTo($order->getEmail())
+                ->setBody($this->env->render('ticket/email/recapitulatif.html.twig', array(
+                    'order' => $order,
+                    'tickets' => $order->getTickets()
+                )), 'text/html');
+
+            // Envoi de l'email
+            $this->mailer->send($sendMail);
+
+            //Récupération du token de paiement
+            $token = $this->request->get('stripeToken');
 
             // Création de la date de paiement de la commande
             $date = new \DateTime();
@@ -247,10 +325,19 @@ class OrderManager
 
             // Destruction de la commande en session
             $this->session->remove('CommandeLouvre');
+
+            // Validation de l'étape 4
+            $this->stepCheck(4);
         }
     }
 
     public function confirmationAction() {
+
+        // Uncheck de toutes les variables d'étapes
+        $this->stepUncheck('all');
+
+        // Check du parcours complété
+        $this->stepCheck('all');
 
         // Création d'une variable individuel concernant le token
         $token = $this->session->get('token');

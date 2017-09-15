@@ -1,23 +1,17 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}billeterie{% endblock %}
+{% block title %}{{ 'appbundle.step.step.1'|trans }}{% endblock %}
 
 {% block informationTitle %}
-    Votre visite
+    {{ 'appbundle.step.1.pres.title'|trans }}
 {% endblock %}
 
 {% block informationText %}
-    Définissez votre date de visite, votre horaire d'accès et le nombre de billets
+    {{ 'appbundle.step.1.pres.step'|trans }}
 {% endblock %}
 
 
 
 {% block form %}
-    {% for message in app.session.flashbag.get('notice') %}
-        <p class="alert alert-danger">{{ message }}</p>
-    {% endfor %}
-
-    {{ dump(app.session.get('CommandeLouvre')) }}
-
     {{ include('ticket/form/firststepform.html.twig') }}
 {% endblock %}

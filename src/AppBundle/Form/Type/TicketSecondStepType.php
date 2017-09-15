@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class TicketSecondStepType extends AbstractType
 {
@@ -20,17 +21,24 @@ class TicketSecondStepType extends AbstractType
     {
 
         $builder
-            ->add('name',TextType::class)
-            ->add('lastName', TextType::class)
+            ->add('name',TextType::class, array(
+                'invalid_message' => ''
+            ))
+            ->add('lastName', TextType::class, array(
+                'invalid_message' => ''
+            ))
             ->add('age', BirthdayType::class, array(
-                'widget' => "single_text",
+                'widget' => 'single_text',
                 'format' => 'dd/MM/y',
+                'invalid_message' => 'validator.step.2.age.valid'
             ))
             ->add('country', CountryType::class, array(
-                'data' => 'FR'
+                'placeholder' => 'appbundle.step.2.form.placeholder.country',
+                'invalid_message' => 'validator.step.2.country.valid'
+
             ))
             ->add('reduced_price', CheckboxType::class, array(
-                'label' => 'Tarif réduit',
+                'label' => 'appbundle.step.2.form.placeholder.reduced.price',
                 'label_attr' => array( 'class' => 'btn'),
                 'required' => false
             ));

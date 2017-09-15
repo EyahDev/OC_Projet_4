@@ -51,43 +51,22 @@ $(".datepicker").flatpickr({
             return (date.getDay() === 2 || date.getDay() === 0);
         },
         function(date) {
-        // Récupération de l'année
-        var years = date.getFullYear();
+            // Récupération de l'année
+            var years = date.getFullYear();
 
-        // Récupération d'un tableau de jours fériés
+            // Récupération d'un tableau de jours fériés
+            var holidays = JoursFeries(years);
+            var ret = false;
 
-        var holidays = JoursFeries(years);
-
-        holidays.forEach(function(test) {
-            console.log(date);
-            console.log(test);
-            console.log((test === date));
-        })}]
+            holidays.forEach(function(test) {
+                if(test.getTime() === date.getTime()) {
+                    console.log(test);
+                    ret = true;
+                }
+            });
+            return ret;
+        }]
 });
-
-// Ajout d'une information lors d'une coche sur tarif réduit
-$('input:checkbox').change(
-    function(){
-        if ($(this).is(':checked')) {
-            $(this).parent().append('<p class="infoTR" id="infoTR">Pour les étudiants, employés de musées, sans-emploi, militaires... Un justificatif vous sera demandé. </p>');
-        } else {
-            $(this).parent().find('#infoTR').remove();
-        }
-    }
-);
-
-// Ajout d'une information lors d'une coche d'un bouton radio (journée ou demi-journée)
-$('input:radio[name="order_customer_first_step[duration]"]').change(
-    function(){
-        if ($(this).is(':checked') && this.value === "journée") {
-            $("#order_customer_first_step_duration").find('#infoDuration').remove();
-            $("#order_customer_first_step_duration").append('<p class="infoDuration" id="infoDuration">Entrée dans le musée à partir de 09h00.</p>');
-        } else if ($(this).is(':checked') && this.value === "demi-journée") {
-            $("#order_customer_first_step_duration").find('#infoDuration').remove();
-            $("#order_customer_first_step_duration").append('<p class="infoDuration" id="infoDuration">Entrée dans le musée à partir de 14h00.</p>');
-        }
-    }
-);
 
 // Fonctionnement du tableau pour la partie récapitulative
 $(document).ready(function() {

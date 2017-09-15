@@ -3,33 +3,36 @@
 {{ form_start(form) }}
 
 {# Erreur du formulaire #}
-
+{% if not form.vars.valid %}
+<div class="alert alert-danger">
 {{ form_errors(form) }}
+{{ form_errors(form.email.first) }}
+{{ form_errors(form.email.second) }}
+{{ form_errors(form.nbTickets) }}
+{{ form_errors(form.duration) }}
+{{ form_errors(form.visitDate) }}
+</div>
+{% endif %}
 
 <div class="containerFirstStepForm">
 
     <div class="firstStepForm">
-        <h3 class="titleForm">Votre email</h3>
-        {{ form_errors(form.email.first) }}
-        {{ form_errors(form.email.second) }}
+        <h3 class="titleForm">{{ 'appbundle.step.1.form.title.email'|trans }}</h3>
         {{ form_widget(form.email.first, { 'attr' : {'placeholder' : 'appbundle.step.1.form.placeholder.email.first'|trans }}) }}<br/>
         {{ form_widget(form.email.second, { 'attr' : {'placeholder' : 'appbundle.step.1.form.placeholder.email.second'|trans}}) }}
 
-        <h3 class="titleForm">Nombre de billets</h3>
-        {{ form_errors(form.nbTickets) }}
+        <h3 class="titleForm">{{ 'appbundle.step.1.form.title.billets'|trans }}</h3>
         {{ form_widget(form.nbTickets) }}
     </div>
 
     <div class="firstStepForm">
-        <h3 class="titleForm">Date de la visite</h3>
-        {{ form_errors(form.visitDate) }}
+        <h3 class="titleForm">{{ 'appbundle.step.1.form.title.visitDate'|trans }}</h3>
         {{ form_widget(form.visitDate, { 'attr' : { 'class' : 'datepicker hiddenInput' }}) }}<br/>
-        {{ form_errors(form.duration) }}
         {{ form_widget(form.duration) }}
     </div>
 
     <div class="infoLouvre">
-        <h3 class="titleForm">Informations</h3>
+        <h3 class="titleForm">{{ 'appbundle.step.1.form.title.informations'|trans }}</h3>
         <p class="infoLouvreText">{{ 'appbundle.step.1.text.information.first'|trans }}</p>
         <p class="infoLouvreText" >{{ 'appbundle.step.1.text.information.second'|trans }}</p>
     </div>

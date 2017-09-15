@@ -32,12 +32,17 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank(message = "Le champ prénom ne peut être vide")
+     * @Assert\Regex(
+     *     pattern = "/\d/",
+     *     match = false,
+     *     message = "validator.step.2.name.string"
+     * )
+     * @Assert\NotBlank(message = "validator.step.2.name.not_blank")
      * @Assert\Length(
      *     min = 2,
      *     max = 50,
-     *     minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères.",
-     *     maxMessage = "Votre prénom doit contenir un maximun de {{ limit }} caractères."
+     *     minMessage = "validator.step.2.name.short",
+     *     maxMessage = "validator.step.2.name.long"
      * )
      */
     private $name;
@@ -46,12 +51,18 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
-     * @Assert\NotBlank(message = "Le champ nom ne peut être vide")
+     *
+     * @Assert\Regex(
+     *     pattern = "/\d/",
+     *     match = false,
+     *     message = "validator.step.2.lastname.string"
+     * )
+     * @Assert\NotBlank(message = "validator.step.2.lastname.not_blank")
      * @Assert\Length(
      *     min = 2,
      *     max = 50,
-     *     minMessage = "Votre nom doit contenir au moins {{ limit }} caractères.",
-     *     maxMessage = "Votre nom doit contenir un maximun de {{ limit }} caractères."
+     *     minMessage = "validator.step.2.lastname.short",
+     *     maxMessage = "validator.step.2.lastname.long"
      * )
      */
     private $lastName;
@@ -60,9 +71,9 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="age", type="datetime")
-     * @Assert\NotBlank(message = "Le champ date de naissance ne peut être vide.")
-     * @Assert\DateTime(message = "Veuillez saisir une date de naissance valide.")
-     * @Assert\LessThan("today", message = "Veuillez saisir une date de naissance valide.")
+     * @Assert\NotBlank(message = "validator.step.2.age.not_blank")
+     * @Assert\Valid
+     * @Assert\LessThan("today", message = "validator.step.2.age.lesser")
      */
     private $age;
 
@@ -70,7 +81,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
-     * @Assert\Country(message = "Veuillez choisir un pays valide")
+     * @Assert\NotBlank(message = "validator.step.2.country.not_blank")
+     * @Assert\Country(message = "validator.step.2.country.country")
      */
     private $country;
 

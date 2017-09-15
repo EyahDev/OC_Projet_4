@@ -1,32 +1,29 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Coordonnées{% endblock %}
+{% block title %}{{ 'appbundle.step.step.2'|trans }}{% endblock %}
 
 {% block informationTitle %}
-    Vos billets
+    {{ 'appbundle.step.2.pres.title'|trans }}
 {% endblock %}
 
 {% block informationText %}
-    Définissez les informations nominatives de chaque billets
+    {{ 'appbundle.step.2.pres.step'|trans }}
 {% endblock %}
 
 
 {% block form %}
 
-    {% for message in app.session.flashbag.get('notice') %}
-        <p class="alert alert-danger">{{ message }}</p>
-    {% endfor %}
+        <div class="secondStepInfo" >
+            <h3 class="titleForm">{{ 'appbundle.step.2.text.information.first.title'|trans }}</h3>
+            <p class="infoLouvreText">
+                {{ 'appbundle.step.2.text.information.first'|trans({
+                    '%date%': app.session.get('CommandeLouvre').visitDate|date('d/m/Y'),
+                    '%duration%': app.session.get('CommandeLouvre').duration,
+                    '%access%': app.session.get('CommandeLouvre').access }
+                )|raw}}
+            </p>
 
-    {{dump(app.session.get('CommandeLouvre'))}}
-
-    <div style="width: 100%">
-
-        <div style="width: 100%" >
-            <h3>Votre réservation </h3>
-            <p class="infoLouvreText">Vous prévoyez de visiter le musée du Louvre le <b>{{ app.session.get('CommandeLouvre').visitDate|date('d/m/Y') }}</b> pour la
-                {{ app.session.get('CommandeLouvre').duration }}. L'accès au musée se fera à partir de {{ app.session.get('CommandeLouvre').access }}.</p>
-
-            <h3 class="titleForm">Informations</h3>
+            <h3 class="titleForm">{{ 'appbundle.step.2.text.information.second.title'|trans }}</h3>
             <p class="infoLouvreText">{{ 'appbundle.step.2.text.information.second'|trans}}
         </div>
 

@@ -1,22 +1,22 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}confirmation{% endblock %}
+{% block title %}{{ 'appbundle.step.step.4'|trans }}{% endblock %}
 
 {% block informationTitle %}
-    Confirmation
+    {{ 'appbundle.step.4.pres.title'|trans }}
 {% endblock %}
 
 {% block informationText %}
-    Confirmation de votre réservation : retrouvez les informations importante de votre commande
+    {{ 'appbundle.step.4.pres.step'|trans }}
 {% endblock %}
 
 {% block form %}
 
-    <h3>Confirmation de réservation</h3>
-    <p class="infoLouvreText">Votre réservation a bien effectué voici le votre numéro de réservation : <b>{{ order.orderToken|replace({'tok_': ''}) }}</b> <br/>
-    Vous allez recevoir un email avec vos e-billet d'ici quelques minutes, vous pouvez imprimer vos billets depuis cette page ou simplement présenter votre mail à l'accueil du Louvre.
+    <h3>{{ 'appbundle.step.4.text.information.title'|trans }}</h3>
+    <p class="infoLouvreText">
+        {{ 'appbundle.step.4.text.information'|trans({'%token%':  order.orderToken|replace({'tok_': ''}) })|raw|nl2br}}
     </p>
-    <h3>Votre billet</h3>
+    <h3>{{ 'appbundle.step.4.tickets'|transchoice(order.nbTickets) }}</h3>
 
     <div class="listBillets" style="text-align: center">
         {% for ticket in order.tickets %}
@@ -32,8 +32,5 @@
             </div>
         {% endfor %}
     </div>
-
-    <a href="{{ path('test') }}">test</a>
-
 {% endblock %}
 

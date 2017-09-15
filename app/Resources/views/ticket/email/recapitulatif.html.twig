@@ -10,7 +10,7 @@
     </div>
     <h3>{{ "appbundle.mail.text.information.title"|trans }}</h3>
 
-    <p>{{ "appbundle.mail.text.information"|trans({'%token%': order.orderToken|replace({'tok_': ''})}) }}<br/>
+    <p>{{ "appbundle.mail.text.information"|trans({'%token%': order.orderToken|replace({'tok_': ''})}) |nl2br}}<br/>
 
     <b>{{ "appbundle.mail.text.reduced.rate"|trans }}</b></p>
 
@@ -19,21 +19,21 @@
     <div class="listBillets" style="text-align: center">
         {% for ticket in order.tickets %}
             <div class="billetsEdites">
-                <img class="logoLouvre" src="{{ asset('img/logo-louvre.jpg') }}" alt="logoLouvre">
+                <img class="logoLouvre" src="{{ absolute_url(asset('img/logo-louvre.jpg')) }}" alt="logoLouvre">
                 <p class="textSMBillets">www.louvre.fr</p>
                 <p class="textLGBillets"><b>MUSÉE {{ order.duration|upper }}</b><br/>
                     <b>{{ order.visitDate|date('d/m/Y') }}  - {{ order.access}}</b></p>
                 <p class="textSMBilletsLeft">{{ ticket.name }} {{ ticket.lastName }}<br/>{{ ticket.age|date('d/m/Y') }} ({{ ticket.age|age }} ans) - {{ ticket.country }}</p>
                 <p class="textSMBilletsLeft">Tarif : {{ ticket.rate }} -<b> {{ ticket.price }}€</b></p>
-                <img class="codeBarre" src="{{ asset('img/code_barre.png') }}" alt="codeBarre">
+                <img class="codeBarre" src="{{ absolute_url(asset('img/code_barre.png')) }}" alt="codeBarre">
                 <p class="textSMBillets">{{ ticket.tokenTicket }}</p>
             </div>
         {% endfor %}
     </div>
 
     <h3>{{ "appbundle.mail.text.important.title"|trans }}</h3>
-    <p>{{ "appbundle.mail.text.important"|trans }}</p>
+    <p>{{ "appbundle.mail.text.important"|trans|nl2br }}</p>
 
     <h3>{{ "appbundle.mail.text.advices.title"|trans }}</h3>
-    <p>{{ "appbundle.mail.text.advices"|trans }}</p>
+    <p>{{ "appbundle.mail.text.advices"|trans|nl2br }}</p>
 {% endblock %}

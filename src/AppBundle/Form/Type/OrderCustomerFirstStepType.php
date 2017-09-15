@@ -18,16 +18,20 @@ class OrderCustomerFirstStepType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $test =
         $builder
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,
-                'invalid_message' => 'Les adresses mails doivent correspondre',
+                'invalid_message' => 'validator.step.1.mail.mail.same',
                 'required' => true
             ))
             ->add('nbTickets', IntegerType::class, array(
-                'attr' => array('min' => 1, 'max' => 10)))
+                'attr' => array('min' => 1, 'max' => 10),
+                'invalid_message' => 'validator.step.1.tickets.valid'
+            ))
             ->add('visitDate', DateType::class, array(
                 'widget' => 'single_text',
+                'invalid_message' => 'validator.step.1.visit.date.valid',
             ))
             ->add('duration', ChoiceType::class, array(
                 'choices' => array(
@@ -37,6 +41,7 @@ class OrderCustomerFirstStepType extends AbstractType
                     return ['class' => 'toggle radio-'.$key.' toggle-'.$key];
 
                 },
+                'invalid_message' => 'validator.step.1.duration.valid',
                 'expanded' => true,
                 'multiple' => false
             ))

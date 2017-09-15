@@ -33,7 +33,8 @@ class OrderCustomer
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email(checkMX=true)
+     * @Assert\NotBlank(message="Veuillez renseigner votre adresse email")
+     * @Assert\Email(message="validator.step.1.mail.valid", checkMX=true)
      */
     private $email;
 
@@ -41,12 +42,13 @@ class OrderCustomer
      * @var int
      *
      * @ORM\Column(name="nbTickets", type="integer")
+     * @Assert\NotBlank(message="validator.step.1.tickets.not_blank")
      * @Assert\GreaterThanOrEqual(
      *     value = 1,
-     *     message="Veuillez choisir un nombre de billet valide")
+     *     message="validator.step.1.tickets.greater")
      * @Assert\LessThanOrEqual(
      *     value = 10,
-     *     message = "Si vous souhaitez réserver plus de 10 billets, veuillez nous contacter")
+     *     message = "validator.step.1.tickets.lesser")
      */
     private $nbTickets;
 
@@ -75,7 +77,8 @@ class OrderCustomer
      * @var \DateTime
      *
      * @ORM\Column(name="visitDate", type="datetime")
-     * @Assert\GreaterThanOrEqual("today", message = "Veuillez choisir une date supérieur à la date du jour")
+     * @Assert\NotBlank( message = "validator.step.1.visit.date.not_blank")
+     * @Assert\GreaterThanOrEqual("today", message = "validator.step.1.visit.date.greater")
      * @CustomAssert\VisitDate\ContainsVisitDateDimanche()
      * @CustomAssert\VisitDate\ContainsVisitDateFerie()
      * @CustomAssert\VisitDate\ContainsVisitCloseFeries()
@@ -88,6 +91,7 @@ class OrderCustomer
      * @var string
      *
      * @ORM\Column(name="duration", type="string", length=255)
+     * @Assert\NotBlank(message = "validator.step.1.duration.not_blank")
      * @CustomAssert\Duration\ContainsDuration()
      */
     private $duration;

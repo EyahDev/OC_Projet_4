@@ -54,8 +54,12 @@
         width: 50%;
     }
 
-    .textForm {
+    .textForm, .ageForm {
         width: 24%
+    }
+
+    .ageForm select{
+        width: 33%
     }
 
     select {
@@ -72,8 +76,33 @@
 
 }
 
-@media (min-width: 767px) {
+@media (max-width: 767px) {
 
+    .textForm, .ageForm {
+        width: 90%
+    }
+
+    .ageForm select{
+        width: 33%
+    }
+
+    select {
+        width: 90%
+    }
+
+    .secondStepForm{
+        text-align: center;
+    }
+
+
+    .secondStepInfo h3{
+        text-align: center;
+    }
+
+    .secondStepInfo .infoLouvreText{
+        text-align: center;
+        padding: 25px;
+    }
 
 }
 
@@ -87,8 +116,12 @@
         width:75%;
     }
 
-    .textForm {
+    .textForm, .ageForm {
         width: 24%
+    }
+
+    .ageForm select{
+        width: 33%
     }
 
     select {
@@ -117,6 +150,14 @@
 
     .textForm {
         width: 24%
+    }
+
+    .ageForm {
+        width: 24%
+    }
+
+    .ageForm select{
+        width: 33%
     }
 
     select {
@@ -243,6 +284,12 @@
     text-align: center;
 }
 
+/* Second Step */
+
+.secondStepInfo {
+    width: 100%;
+}
+
 /* Step Nav */
 
 .stepNav {
@@ -345,6 +392,15 @@ input[type=email], input[type=number], .textForm, select {
     box-shadow: 1px 0 0 #eee, -1px 0 0 #eee, 0 1px 0 #eee, 0 -1px 0 #eee, 0 3px 13px rgba(0,0,0,0.08);
 }
 
+.ageForm select {
+    height: 43px;
+}
+
+.ageForm {
+    display: inline-block;
+    text-align: center;
+}
+
 input[type=number]:focus,  input[type=email]:focus, .textForm:focus, select:focus {
     border: 1px solid #1ba39c;
     outline: 0;
@@ -362,6 +418,7 @@ input[type=number]:focus,  input[type=email]:focus, .textForm:focus, select:focu
     background-color: white;
     display: inline-block;
     padding: 10px;
+    margin-bottom: 15px;
     position: relative;
     text-align: center;
     -webkit-transition: background 400ms ease, color 400ms ease;
@@ -432,7 +489,7 @@ input[type="checkbox"]:checked + label {
 
 .infoTR {
     display: inline-block;
-    padding-left: 15px;
+    padding: 0 15px;
     font-size: 16px;
 }
 

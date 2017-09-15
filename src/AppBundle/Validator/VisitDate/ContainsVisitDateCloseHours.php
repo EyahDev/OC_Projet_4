@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class ContainsVisitDateCloseHours extends Constraint {
 
-    public $message = "Le musée est actuellement fermé, veuillez selectionnez une autre date";
+    public $message = "validator.step.1.visit.date.close.hours";
 
     public function validatedBy()
     {

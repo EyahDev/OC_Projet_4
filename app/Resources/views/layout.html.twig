@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="Projet Openclassrooms : faire un backend pour un client">
+        <meta name="author" content="Adrien Desmet">
         <title>Musée du Louvre - {% block title %}{% endblock %}</title>
 
         {% block stylesheets %}
@@ -57,19 +57,19 @@
                         <a href="#">{{ 'appbundle.nav.informations'|trans }}</a>
                     </li>
                     <li>
-                        <a href="#">Visites</a>
+                        <a href="#">{{ 'appbundle.nav.visites'|trans }}</a>
                     </li>
                     <li>
-                        <a href="#">Expositions</a>
+                        <a href="#">{{ 'appbundle.nav.expositions'|trans }}</a>
                     </li>
                     <li>
-                        <a href="#">Oeuvres</a>
+                        <a href="#">{{ 'appbundle.nav.oeuvres'|trans }}</a>
                     </li>
                     <li>
-                        <a href="#">Arts</a>
+                        <a href="#">{{ 'appbundle.nav.arts'|trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path('homepage')}}">Billetterie</a>
+                        <a href="{{ path('homepage')}}">{{ 'appbundle.nav.billetterie'|trans }}</a>
                     </li>
                 </ul>
             </div>
@@ -84,9 +84,9 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <a href="#">
-                            <h1 class="brand-heading">Billetterie</h1>
+                            <h1 class="brand-heading">{{ 'appbundle.pres.billetterie.title'|trans }}</h1>
                             <p class="intro-text">
-                                Achetez vos billets
+                                {{ 'appbundle.pres.billetterie.pres.section'|trans }}
                             </p>
                         </a>
                     </div>
@@ -104,42 +104,42 @@
                     <ul class="progress-indicator">
                         {# Step 1 #}
                         {% if app.session.get('step_1') == "check" %}
-                            <li class="completed"><div class="stepCompleted"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</a></div></li>
+                            <li class="completed"><div class="stepCompleted"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</a></div></li>
                         {% elseif app.session.get('step_all') == "check" %}
-                            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</div></li>
+                            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</div></li>
                         {% else %}
-                            <li class="warning"><div class="stepWarning"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Votre visite</a></div></li>
+                            <li class="warning"><div class="stepWarning"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</a></div></li>
                         {% endif %}
 
                         {# Step 2 #}
                         {% if app.session.get('step_1') == "check" and app.session.get('step_2') == "uncheck"  %}
-                            <li class="warning"><div class="stepWarning"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</a></div></li>
+                            <li class="warning"><div class="stepWarning"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</a></div></li>
                         {% elseif app.session.get('step_2') == "check" %}
-                            <li class="completed"><div class="stepCompleted"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</a></div></li>
+                            <li class="completed"><div class="stepCompleted"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</a></div></li>
                         {% elseif app.session.get('step_all') == "check" %}
-                            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Vos billets</div></li>
+                            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</div></li>
                         {% else %}
-                            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> Vos billets</div></li>
+                            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</div></li>
                         {% endif %}
 
                         {# Step 3 #}
                         {% if app.session.get('step_2') == "check" and app.session.get('step_4') == "uncheck" %}
-                            <li class="warning"><div class="stepWarning"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> Récapitulatif & paiement</a></div></li>
+                            <li class="warning"><div class="stepWarning"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</a></div></li>
                         {% elseif app.session.get('step_4') == "check" %}
-                            <li class="completed"><div class="stepCompleted"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> Récapitulatif & paiement</a></div></li>
+                            <li class="completed"><div class="stepCompleted"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</a></div></li>
                         {% elseif app.session.get('step_all') == "check" %}
-                            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Récapitulatif & paiement</div></li>
+                            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</div></li>
                         {% else %}
-                            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> Récapitulatif & paiement</div></li>
+                            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</div></li>
                         {% endif %}
 
                         {# Step 4 #}
                         {% if app.session.get('step_4') == "check" %}
-                            <li class="completed"><div class="stepCompleted"><a href="{{ path('confirmation')}}"><span class="bubble" id="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmation</a></div></li>
+                            <li class="completed"><div class="stepCompleted"><a href="{{ path('confirmation')}}"><span class="bubble" id="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</a></div></li>
                         {% elseif app.session.get('step_all') == "check" %}
-                            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> Confirmation</div></li>
+                            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
                         {% else %}
-                            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmation</div></li>
+                            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
                         {% endif %}
 
                     </ul>
@@ -169,7 +169,7 @@
         <div class="container text-center">
             <p class="credits">
                 Copyright &copy; <a href="http://www.adriendesmet.com">Adrien Desmet</a> - 2017<br/>
-                "Aries" Template by WowThemes.net modifié par <a href="http://www.adriendesmet.com">Adrien Desmet</a>
+                "Aries" Template by WowThemes.net {{ 'appbundle.footer'|trans }} <a href="http://www.adriendesmet.com">Adrien Desmet</a>
             </p>
         </div>
     </footer>
@@ -193,6 +193,35 @@
 
         <!-- Custom -->
         <script src="{{asset('js/custom.js')}}"></script>
+
+        <script>
+            // Ajout d'une information lors d'une coche sur tarif réduit
+            $('input:checkbox').change(
+                function(){
+                    if ($(this).is(':checked')) {
+                        $(this).parent().append('<p class="infoTR" id="infoTR">{{ 'appbundle.step.2.form.placeholder.reduced.price.message'|trans }}</p>');
+                    } else {
+                        $(this).parent().find('#infoTR').remove();
+                    }
+                }
+            );
+            $('input:checkbox').trigger("change");
+
+            // Ajout d'une information lors d'une coche d'un bouton radio (journée ou demi-journée)
+            $('input:radio[name="order_customer_first_step[duration]"]').change(
+                function(){
+                    var $input = $("#order_customer_first_step_duration");
+                    if ($(this).is(':checked') && this.value === "journée") {
+                        $input.find('#infoDuration').remove();
+                        $input.append('<p class="infoDuration" id="infoDuration">{{ 'appbundle.step.1.form.placeholder.duration.text.first'|trans }}</p>');
+                    } else if ($(this).is(':checked') && this.value === "demi-journée") {
+                        $input.find('#infoDuration').remove();
+                        $input.append('<p class="infoDuration" id="infoDuration">{{ 'appbundle.step.1.form.placeholder.duration.text.second'|trans }}</p>');
+                    }
+                }
+            );
+            $('input:radio').trigger("change");
+        </script>
     {% endblock %}
     </body>
 </html>
