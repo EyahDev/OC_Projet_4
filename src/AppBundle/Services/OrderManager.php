@@ -9,7 +9,6 @@ use AppBundle\Form\Type\OrderCustomerSecondStepType;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Charge;
 use Stripe\Stripe;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

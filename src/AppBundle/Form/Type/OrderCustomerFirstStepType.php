@@ -18,7 +18,6 @@ class OrderCustomerFirstStepType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $test =
         $builder
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,

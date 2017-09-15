@@ -1,0 +1,44 @@
+<div class="row">
+    <ul class="progress-indicator">
+        {# Step 1 #}
+        {% if app.session.get('step_1') == "check" %}
+            <li class="completed"><div class="stepCompleted"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</a></div></li>
+        {% elseif app.session.get('step_all') == "check" %}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</div></li>
+        {% else %}
+            <li class="warning"><div class="stepWarning"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</a></div></li>
+        {% endif %}
+
+        {# Step 2 #}
+        {% if app.session.get('step_1') == "check" and app.session.get('step_2') == "uncheck"  %}
+            <li class="warning"><div class="stepWarning"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</a></div></li>
+        {% elseif app.session.get('step_2') == "check" %}
+            <li class="completed"><div class="stepCompleted"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</a></div></li>
+        {% elseif app.session.get('step_all') == "check" %}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</div></li>
+        {% else %}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</div></li>
+        {% endif %}
+
+        {# Step 3 #}
+        {% if app.session.get('step_2') == "check" and app.session.get('step_4') == "uncheck" %}
+            <li class="warning"><div class="stepWarning"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</a></div></li>
+        {% elseif app.session.get('step_4') == "check" %}
+            <li class="completed"><div class="stepCompleted"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</a></div></li>
+        {% elseif app.session.get('step_all') == "check" %}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</div></li>
+        {% else %}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</div></li>
+        {% endif %}
+
+        {# Step 4 #}
+        {% if app.session.get('step_4') == "check" %}
+            <li class="completed"><div class="stepCompleted"><a href="{{ path('confirmation')}}"><span class="bubble" id="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</a></div></li>
+        {% elseif app.session.get('step_all') == "check" %}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
+        {% else %}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
+        {% endif %}
+
+    </ul>
+</div>
