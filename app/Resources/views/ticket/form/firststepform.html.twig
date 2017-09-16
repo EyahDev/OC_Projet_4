@@ -4,7 +4,7 @@
 
 {# Erreur du formulaire #}
 {% if not form.vars.valid %}
-<div class="alert alert-danger">
+<div class="alert alert-danger formError">
 {{ form_errors(form) }}
 {{ form_errors(form.email.first) }}
 {{ form_errors(form.email.second) }}

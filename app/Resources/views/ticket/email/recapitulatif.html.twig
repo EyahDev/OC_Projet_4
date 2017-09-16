@@ -4,9 +4,10 @@
 
 {% block content %}
 
-
+    <a href="{{ path('mail', { 'token': order.orderToken } )}}">{{ "appbundle.mail.redirect"|trans }}</a>
+    <a href="#">test</a>
     <div class="MailLogo">
-        <img class="logoLouvre" src="{{ asset('img/mail_logo.png') }}" alt="Logo du louvre">
+        <img class="logoLouvre" src="{{ absolute_url(asset('img/mail_logo.png')) }}" alt="Logo du louvre">
     </div>
     <h3>{{ "appbundle.mail.text.information.title"|trans }}</h3>
 

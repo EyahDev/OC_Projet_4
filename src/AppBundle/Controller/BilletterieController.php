@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Services\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -41,7 +42,16 @@ class BilletterieController extends Controller
     /**
      * @Route("/coordonnees", name="coordonnees")
      */
-    public function coordonneesAction(Request $request, OrderManager $orderManager) {
+    public function coordonneesAction(Request $request, OrderManager $orderManager, SessionInterface $session) {
+
+        // Vérification si la session a expiré
+        if (!$session->isStarted()) {
+            // Génération d'un message d'erreur
+            $error = $session->getFlashBag()->add('notice', 'session_expire.text');
+
+            // Redirection vers la première étape
+            return $this->redirectToRoute('homepage', array('error' => $error));
+        }
 
         // Vérification si l'étape 1 est passé avec succès
         if ($orderManager->getStepIsCheck(1)) {
@@ -72,6 +82,16 @@ class BilletterieController extends Controller
      * @Route("/recapitulatif", name="recapitulatif")
      */
     public function recapitulatifAction(OrderManager $orderManager, SessionInterface $session) {
+
+        // Vérification si la session a expiré
+        if (!$session->isStarted()) {
+            // Génération d'un message d'erreur
+            $error = $session->getFlashBag()->add('notice', 'session_expire.text');
+
+            // Redirection vers la première étape
+            return $this->redirectToRoute('homepage', array('error' => $error));
+        }
+
         // Vérification si l'étape 2 est passé avec succès
         if ($orderManager->getStepIsCheck(2)) {
 
@@ -90,6 +110,16 @@ class BilletterieController extends Controller
      * @Route("/paiement", name="paiement")
      */
     public function paiementAction(OrderManager $orderManager, SessionInterface $session) {
+
+        // Vérification si la session a expiré
+        if (!$session->isStarted()) {
+            // Génération d'un message d'erreur
+            $error = $session->getFlashBag()->add('notice', 'session_expire.text');
+
+            // Redirection vers la première étape
+            return $this->redirectToRoute('homepage', array('error' => $error));
+        }
+
         // Vérification si l'étape 3 est passé avec succès
         if ($orderManager->getStepIsCheck(3)) {
 
@@ -119,8 +149,18 @@ class BilletterieController extends Controller
     /**
      * @Route("/confirmation", name="confirmation")
      */
-    public function confirmationAction(OrderManager $orderManager, SessionInterface $session)
-    {   // Vérification si l'étape 4 est passé avec succès ou que toutes les étapes sont validés
+    public function confirmationAction(OrderManager $orderManager, SessionInterface  $session)
+    {
+        // Vérification si la session a expiré
+        if (!$session->isStarted()) {
+            // Génération d'un message d'erreur
+            $error = $session->getFlashBag()->add('notice', 'session_expire.text');
+
+            // Redirection vers la première étape
+            return $this->redirectToRoute('homepage', array('error' => $error));
+        }
+
+        // Vérification si l'étape 4 est passé avec succès ou que toutes les étapes sont validés
         if ($orderManager->getStepIsCheck(4) || $orderManager->getStepIsCheck("all")) {
 
             // Récupération des informations importante de la commande
@@ -131,5 +171,22 @@ class BilletterieController extends Controller
         }
         // Redirection vers la page du récapitulatif
         return $this->redirectToRoute('recapitulatif');
+    }
+
+    /**
+     * @Route("/mail/{token}", name="mail")
+     */
+    public function affichageMailAction(OrderManager $orderManager, $token) {
+
+        // Récupération de la commande lié au token
+        $order = $orderManager->mailAction($token);
+
+        if (count($order) === 1) {
+            // Affichage de la vue confirmation
+            return $this->render('ticket/email/affichage.html.twig', array('order' => $order));
+        }
+
+        throw new Exception('La commande n\'existe pas');
+
     }
 }

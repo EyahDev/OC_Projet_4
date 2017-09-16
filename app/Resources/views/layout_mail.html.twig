@@ -9,15 +9,6 @@
         <title>Musée du Louvre - {% block title %}{% endblock %}</title>
 
         {% block stylesheets %}
-            {#<!-- Bootstrap Core CSS -->#}
-            {#<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">#}
-
-            {#<!-- Theme CSS -->#}
-            {#<link href="{{asset('css/theme.css')}}" rel="stylesheet">#}
-
-            <!-- Custom CSS -->
-            <link href="{{asset('css/custom.css')}}" rel="stylesheet" type="text/css">
-
             <!-- Custom Fonts -->
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
             <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -40,6 +31,52 @@
             {% endblock %}
         </div>
     </section>
+
+    <style>
+        /* Billets édités */
+        .billetsEdites {
+            display: inline-block;
+            margin-right: 25px;
+            margin-bottom: 25px;
+            background-color: white;
+            border: 1px grey solid;
+            padding: 10px;
+            width: 270px;
+            min-height: 300px;
+        }
+
+        .logoLouvre, .codeBarre {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .codeBarre {
+            margin-top: 15px;
+        }
+
+
+        .textSMBillets, .textSMBilletsLeft {
+            font-size: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .textSMBilletsLeft {
+            text-align: left;
+        }
+
+        .textSMBillets {
+            font-size: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .textLGBillets {
+            line-height: 20px;
+            margin-bottom: 15px;
+        }
+    </style>
 
     {% block javascripts %}
         <!-- jQuery -->

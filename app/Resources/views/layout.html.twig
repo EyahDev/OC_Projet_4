@@ -4,11 +4,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Projet Openclassrooms : faire un backend pour un client">
+        <meta name="description" content="Projet Openclassrooms : Réaliser un backend pour un client">
         <meta name="author" content="Adrien Desmet">
         <title>Musée du Louvre - {% block title %}{% endblock %}</title>
 
         {% block stylesheets %}
+            <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon" />
+
             <!-- Bootstrap Core CSS -->
             <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
@@ -98,6 +100,8 @@
     <!-- Billetterie Section -->
     <section id="page-sample">
         <div class="container content-section text-left">
+                {% block flash %}
+                {% endblock %}
             <div class="row" id="stepblock">
                 {% block stepwizard %}
                 {% endblock %}

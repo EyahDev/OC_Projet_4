@@ -3,13 +3,13 @@
 {% block title %}Coordonnées{% endblock %}
 
 {% block informationTitle %}
-    Erreur
+    {{ 'error_404.title'|trans}}
 {% endblock %}
 
 {% block informationText %}
-    Votre session à expiré
+    <p>{{ 'error_404.text'|trans}}</p>
+    <a href="{{ path('homepage') }}"><button type="button" class="btn btnRedirect">{{ 'error_404.redirect'|trans}}</button></a>
 {% endblock %}
 
 {% block form %}
-        <p>Votre session à expiré, revenir à l'accueil</p>
 {% endblock %}

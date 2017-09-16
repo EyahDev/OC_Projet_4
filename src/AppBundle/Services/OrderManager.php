@@ -197,7 +197,6 @@ class OrderManager
 
             // Création d'un token unique pour le code barre du billets
             $codeBarreToken = bin2hex(random_bytes(10));
-            dump($codeBarreToken);
 
             // Vérification si la coche tarif réduit a été coché
             if ($ticket->getReducedPrice() === true) {
@@ -291,18 +290,6 @@ class OrderManager
             // Récupération de la commande en session
             $order = $this->getOrder();
 
-            // Préparation d'un email de confirmation
-            $sendMail = (new \Swift_Message("Confirmation de commande"))
-                ->setFrom('adrien.desmet@hotmail.fr')
-                ->setTo($order->getEmail())
-                ->setBody($this->env->render('ticket/email/recapitulatif.html.twig', array(
-                    'order' => $order,
-                    'tickets' => $order->getTickets()
-                )), 'text/html');
-
-            // Envoi de l'email
-            $this->mailer->send($sendMail);
-
             //Récupération du token de paiement
             $token = $this->request->get('stripeToken');
 
@@ -312,6 +299,17 @@ class OrderManager
             // Mise à jour de la commande avec la date du paiement et le token
             $order->setOrderDate($date);
             $order->setOrderToken($token);
+
+            // Préparation d'un email de confirmation
+            $sendMail = (new \Swift_Message("Confirmation de commande"))
+                ->setFrom('adrien.desmet@hotmail.fr')
+                ->setTo($order->getEmail())
+                ->setBody($this->env->render('ticket/email/recapitulatif.html.twig', array(
+                    'order' => $order
+                )), 'text/html');
+
+            // Envoi de l'email
+            $this->mailer->send($sendMail);
 
             // Création d'une variable de session individuel pour le token de paiement
             $this->session->set('token', $order->getOrderToken());
@@ -340,6 +338,15 @@ class OrderManager
 
         // Création d'une variable individuel concernant le token
         $token = $this->session->get('token');
+
+        // Récupération de la commande en base de données grace au token
+        $order = $this->em->getRepository('AppBundle:OrderCustomer')->findOneBy(array('orderToken' => $token));
+
+        // Retourne la commande pour l'affichage
+        return $order;
+    }
+
+    public function mailAction($token) {
 
         // Récupération de la commande en base de données grace au token
         $order = $this->em->getRepository('AppBundle:OrderCustomer')->findOneBy(array('orderToken' => $token));

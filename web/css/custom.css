@@ -54,12 +54,8 @@
         width: 50%;
     }
 
-    .textForm, .ageForm {
+    .textForm {
         width: 24%
-    }
-
-    .ageForm select{
-        width: 33%
     }
 
     select {
@@ -78,28 +74,28 @@
 
 @media (max-width: 767px) {
 
-    .textForm, .ageForm {
+    .textForm {
         width: 90%
     }
 
-    .ageForm select{
-        width: 33%
+    .stepNav {
+        padding: 0 15px;
     }
 
     select {
         width: 90%
     }
 
-    .secondStepForm{
+    .secondStepForm, .thirdStep .fourthStep{
         text-align: center;
     }
 
 
-    .secondStepInfo h3{
+    .secondStepInfo h3, .thirdStep h3, .fourthStep h3{
         text-align: center;
     }
 
-    .secondStepInfo .infoLouvreText{
+    .secondStepInfo .infoLouvreText, .fourthStep, .thirdStep{
         text-align: center;
         padding: 25px;
     }
@@ -116,12 +112,8 @@
         width:75%;
     }
 
-    .textForm, .ageForm {
+    .textForm {
         width: 24%
-    }
-
-    .ageForm select{
-        width: 33%
     }
 
     select {
@@ -152,13 +144,6 @@
         width: 24%
     }
 
-    .ageForm {
-        width: 24%
-    }
-
-    .ageForm select{
-        width: 33%
-    }
 
     select {
         width: 24%
@@ -208,6 +193,11 @@
     margin-left: 0;
 }
 
+.MailLogo {
+    margin-bottom: 75px;
+}
+
+
 /* Billets édités */
 
 .billetsEdites {
@@ -217,7 +207,7 @@
     background-color: white;
     border: 1px grey solid;
     padding: 10px;
-    width: 300px;
+    width: 270px;
     min-height: 300px;
 }
 
@@ -254,6 +244,11 @@
 }
 
 /* First Step */
+
+.flashBag {
+    border-radius: 0;
+    margin-bottom: 50px;
+}
 
 .containerFirstStepForm {
     display: flex;
@@ -370,7 +365,6 @@
 }
 
 .btnSuivant {
-    margin-right: 10px;
     width: 90px;
     border: 1px solid black;
     background-color: white;
@@ -382,6 +376,13 @@
 
 /* Form */
 
+.formError {
+    border-radius: 0;
+    color: white;
+    border: 1px #b60109 solid;
+    background-color: #ff3a3a;
+}
+
 input[type=email], input[type=number], .textForm, select {
     border: 1px solid black;
     height: 43px;
@@ -392,22 +393,13 @@ input[type=email], input[type=number], .textForm, select {
     box-shadow: 1px 0 0 #eee, -1px 0 0 #eee, 0 1px 0 #eee, 0 -1px 0 #eee, 0 3px 13px rgba(0,0,0,0.08);
 }
 
-.ageForm select {
-    height: 43px;
-}
-
-.ageForm {
-    display: inline-block;
-    text-align: center;
-}
-
 input[type=number]:focus,  input[type=email]:focus, .textForm:focus, select:focus {
     border: 1px solid #1ba39c;
     outline: 0;
     outline: none;
 }
 
-.btnSuivant:hover, .btnPrecedent:hover {
+.btnSuivant:hover, .btnPrecedent:hover, .btnRedirect:hover{
     background-color: #333;
     border: 1px solid black;
     color: #fff;

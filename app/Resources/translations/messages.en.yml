@@ -1,3 +1,23 @@
+Suivant: Suivant
+mail@exemple.com: mail@exemple.com
+Répétez votre email: Répétez votre email
+
+error_404:
+    title: Erreur 404
+    text: Oops, la page demandé n'existe pas !
+    redirect: Revenir à l'accueil
+
+session_expire:
+    text: Désolé, votre session a expiré, vous êtes resté inactif trop longtemps.
+
+rate:
+  Gratuit: Gratuit
+  Enfant: Enfant
+  Normal: Normal
+  Sénior: Sénior
+  Réduit: Réduit
+
+
 appbundle:
     nav:
         informations: informations
@@ -11,6 +31,12 @@ appbundle:
         title: billetterie
         pres.section: Achetez vos billets
 
+    step:
+        step.1: Votre visite
+        step.2: Vos billets
+        step.3: Récapitulatif et paiement
+        step.4: Confirmation
+
     step.wizard:
         step.1: votre visite
         step.2: vos billets
@@ -18,6 +44,8 @@ appbundle:
         step.4: confirmation
 
     footer: modifié par
+
+    ticket: billet
 
     form.generic:
         next: Suivant
@@ -50,7 +78,7 @@ appbundle:
         pres.title: vos billets
         pres.step: Renseignez les informations nominatives de chaque billet (nom, prénom, date de naissance, nationalité)
         text.information.first.title: votre réservation
-        text.information.first: Vous prévoyez de visiter le musée du Louvre le %date% pour la %duration%. L'accès au musée se fera à partir de %access%.
+        text.information.first: Vous prévoyez de visiter le musée du Louvre le <b>%date%</b> pour la %duration%. L'accès au musée se fera à partir de <b>%access%</b>.
         text.information.second.title: Informations
         text.information.second: |
             Le billet acheté en ligne est horodaté et nominatif, un document d’identité peut être demandé.
@@ -72,7 +100,7 @@ appbundle:
         pres.title: Récapitulatif et paiement
         pres.step: Récapitulatif et paiement de votre réservation
         text.information.title: votre réservation
-        text.information: Vous prévoyez de visiter le musée du Louvre le %date% pour la %duration% L'accès au musée se fera à partir de %access%.
+        text.information: Vous prévoyez de visiter le musée du Louvre le <b>%date%</b> pour la %duration% L'accès au musée se fera à partir de <b>%access%</b>.
         tickets: "Votre billet|Vos billets"
         tickets.table:
             ticket: Billet
@@ -96,21 +124,25 @@ appbundle:
             total: Prix total
 
             total.content:
-                duration: En %duration%
-                access: A partir de %access%
+                access: En
+                duration: A partir de
                 special.rate: Aucune
+        stripe:
+            text: Paiement de vos billets d'entrée
     step.4:
         pres.title: Confirmation
         pres.step: |
             Confirmation de votre réservation : retrouvez les informations importantes de votre réservation
         text.information.title: Confirmation de réservation
         text.information: |
-            Votre réservation a bien effectuée voici le votre numéro de confirmation : %token%
+            Votre réservation a bien effectuée voici le votre numéro de confirmation : <b>%token%</b>
             Vous allez recevoir un email avec vos e-billet d'ici quelques minutes, vous pouvez imprimer vos billets depuis cette page ou simplement présenter votre mail à l'accueil du Louvre."
         tickets: "Votre billet|Vos billets"
 
     mail:
+        redirect: Si le mail ne s'affiche pas correctement, cliquez ici
         text.information.title: Confirmation de réservation
+        text.pres.redirect: Affichage de votre mail de confirmation
         text.information: |
             Votre réservation a bien effectuée voici le votre numéro de confirmation : %token%
             Vous pouvez imprimer vos billets depuis cette page ou simplement présenter ce mail à l'accueil du Louvre.

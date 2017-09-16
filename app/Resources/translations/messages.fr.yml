@@ -2,6 +2,31 @@ Suivant: Suivant
 mail@exemple.com: mail@exemple.com
 Répétez votre email: Répétez votre email
 
+Gratuit: Gratuit
+Enfant: Enfant
+Normal: Normal
+Sénior: Sénior
+Réduit: Réduit
+
+demi-journée (-50%): demi-journée (-50%)
+demi-journée: demi-journée
+14h: 14h
+
+
+error_404:
+    title: Erreur 404
+    text: Oops, la page demandé n'existe pas !
+    redirect: Revenir à l'accueil
+
+error:
+    title: Erreur
+    text: Une erreur s'est produit, veuillez réessayer
+    redirect: Revenir à l'accueil
+
+
+session_expire:
+    text: Désolé, votre session a expiré, vous êtes resté inactif trop longtemps.
+
 appbundle:
     nav:
         informations: informations
@@ -124,9 +149,11 @@ appbundle:
         tickets: "Votre billet|Vos billets"
 
     mail:
+        redirect: Si le mail ne s'affiche pas correctement, cliquez ici
         text.information.title: Confirmation de réservation
+        text.pres.redirect: Affichage de votre mail de confirmation
         text.information: |
-            Votre réservation a bien effectuée voici le votre numéro de confirmation : <b>%token%</b>
+            Votre réservation a bien effectuée voici le votre numéro de confirmation : %token%
             Vous pouvez imprimer vos billets depuis cette page ou simplement présenter ce mail à l'accueil du Louvre.
         text.reduced.rate: Pour toutes personnes bénéficiant du tarif réduit, un justificatif vous sera demandé, ne l'oubliez pas !
         tickets: "Votre billet|Vos billets"

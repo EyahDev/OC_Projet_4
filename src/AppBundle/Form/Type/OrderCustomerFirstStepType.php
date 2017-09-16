@@ -21,7 +21,7 @@ class OrderCustomerFirstStepType extends AbstractType
         $builder
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,
-                'invalid_message' => 'validator.step.1.mail.mail.same',
+                'invalid_message' => 'validator.step.1.mail.same',
                 'required' => true
             ))
             ->add('nbTickets', IntegerType::class, array(

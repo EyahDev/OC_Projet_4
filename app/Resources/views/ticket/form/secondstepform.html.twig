@@ -1,25 +1,30 @@
 {{ form_start(form) }}
 
-        {% for ticket in form.tickets %}
-            <div class="containerSecondStepForm" id="secondStep">
-                <div class="secondStepForm" id="secondStepForm">
-                    <h3 class="titleForm">{{'appbundle.ticket'|trans}} n°{{ loop.index }}</h3>
+{% for ticket in form.tickets %}
+    <div class="containerSecondStepForm" id="secondStep">
+        <div class="secondStepForm" id="secondStepForm">
+            <h3 class="titleForm">{{'appbundle.ticket'|trans}} n°{{ loop.index }}</h3>
+            {% if not form.vars.valid %}
+                <div class="alert alert-danger formError">
+                    {{ form_errors(form) }}
                     {{ form_errors(ticket.name) }}
                     {{ form_errors(ticket.lastName) }}
                     {{ form_errors(ticket.age) }}
                     {{ form_errors(ticket.country) }}
                     {{ form_errors(ticket.reduced_price) }}
-                    {{ form_widget(ticket.lastName, { 'attr' : {'placeholder' : 'appbundle.step.2.form.placeholder.lastname', 'class' : 'textForm'}}) }}
-                    {{ form_widget(ticket.name, { 'attr' : {'placeholder' : 'appbundle.step.2.form.placeholder.name', 'class' : 'textForm'}}) }}
-                    {{ form_widget(ticket.age, { 'attr' : {'placeholder' : 'appbundle.step.2.form.placeholder.birthday.date', 'class' : 'textForm'}}) }}
-                    {{ form_widget(ticket.country) }}
-                    {{ form_widget(ticket.reduced_price) }}
-                    {{ form_label(ticket.reduced_price) }}
                 </div>
-            </div>
+            {% endif %}
+            {{ form_widget(ticket.name, { 'attr' : {'placeholder' : 'appbundle.step.2.form.placeholder.name', 'class' : 'textForm'}}) }}
+            {{ form_widget(ticket.lastName, { 'attr' : {'placeholder' : 'appbundle.step.2.form.placeholder.lastname', 'class' : 'textForm'}}) }}
+            {{ form_widget(ticket.age, { 'attr' : {'placeholder' : 'appbundle.step.2.form.placeholder.birthday.date', 'class' : 'textForm'}}) }}
+            {{ form_widget(ticket.country) }}
+            {{ form_widget(ticket.reduced_price) }}
+            {{ form_label(ticket.reduced_price) }}
+        </div>
+    </div>
 
 
-        {% endfor %}
+{% endfor %}
 <div class="stepNav">
     <div class="precedent">
         <a href="{{ path('homepage') }}"><button type="button" class="btnPrecedent">{{'appbundle.form.generic.prev'|trans}}</button></a>
