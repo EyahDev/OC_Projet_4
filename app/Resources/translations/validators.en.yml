@@ -1,45 +1,45 @@
 validator:
     step.1:
         mail:
-            same: Les adresses mails ne sont pas identique, veuillez vérifier.
-            valid: Veuillez renseigner une adresse mail valide.
-            not_blank: Veuillez renseigner votre adresse email.
+            same: The emails do not match, please try again.
+            valid: Please enter a valid email address.
+            not_blank: Please enter your email address
         tickets:
-            greater: Veuillez choisir au moins 1 billet.
-            lesser: Si vous souhaitez réserver plus de 10 billets, veuillez nous contacter.
-            not_blank: Veuillez choisir un nombre de billet valide.
-            valid: Veuillez choisir un nombre de billet valide.
+            greater: Please select at least one ticket.
+            lesser: If you wish to order more than 10 tickets, please contact us.
+            not_blank: Please select a valid number of tickets.
+            valid: Please select a valid number of tickets.
         visit.date:
-            not_blank: Veuillez choisir une date valide.
-            greater: Veuillez choisir une date supérieur à la date du jour.
-            close.feries: Le musée est fermé ce jour férié, veuillez choisir une autre date.
-            close.hours: Le musée est actuellement fermé, veuillez choisir une autre date.
-            sunday: La vente de billet est désactivé le dimanche, veuillez choisir une autre date ou vous déplacer directement au musée.
-            ferie: La vente de billet est désactivé les jours fériés, veuillez choisir une autre date ou vous déplacer directement au musée.
-            tuesday: Le musée est fermé le mardi, veuillez saisir une autre date.
-            valid: Veuillez choisir une date valide.
+            not_blank: Please select a valid date.
+            greater: Please select a date that is greater than today's date.
+            close.feries: The museum is closed on this public holiday, please select another date.
+            close.hours: The museum is currently closed, please select another date.
+            sunday: Ticket selling is turned off on Sundays, please select another date or buy your ticket at the museum.
+            ferie: Ticket selling is turned off on public holidays, please select another date or buy your ticket at the museum.
+            tuesday: The museum is closed on Tuesdays, please select another date.
+            valid: Please select a valid date.
         duration:
-            not_blank: Veuillez choisir un horaire d'accès.
+            not_blank: Please select an access time.
             contains: |
-                Il est plus de 14h, veuillez choisir l'horaire d'accès : demi-journée.
-            valid: Veuillez choisir un horaire d'accès valide.
+                It is after 2 pm, please select the half-day ticket
+            valid: Please choose a valid access date
 
     step.2:
         lastname:
-            not_blank: Veuillez renseigner un nom valide.
-            short: Votre nom doit contenir au moins {{ limit }} caractères.
-            long: Votre nom doit contenir au maximum {{ limit }} caractères.
-            string: Votre nom ne peut pas contenir de chiffres.
+            not_blank: Please enter a valid lastname.
+            short: Your lastname must contain at least {{ limit }} characters.
+            long: Your lastname must contain maximum {{ limit }}  characters.
+            string: Your lastname cannot contain numbers.
         name:
-            not_blank: Veuillez renseigner un prénom valide.
-            short: Votre prénom doit contenir au moins {{ limit }} caractères.
-            long: Votre prénom doit contenir au maximum {{ limit }} caractères.
-            string: Votre prénom ne peut pas contenir de chiffres.
+            not_blank: Please enter a valid name.
+            short: Your name must contain at least {{ limit }} characters.
+            long: Your name must contain maximum {{ limit }}  characters.
+            string: Your name cannot contain numbers.
         age:
-            not_blank: Veuillez saisir une date de naissance valide.
-            lesser: Veuillez saisir une date de naissance valide.
-            valid: Veuillez saisir une date de naissance valide.
+            not_blank: Please enter a valid date of birth.
+            lesser: Please enter a valid date of birth.
+            valid: Please enter a valid date of birth.
         country:
-            not_blank: Veuillez choisir un pays valide.
-            country: Veuillez choisir un pays valide.
-            valid: Veuillez saisir une date de naissance valide.
+            not_blank: Please select a valid country.
+            country: Please select a valid country.
+            valid: Please select a valid country.

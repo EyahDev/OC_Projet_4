@@ -37,8 +37,8 @@
             <p class="infoLouvreText">
                 {{ 'appbundle.step.2.text.information.first'|trans({
                     '%date%': app.session.get('CommandeLouvre').visitDate|date('d/m/Y'),
-                    '%duration%': app.session.get('CommandeLouvre').duration,
-                    '%access%': app.session.get('CommandeLouvre').access }
+                    '%duration%': app.session.get('CommandeLouvre').duration|trans,
+                    '%access%': app.session.get('CommandeLouvre').access|trans }
                 )}}
             </p>
 
