@@ -39,6 +39,7 @@ validator:
             not_blank: Please enter a valid date of birth.
             lesser: Please enter a valid date of birth.
             valid: Please enter a valid date of birth.
+            contains: Please enter a valid date of birth.
         country:
             not_blank: Please select a valid country.
             country: Please select a valid country.

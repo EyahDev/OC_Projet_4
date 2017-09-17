@@ -13,7 +13,7 @@ class BilletterieController extends Controller
 {
     /**
      * @Route("{_locale}/", requirements={"_locale" = "fr|en"}, name="homepage")
-     * @Route("/", defaults={"_locale" = "en"}, name="homepage")
+     * @Route("/", defaults={"_locale" = "fr"}, name="homepage")
      */
     public function indexAction(Request $request, OrderManager $orderManager, SessionInterface $session)
     {

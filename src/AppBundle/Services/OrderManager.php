@@ -23,9 +23,10 @@ class OrderManager
     private $mailer;
     private $em;
     private $env;
+    private $rates;
 
     public function __construct(SessionInterface $session, RequestStack $request, FormFactoryInterface $formBuilder,
-                                \Swift_Mailer $mailer, EntityManagerInterface $em, Environment $environment)
+                                \Swift_Mailer $mailer, EntityManagerInterface $em, Environment $environment, PricesManager $prices)
     {
         $this->session = $session;
         $this->request = $request->getCurrentRequest();
@@ -33,6 +34,7 @@ class OrderManager
         $this->mailer = $mailer;
         $this->em = $em;
         $this->env = $environment;
+        $this->rates = $prices;
     }
 
     public function createOrder()
@@ -40,7 +42,16 @@ class OrderManager
         if ($this->session->has('CommandeLouvre')) {
             $order = $this->session->get('CommandeLouvre');
             foreach ($order->getTickets() as $ticket) {
-                if ($ticket->getName() === null || $ticket->getlastName() === null || $ticket->getAge() === null) {
+                // Mise à 0 de l'age
+                $age = 0;
+
+                if ($ticket->getAge()) {
+                    $now = new \DateTime();
+                    $birthdayDate = $ticket->getAge();
+                    $age = $now->diff($birthdayDate)->y;
+                }
+
+                if ($ticket->getName() === null || $ticket->getlastName() === null || $ticket->getAge() === null || $age > 120 || $age < 1 ) {
                     $order->removeTicket($ticket);
                 }
             }
@@ -179,9 +190,6 @@ class OrderManager
         // Récupération de la variable de session
         $order = $this->getOrder();
 
-        // Récupération du tarif en fonction de l'age du titulaire
-        $rates = $this->em->getRepository('AppBundle:Rate');
-
         // Mise à 0 du total de la commande
         $total = 0;
 
@@ -193,52 +201,26 @@ class OrderManager
         }
 
         // Parcours de la variable de sessions et attribution des valeurs
-        foreach ($order->getTickets() as $ticket) {
+        foreach ($order->getTickets() as $ticket)
+        {
+
+            $rate = $this->rates->getPrice($ticket->getAge(), $ticket->getReducedPrice());
+
+            // Ajout d'une réduction de 50% si demi-journée choisi
+            if ($order->getDuration() == "demi-journée") {
+                // Calcul de la réduction en utilisant la constante
+                $price = $rate['price'] * self::REDUCEDPRICE / 100;
+            } else {
+                $price = $rate['price'];
+            }
 
             // Création d'un token unique pour le code barre du billets
             $codeBarreToken = bin2hex(random_bytes(10));
 
-            // Vérification si la coche tarif réduit a été coché
-            if ($ticket->getReducedPrice() === true) {
-
-                // Récupération du prix et du nom du tarif réduit
-                $rate = $rates->findOneBy(array('name' => 'Réduit'));
-
-                // Ajout d'une réduction de 50% si demi-journée choisi
-                if ($order->getDuration() == "demi-journée") {
-                    // Calcul de la réduction en utilisant la constante
-                    $price = $rate->getPrice() * self::REDUCEDPRICE / 100;
-                } else {
-                    $price = $rate->getPrice();
-                }
-                
-                // Injection à la variable de session
-                $ticket->setRate($rate->getName());
-                $ticket->setPrice($price);
-                $ticket->setTokenTicket($codeBarreToken);
-
-            } else {
-                // Calcul de l'âge
-                $now = new \DateTime();
-                $birthdayDate = $ticket->getAge();
-                $age = $now->diff($birthdayDate)->y;
-
-                // Récupération du tarif adapté
-                $rate = $rates->getPriceAndRate($age);
-
-                // Ajout d'une réduction de 50% si demi-journée choisi
-                if ($order->getDuration() == "demi-journée") {
-                    // Calcul de la réduction en utilisant la constante
-                    $price = $rate->getPrice() * self::REDUCEDPRICE / 100;
-                } else {
-                    $price = $rate->getPrice();
-                }
-
-                // Injection à la variable de session
-                $ticket->setRate($rate->getName());
-                $ticket->setPrice($price);
-                $ticket->setTokenTicket($codeBarreToken);
-            }
+            // Injection à la variable de session
+            $ticket->setRate($rate['name']);
+            $ticket->setPrice($price);
+            $ticket->setTokenTicket($codeBarreToken);
 
             // Calcul du montant total à payer
             $ticketPrice = $ticket->getPrice();

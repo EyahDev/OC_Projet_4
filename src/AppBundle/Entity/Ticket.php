@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Validator as CustomAssert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -72,7 +73,7 @@ class Ticket
      *
      * @ORM\Column(name="age", type="datetime")
      * @Assert\NotBlank(message = "validator.step.2.age.not_blank")
-     * @Assert\Valid
+     * @CustomAssert\Age\ContainsAge()
      * @Assert\LessThan("today", message = "validator.step.2.age.lesser")
      */
     private $age;

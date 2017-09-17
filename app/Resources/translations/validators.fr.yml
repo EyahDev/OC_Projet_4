@@ -39,6 +39,7 @@ validator:
             not_blank: Veuillez saisir une date de naissance valide.
             lesser: Veuillez saisir une date de naissance valide.
             valid: Veuillez saisir une date de naissance valide.
+            contains: Veuillez saisir une date de naissance valide.
         country:
             not_blank: Veuillez choisir un pays valide.
             country: Veuillez choisir un pays valide.

@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class ContainsDuration extends Constraint
 {
-    public $message = "Il est plus de 14h, veuillez choisir l'horaire d'accès : demi-journée";
+    public $message = "validator.step.1.duration.contains";
 
     public function validatedBy()
     {
