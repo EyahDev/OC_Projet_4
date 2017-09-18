@@ -1,19 +1,49 @@
 <?php
 namespace Tests\AppBundle\Controller;
 
-use Stripe\Stripe;
+use AppBundle\Entity\OrderCustomer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 
 class billetterieControllerTest extends WebTestCase
 {
-    public function testHomepage()
+    public function testRouteHomepage()
     {
+        // Création d'un client
         $client = self::createClient();
-        $client->request('GET', '/');
 
-        $client->getResponse()->getStatusCode();
+        // Définition de la route
+        $crawler = $client->request('GET', '/');
 
+        // Vérification si on a un retour 200 concernant la route et si il possède bien le texte de présentation de la page
         $this->assertSame(200, $client->getResponse()->getStatusCode());
+        $this->assertSame(1, $crawler->filter('html:contains("Indiquez la date de votre visite, votre horaire d\'accès et le nombre de billets")')->count());
+
+    }
+
+    public function testRouteCoordonnees()
+    {
+        // Création d'un client
+        $client = self::createClient();
+        $container = $client->getContainer();
+
+        // Définition de la route
+        $crawler = $client->request('GET', '/coordonnees');
+
+        // Création d'un mock de session
+        $session = new Session(new MockFileSessionStorage());
+        $container->set('session', $session);
+
+        // Définition des elements de session important
+        $order = new OrderCustomer();
+        $session->set('CommandeLouvre', $order);
+        $session->set('step_1', 'check');
+
+        // Vérification si on a un retour 200 concernant la route et si il possède bien le texte de présentation de la page
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+        $this->assertSame(1, $crawler->filter('html:contains("veuillez réessayer")')->count());
+
     }
 
     public function testParcousBeforePayment()

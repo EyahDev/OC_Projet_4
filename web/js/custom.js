@@ -41,33 +41,6 @@ function JoursFeries (an) {
 }
 
 
-// Fonctionnement du calendrier FlatPickr
-$(".datepicker").flatpickr({
-    locale: "fr",
-    inline: true,
-    minDate: 'today',
-    disable: [
-        function(date) {
-            return (date.getDay() === 2 || date.getDay() === 0);
-        },
-        function(date) {
-            // Récupération de l'année
-            var years = date.getFullYear();
-
-            // Récupération d'un tableau de jours fériés
-            var holidays = JoursFeries(years);
-            var ret = false;
-
-            holidays.forEach(function(test) {
-                if(test.getTime() === date.getTime()) {
-                    console.log(test);
-                    ret = true;
-                }
-            });
-            return ret;
-        }]
-});
-
 // Fonctionnement du tableau pour la partie récapitulative
 $(document).ready(function() {
 

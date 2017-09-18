@@ -6,16 +6,39 @@ use AppBundle\Services\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class BilletterieController extends Controller
 {
     /**
+     * @Route("/setlocale/{language}", name="setlocale")
+     */
+    public function setLocaleAction($language)
+    {
+        if($language != null)
+        {
+            // On enregistre la langue en session
+            $this->get('session')->set('_locale', $language);
+        }
+
+        // on tente de rediriger vers la page d'origine
+        $url = $this->container->get('request_stack')->getCurrentRequest()->headers->get('referer');
+        if(empty($url))
+        {
+            $url = $this->container->get('router')->generate('homepage');
+        }
+
+        return new RedirectResponse($url);
+    }
+
+
+    /**
      * @Route("{_locale}/", requirements={"_locale" = "fr|en"}, name="homepage")
      * @Route("/", defaults={"_locale" = "fr"}, name="homepage")
      */
-    public function indexAction(Request $request, OrderManager $orderManager, SessionInterface $session)
+    public function indexAction(Request $request, OrderManager $orderManager)
     {
         // Récupération du formulaire de la première étape
         $form = $orderManager->firstStepAction();

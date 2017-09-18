@@ -2,6 +2,15 @@
 
 {% block title %}{{ 'appbundle.step.step.3'|trans }}{% endblock %}
 
+{% block flash %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger formError">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message|trans }}</strong>
+        </div>
+    {% endfor %}
+{% endblock %}
+
 {% block stepwizard %}
     <div class="row">
         <ul class="progress-indicator">
