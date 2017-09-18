@@ -203,7 +203,6 @@ class OrderManager
         // Parcours de la variable de sessions et attribution des valeurs
         foreach ($order->getTickets() as $ticket)
         {
-
             $rate = $this->rates->getPrice($ticket->getAge(), $ticket->getReducedPrice());
 
             // Ajout d'une réduction de 50% si demi-journée choisi

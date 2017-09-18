@@ -1,5 +1,5 @@
 <?php
-namespace Test\AppBundle\Controller;
+namespace Tests\AppBundle\Controller;
 
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

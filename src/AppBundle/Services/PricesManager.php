@@ -14,7 +14,7 @@ class PricesManager
         $this->em = $em;
     }
 
-    public function getPrice($birthday, $reducedPrice = null)
+    public function getPrice($birthday, $reducedPrice)
     {
         // Calcul de l'âge
         $now = new \DateTime();
@@ -37,7 +37,8 @@ class PricesManager
             {
                 return array('price' => $bestRate->getPrice(), 'name' => $bestRate->getName());
             }
+            return array('price' => $ReducedPriceRate->getPrice(), 'name' => $ReducedPriceRate->getName());
         }
-        return array('price' => $ReducedPriceRate->getPrice(), 'name' => $ReducedPriceRate->getName());
+        return array('price' => $bestRate->getPrice(), 'name' => $bestRate->getName());
     }
 }
