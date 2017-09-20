@@ -1,55 +1,16 @@
 <!DOCTYPE html>
 <html lang="FR">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Mail de confirmation</title>
-</head>
-
-<body>
-<section id="page-sample">
-    <div class="container content-section text-left">
-
-        <a href="{{ path('mail', { 'token': order.orderToken } )}}">{{ "appbundle.mail.redirect"|trans }}</a>
-
-        <div class="MailLogo">
-            <img class="logoLouvre" src="{{ absolute_url(asset('img/mail_logo.png')) }}" alt="Logo du louvre">
-        </div>
-
-        <h3>{{ "appbundle.mail.text.information.title"|trans }}</h3>
-
-        <p class="infoLouvreText">{{ "appbundle.mail.text.information"|trans({'%token%': order.orderToken|replace({'tok_': ''})}) |nl2br}}<br/>
-
-            <b>{{ "appbundle.mail.text.reduced.rate"|trans }}</b></p>
-
-        <h3>{{ 'appbundle.step.3.tickets'|transchoice(order.nbTickets) }}</h3>
-
-        <div class="listBillets" style="text-align: center">
-            {% for ticket in order.tickets %}
-                <div class="billetsEdites">
-                    <img class="logoLouvre" src="{{ absolute_url(asset('img/logo-louvre.jpg')) }}" alt="logoLouvre">
-                    <p class="textSMBillets">www.louvre.fr</p>
-                    <p class="textLGBillets"><b>MUSÉE {{ order.duration|upper }}</b><br/>
-                        <b>{{ order.visitDate|date('d/m/Y') }}  - {{ order.access}}</b></p>
-                    <p class="textSMBilletsLeft">{{ ticket.name }} {{ ticket.lastName }}<br/>{{ ticket.age|date('d/m/Y') }} ({{ ticket.age|age }} ans) - {{ ticket.country }}</p>
-                    <p class="textSMBilletsLeft">Tarif : {{ ticket.rate }} -<b> {{ ticket.price }}€</b></p>
-                    <img class="codeBarre" src="{{ absolute_url(qrcode_path(ticket.tokenTicket, { size: 100})) }}" alt="QRCode">
-                </div>
-            {% endfor %}
-        </div>
-
-        <h3>{{ "appbundle.mail.text.important.title"|trans }}</h3>
-        <p class="infoLouvreText">{{ "appbundle.mail.text.important"|trans|nl2br }}</p>
-
-        <h3>{{ "appbundle.mail.text.advices.title"|trans }}</h3>
-        <p class="infoLouvreText">{{ "appbundle.mail.text.advices"|trans|nl2br }}</p>
-    </div>
-</section>
-
     <style>
+
+        @media (max-width: 768px) {
+
+            .infoLouvreText {
+                text-align: left;
+            }
+
+
+
         /* Billets édités */
         .billetsEdites {
             display: inline-block;
@@ -94,5 +55,53 @@
             margin-bottom: 15px;
         }
     </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Mail de confirmation</title>
+</head>
+
+<body>
+<section id="page-sample">
+    <div class="container content-section text-left">
+
+        <a href="{{ absolute_url(path('mail', { 'token': order.orderToken } ))}}">{{ "appbundle.mail.redirect"|trans }}</a>
+
+        <div class="MailLogo">
+            <img class="logoLouvre" src="{{ absolute_url(asset('img/mail_logo.png')) }}" alt="Logo du louvre">
+        </div>
+
+        <h3>{{ "appbundle.mail.text.information.title"|trans }}</h3>
+
+        <p class="infoLouvreText">{{ "appbundle.mail.text.information"|trans({'%token%': order.orderToken|replace({'tok_': ''})}) |nl2br}}<br/>
+
+            <b>{{ "appbundle.mail.text.reduced.rate"|trans }}</b></p>
+
+        <h3>{{ 'appbundle.step.3.tickets'|transchoice(order.nbTickets) }}</h3>
+
+        <div class="listBillets" style="text-align: center">
+            {% for ticket in order.tickets %}
+                <div class="billetsEdites">
+                    <img class="logoLouvre" src="{{ absolute_url(asset('img/logo-louvre.jpg')) }}" alt="logoLouvre">
+                    <p class="textSMBillets">www.louvre.fr</p>
+                    <p class="textLGBillets"><b>MUSÉE {{ order.duration|upper }}</b><br/>
+                        <b>{{ order.visitDate|date('d/m/Y') }}  - {{ order.access}}</b></p>
+                    <p class="textSMBilletsLeft">{{ ticket.name }} {{ ticket.lastName }}<br/>{{ ticket.age|date('d/m/Y') }} ({{ ticket.age|age }} ans) - {{ ticket.country }}</p>
+                    <p class="textSMBilletsLeft">Tarif : {{ ticket.rate }} -<b> {{ ticket.price }}€</b></p>
+                    <img class="codeBarre" src="{{ absolute_url(qrcode_path(ticket.tokenTicket, { size: 100})) }}" alt="QRCode">
+                </div>
+            {% endfor %}
+        </div>
+
+        <h3>{{ "appbundle.mail.text.important.title"|trans }}</h3>
+        <p class="infoLouvreText">{{ "appbundle.mail.text.important"|trans|nl2br }}</p>
+
+        <h3>{{ "appbundle.mail.text.advices.title"|trans }}</h3>
+        <p class="infoLouvreText">{{ "appbundle.mail.text.advices"|trans|nl2br }}</p>
+    </div>
+</section>
     </body>
 </html>

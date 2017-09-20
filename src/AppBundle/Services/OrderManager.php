@@ -279,7 +279,7 @@ class OrderManager
 
             // Préparation d'un email de confirmation
             $sendMail = (new \Swift_Message("Confirmation de commande"))
-                ->setFrom('adrien.desmet@hotmail.fr')
+                ->setFrom(array('noreply@adriendesmet.com' => 'Musée du Louvre'))
                 ->setTo($order->getEmail())
                 ->setBody($this->env->render('ticket/email/recapitulatif.html.twig', array(
                     'order' => $order

@@ -25,7 +25,7 @@ error_404:
 error:
     title: Error
     text: An error has occurred please try again later
-    redirect: Revenir à l'accueil
+    redirect: Return to home page
 
 
 session_expire:
@@ -133,7 +133,7 @@ appbundle:
             duration: Duration
             access: Access
             nb.tickets: Number of tickets
-            special.rate: Remise spéciale
+            special.rate: Special rate
             total: total price
 
             total.content:
@@ -143,6 +143,7 @@ appbundle:
         stripe:
             text: Payment of your tickets
             error: An error occurred with the payment, please try again. If the light persists, please contact us.
+            louvre: The Louvre museum
     step.4:
         pres.title: Confirmation
         pres.step: |

@@ -38,8 +38,10 @@
     </div>
 
 </div>
-<div class="suivant">
-    {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'appbundle.form.generic.next'|trans }) }}
+<div class="stepNav">
+    <div class="suivantFirst">
+        {{ form_widget(form.save, {'attr' : {'class': 'btnSuivant'}, 'label' : 'appbundle.form.generic.next'|trans }) }}
+    </div>
 </div>
 
 {{ form_end(form) }}

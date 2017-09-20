@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OrderCustomerSecondStepType extends AbstractType
 {
@@ -22,5 +23,15 @@ class OrderCustomerSecondStepType extends AbstractType
                 'allow_delete' => true
             ))
             ->add('save', SubmitType::class);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'validation_groups' => array('step_2')
+        ));
     }
 }

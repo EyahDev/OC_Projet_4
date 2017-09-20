@@ -115,7 +115,7 @@
                     data-key="pk_test_UkrYg88qxXhhJYayypUNfFuk"
                     data-email = "{{ app.session.get('CommandeLouvre').email }}"
                     data-amount="{{ app.session.get('CommandeLouvre').price * 100 }}"
-                    data-name="Musée du louvre"
+                    data-name="{{ 'appbundle.step.3.stripe.louvre'|trans }}"
                     data-description="{{ 'appbundle.step.3.stripe.text'|trans }}"
                     data-image="{{ asset('img/logo-louvre.jpg') }}"
                     data-locale="{{ app.request.locale }}"

@@ -17,12 +17,6 @@ class BilletterieController extends Controller
      */
     public function setLocaleAction( Request $request)
     {
-//        if($language != null)
-//        {
-//            // On enregistre la langue en session
-//            $request->setLocale($language);
-//        }
-
         // on tente de rediriger vers la page d'origine
         $url = $request->headers->get('referer');
 

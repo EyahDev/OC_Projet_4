@@ -1,7 +1,7 @@
 validator:
     step.1:
         mail:
-            same: Les adresses mails ne sont pas identique, veuillez vérifier.
+            same: Les adresses mails ne sont pas identiques, veuillez vérifier.
             valid: Veuillez choisir une date valide.
             not_blank: Veuillez renseigner votre adresse email.
         tickets:
@@ -11,11 +11,11 @@ validator:
             valid: Veuillez choisir un nombre de billet valide.
         visit.date:
             not_blank: Veuillez choisir une date valide.
-            greater: Veuillez choisir une date supérieur à la date du jour.
+            greater: Veuillez choisir une date supérieure à la date du jour.
             close.feries: Le musée est fermé ce jour férié, veuillez choisir une autre date.
             close.hours: Le musée est actuellement fermé, veuillez choisir une autre date.
-            sunday: La vente de billet est désactivé le dimanche, veuillez choisir une autre date ou vous déplacer directement au musée.
-            ferie: La vente de billet est désactivé les jours fériés, veuillez choisir une autre date ou vous déplacer directement au musée.
+            sunday: La vente de billet est désactivée le dimanche, veuillez choisir une autre date ou vous déplacer directement au musée.
+            ferie: La vente de billet est désactivée les jours fériés, veuillez choisir une autre date ou vous déplacer directement au musée.
             tuesday: Le musée est fermé le mardi, veuillez saisir une autre date.
             valid: Veuillez choisir une date valide.
             tickets: Le musée a depassé sa capacité d'accueil pour la journée, veuillez choisir une autre date.

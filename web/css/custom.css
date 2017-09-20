@@ -16,9 +16,40 @@
 }
 
 @media (max-width: 768px) {
+
+    .textForm {
+        width: 90%
+    }
+
+    .stepNav {
+        padding: 0 15px;
+    }
+
+    select {
+        width: 90%
+    }
+
+    .secondStepForm, .thirdStep .fourthStep{
+        text-align: center;
+    }
+
+
+    .secondStepInfo h3, .thirdStep h3, .fourthStep h3{
+        text-align: center;
+    }
+
+    .secondStepInfo .infoLouvreText, .fourthStep, .thirdStep{
+        padding: 25px;
+    }
+
+
     .containerFirstStepForm {
         flex-direction: column;
         text-align: center;
+    }
+
+    .infoLouvreText {
+        text-align: left;
     }
 
     .flatpickr-calendar {
@@ -68,36 +99,6 @@
 
     .infoLouvre {
         width: 100%;
-    }
-
-}
-
-@media (max-width: 767px) {
-
-    .textForm {
-        width: 90%
-    }
-
-    .stepNav {
-        padding: 0 15px;
-    }
-
-    select {
-        width: 90%
-    }
-
-    .secondStepForm, .thirdStep .fourthStep{
-        text-align: center;
-    }
-
-
-    .secondStepInfo h3, .thirdStep h3, .fourthStep h3{
-        text-align: center;
-    }
-
-    .secondStepInfo .infoLouvreText, .fourthStep, .thirdStep{
-        text-align: center;
-        padding: 25px;
     }
 
 }
@@ -343,6 +344,10 @@
     background-color: #333;
     border: 1px solid black;
     color: #fff;
+}
+
+.suivantFirst {
+    margin-left: auto;
 }
 
 .suivant {

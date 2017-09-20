@@ -144,6 +144,7 @@ appbundle:
         stripe:
             text: Paiement de vos billets d'entrée
             error: Une erreur s'est produit avec le paiement, veuillez réessayer. Si le problème persiste, merci de nous contacter.
+            louvre: Musée du Louvre
     step.4:
         pres.title: Confirmation
         pres.step: |

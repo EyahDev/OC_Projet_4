@@ -22,10 +22,10 @@ class TicketSecondStepType extends AbstractType
 
         $builder
             ->add('name',TextType::class, array(
-                'invalid_message' => ''
+                'invalid_message' => 'validator.step.2.name.valid'
             ))
             ->add('lastName', TextType::class, array(
-                'invalid_message' => ''
+                'invalid_message' => 'validator.step.2.lastname.valid'
             ))
             ->add('age', BirthdayType::class, array(
                 'widget' => 'single_text',
@@ -52,9 +52,6 @@ class TicketSecondStepType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Ticket',
-            'validation_groups' => array('step_2')
-
-
         ));
     }
 }
