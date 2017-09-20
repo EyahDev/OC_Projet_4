@@ -74,10 +74,10 @@
                         <a href="{{ path('homepage')}}">{{ 'appbundle.nav.billetterie'|trans }}</a>
                     </li>
                     <li>
-                        {% if app.session.get('_locale') == 'fr' %}
-                            <a href="{{ path('setlocale', {'language': 'en'}) }}">EN</a>
+                        {% if app.request.locale == 'fr' %}
+                            <a href="{{ path('setlocale', {'_locale': 'en'}) }}">EN</a>
                         {% else %}
-                            <a href="{{ path('setlocale', {'language': 'fr'}) }}">FR</a>
+                            <a href="{{ path('setlocale', {'_locale': 'fr'}) }}">FR</a>
                         {% endif %}
                     </li>
                 </ul>
@@ -165,7 +165,13 @@
         <script>
             // Fonctionnement du calendrier FlatPickr
             $(".datepicker").flatpickr({
-                locale: "{{ app.session.get('_locale') }}",
+                {% if app.request.locale == 'fr' %}
+                    locale: "{{ app.request.locale }}",
+                {% else %}
+                    locale: {
+                        'firstDayOfWeek': 1
+                    },
+                {% endif %}
                 inline: true,
                 minDate: 'today',
                 disable: [

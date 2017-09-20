@@ -36,14 +36,16 @@ class Ticket
      * @Assert\Regex(
      *     pattern = "/\d/",
      *     match = false,
-     *     message = "validator.step.2.name.string"
+     *     message = "validator.step.2.name.string",
+     *     groups={"step_2"}
      * )
-     * @Assert\NotBlank(message = "validator.step.2.name.not_blank")
+     * @Assert\NotBlank(message = "validator.step.2.name.not_blank",groups={"step_2"})
      * @Assert\Length(
      *     min = 2,
      *     max = 50,
      *     minMessage = "validator.step.2.name.short",
-     *     maxMessage = "validator.step.2.name.long"
+     *     maxMessage = "validator.step.2.name.long",
+     *     groups={"step_2"}
      * )
      */
     private $name;
@@ -56,14 +58,16 @@ class Ticket
      * @Assert\Regex(
      *     pattern = "/\d/",
      *     match = false,
-     *     message = "validator.step.2.lastname.string"
+     *     message = "validator.step.2.lastname.string",
+     *     groups={"step_2"}
      * )
-     * @Assert\NotBlank(message = "validator.step.2.lastname.not_blank")
+     * @Assert\NotBlank(message = "validator.step.2.lastname.not_blank", groups={"step_2"})
      * @Assert\Length(
      *     min = 2,
      *     max = 50,
      *     minMessage = "validator.step.2.lastname.short",
-     *     maxMessage = "validator.step.2.lastname.long"
+     *     maxMessage = "validator.step.2.lastname.long",
+     *     groups={"step_2"}
      * )
      */
     private $lastName;
@@ -72,9 +76,9 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="age", type="datetime")
-     * @Assert\NotBlank(message = "validator.step.2.age.not_blank")
-     * @CustomAssert\Age\ContainsAge()
-     * @Assert\LessThan("today", message = "validator.step.2.age.lesser")
+     * @Assert\NotBlank(message = "validator.step.2.age.not_blank", groups={"step_2"})
+     * @CustomAssert\Age\ContainsAge(groups={"step_2"})
+     * @Assert\LessThan("today", message = "validator.step.2.age.lesser", groups={"step_2"})
      */
     private $age;
 
@@ -82,8 +86,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
-     * @Assert\NotBlank(message = "validator.step.2.country.not_blank")
-     * @Assert\Country(message = "validator.step.2.country.country")
+     * @Assert\NotBlank(message = "validator.step.2.country.not_blank", groups={"step_2"})
+     * @Assert\Country(message = "validator.step.2.country.country", groups={"step_2"})
      */
     private $country;
 

@@ -33,8 +33,8 @@ class OrderCustomer
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\NotBlank(message="Veuillez renseigner votre adresse email")
-     * @Assert\Email(message="validator.step.1.mail.valid", checkMX=true)
+     * @Assert\NotBlank(message="Veuillez renseigner votre adresse email", groups={"step_1"})
+     * @Assert\Email(message="validator.step.1.mail.valid", checkMX=true, groups={"step_1"})
      */
     private $email;
 
@@ -42,13 +42,17 @@ class OrderCustomer
      * @var int
      *
      * @ORM\Column(name="nbTickets", type="integer")
-     * @Assert\NotBlank(message="validator.step.1.tickets.not_blank")
+     * @Assert\NotBlank(message="validator.step.1.tickets.not_blank", groups={"step_1"})
      * @Assert\GreaterThanOrEqual(
      *     value = 1,
-     *     message="validator.step.1.tickets.greater")
+     *     message="validator.step.1.tickets.greater",
+     *     groups={"step_1"}
+ *     )
      * @Assert\LessThanOrEqual(
      *     value = 10,
-     *     message = "validator.step.1.tickets.lesser")
+     *     message = "validator.step.1.tickets.lesser",
+     *     groups={"step_1"}
+ *     )
      */
     private $nbTickets;
 
@@ -77,13 +81,13 @@ class OrderCustomer
      * @var \DateTime
      *
      * @ORM\Column(name="visitDate", type="datetime")
-     * @Assert\NotBlank( message = "validator.step.1.visit.date.not_blank")
-     * @Assert\GreaterThanOrEqual("today", message = "validator.step.1.visit.date.greater")
-     * @CustomAssert\VisitDate\ContainsVisitDateDimanche()
-     * @CustomAssert\VisitDate\ContainsVisitDateFerie()
-     * @CustomAssert\VisitDate\ContainsVisitCloseFeries()
-     * @CustomAssert\VisitDate\ContainsVisitDateCloseHours()
-     * @CustomAssert\Tickets\ContainsTicketsSold()
+     * @Assert\NotBlank( message = "validator.step.1.visit.date.not_blank", groups={"step_1"})
+     * @Assert\GreaterThanOrEqual("today", message = "validator.step.1.visit.date.greater", groups={"step_1"})
+     * @CustomAssert\VisitDate\ContainsVisitDateDimanche(groups={"step_1"})
+     * @CustomAssert\VisitDate\ContainsVisitDateFerie(groups={"step_1"})
+     * @CustomAssert\VisitDate\ContainsVisitCloseFeries(groups={"step_1"})
+     * @CustomAssert\VisitDate\ContainsVisitDateCloseHours(groups={"step_1"})
+     * @CustomAssert\Tickets\ContainsTicketsSold(groups={"step_1"})
      */
     private $visitDate;
 
@@ -91,8 +95,8 @@ class OrderCustomer
      * @var string
      *
      * @ORM\Column(name="duration", type="string", length=255)
-     * @Assert\NotBlank(message = "validator.step.1.duration.not_blank")
-     * @CustomAssert\Duration\ContainsDuration()
+     * @Assert\NotBlank(message = "validator.step.1.duration.not_blank", groups={"step_1"})
+     * @CustomAssert\Duration\ContainsDuration(groups={"step_1"})
      */
     private $duration;
 

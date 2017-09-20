@@ -51,7 +51,10 @@ class TicketSecondStepType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Ticket'
+            'data_class' => 'AppBundle\Entity\Ticket',
+            'validation_groups' => array('step_2')
+
+
         ));
     }
 }

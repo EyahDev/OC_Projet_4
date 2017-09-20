@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OrderCustomerFirstStepType extends AbstractType
 {
@@ -18,6 +19,7 @@ class OrderCustomerFirstStepType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,
@@ -45,5 +47,12 @@ class OrderCustomerFirstStepType extends AbstractType
                 'multiple' => false
             ))
             ->add('save', SubmitType::class);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'validation_groups' => array('step_1'),
+        ));
     }
 }

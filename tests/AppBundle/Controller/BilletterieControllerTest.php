@@ -26,23 +26,87 @@ class billetterieControllerTest extends WebTestCase
     {
         // Création d'un client
         $client = self::createClient();
-        $container = $client->getContainer();
 
         // Définition de la route
         $crawler = $client->request('GET', '/coordonnees');
 
-        // Création d'un mock de session
-        $session = new Session(new MockFileSessionStorage());
-        $container->set('session', $session);
-
-        // Définition des elements de session important
-        $order = new OrderCustomer();
-        $session->set('CommandeLouvre', $order);
-        $session->set('step_1', 'check');
-
-        // Vérification si on a un retour 200 concernant la route et si il possède bien le texte de présentation de la page
+        // Vérification si on a un retour 302
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
-        $this->assertSame(1, $crawler->filter('html:contains("veuillez réessayer")')->count());
+
+        // Suivi de redirection
+        $crawler = $client->followRedirect();
+
+        // Vérification si le retour est bien 200
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        // Test si le texte de la homepage est présent
+        $this->assertSame(1, $crawler->filter('html:contains("Indiquez la date de votre visite, votre horaire d\'accès et le nombre de billets")')->count());
+
+    }
+
+    public function testRouteRecap()
+    {
+        // Création d'un client
+        $client = self::createClient();
+
+        // Définition de la route
+        $crawler = $client->request('GET', '/recapitulatif');
+
+        // Vérification si on a un retour 302
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+        // Suivi de redirection
+        $crawler = $client->followRedirect();
+
+        // Vérification si le retour est bien 200
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        // Test si le texte de la homepage est présent
+        $this->assertSame(1, $crawler->filter('html:contains("Indiquez la date de votre visite, votre horaire d\'accès et le nombre de billets")')->count());
+
+    }
+
+    public function testRoutePaiement()
+    {
+        // Création d'un client
+        $client = self::createClient();
+
+        // Définition de la route
+        $crawler = $client->request('GET', '/paiement');
+
+        // Vérification si on a un retour 302
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+        // Suivi de redirection
+        $crawler = $client->followRedirect();
+
+        // Vérification si le retour est bien 200
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        // Test si le texte de la homepage est présent
+        $this->assertSame(1, $crawler->filter('html:contains("Indiquez la date de votre visite, votre horaire d\'accès et le nombre de billets")')->count());
+
+    }
+
+    public function testRouteConfirmation()
+    {
+        // Création d'un client
+        $client = self::createClient();
+
+        // Définition de la route
+        $crawler = $client->request('GET', '/paiement');
+
+        // Vérification si on a un retour 302
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+        // Suivi de redirection
+        $crawler = $client->followRedirect();
+
+        // Vérification si le retour est bien 200
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        // Test si le texte de la homepage est présent
+        $this->assertSame(1, $crawler->filter('html:contains("Indiquez la date de votre visite, votre horaire d\'accès et le nombre de billets")')->count());
 
     }
 

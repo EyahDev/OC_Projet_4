@@ -18,7 +18,7 @@
             <li class="completed"><div class="stepCompleted"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</a></div></li>
 
             {# Step 2 #}
-            <li class="completed"><div class="stepCompleted"><a href="{{ path('coordonnees')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</a></div></li>
+            <li class="completed"><div class="stepCompleted"><a href="{{ path('vos-billets')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</a></div></li>
 
             {# Step 3 #}
             <li class="warning"><div class="stepWarning"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</a></div></li>
@@ -106,7 +106,7 @@
         </div>
         <div class="stepNav">
         <div class="precedent">
-            <a href="{{ path('coordonnees') }}"><button type="button" class="btnPrecedent">{{ 'appbundle.form.generic.prev'|trans }}</button></a>
+            <a href="{{ path('vos-billets') }}"><button type="button" class="btnPrecedent">{{ 'appbundle.form.generic.prev'|trans }}</button></a>
         </div>
         <form action="{{path('paiement')}}" method="POST">
             <script
@@ -118,7 +118,7 @@
                     data-name="Musée du louvre"
                     data-description="{{ 'appbundle.step.3.stripe.text'|trans }}"
                     data-image="{{ asset('img/logo-louvre.jpg') }}"
-                    data-locale="auto"
+                    data-locale="{{ app.request.locale }}"
                     data-allow-remember-me="false"
                     data-zip-code="false"
                     data-currency="eur">

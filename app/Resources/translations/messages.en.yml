@@ -1,6 +1,10 @@
-Suivant: Next
+Next: Next
 mail@exemple.com: mail@exemple.com
-Répétez votre email: Repeat your email address
+Repeat your email address: Repeat your email address
+
+journée: full day
+9h:	9:00 am
+Aucune: None
 
 Gratuit: Free
 Enfant: Children
@@ -69,7 +73,7 @@ appbundle:
                 The Louvre museum is open every day, except Tuesdays , 1st January, 1st May and the 25th of December, from 9:00 a.m. to 6:00 pm, until 9:45 pm on Wednesdays and Fridays except on public holidays.
                 Rooms close at 5:30 pm and at 9:30 pm on Wednesdays and Fridays
             second:
-                Due to a large number of visitors on Sudays and public holidays, it is not possible to book online. Tickets can be purchased at the museum ticket windows.
+                Due to a large number of visitors on Sundays and public holidays, it is not possible to book online. Tickets can be purchased at the museum ticket windows.
         form.title:
             email: Email address
             billets: Number of tickets
@@ -103,6 +107,7 @@ appbundle:
             year: Year
             month: Month
             day: Day
+        adult: One child under 12 years old must be accompanied by an adult.
 
     step.3:
         pres.title: Order summary and payment
@@ -132,19 +137,20 @@ appbundle:
             total: total price
 
             total.content:
-                access: at
+                access: At
                 duration: From
                 special.rate: None
         stripe:
             text: Payment of your tickets
+            error: An error occurred with the payment, please try again. If the light persists, please contact us.
     step.4:
         pres.title: Confirmation
         pres.step: |
             Confirmation of your order : find below the necessary information
         text.information.title: Order confirmation
         text.information: |
-            Your reservation/order has been made, your reservation number is %token%
-            You will receive an email with your print@home tickets within a few minutes. You can print your tickets from this webpage or show your email at the museum front desk
+            Your reservation/order has been made, your reservation number is %token%.
+            You will receive an email with your print@home tickets within a few minutes. You can print your tickets from this webpage or show your email at the museum front desk.
         tickets: "Your ticket|Your tickets"
 
     mail:
@@ -152,8 +158,8 @@ appbundle:
         text.information.title: Order confirmation
         text.pres.redirect: Confirmation mail display
         text.information: |
-            Your reservation/order has been made, your reservation number is %token%
-            You can print your tickets from this webpage or show this email at the museum front desk
+            Your reservation/order has been made, your reservation number is %token%.
+            You can print your tickets from this webpage or show this email at the museum front desk.
         text.reduced.rate: Those with a reduced ticket, a valid ID or proof of entitlement will be required, do not forget it !
         tickets: "Your ticket|Your tickets"
         text.important.title: Vigipirate

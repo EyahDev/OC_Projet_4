@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-abstract class LocalSubscriber implements EventSubscriberInterface
+class LocalSubscriber implements EventSubscriberInterface
 {
     private $defaultLocale;
 
@@ -32,6 +32,7 @@ abstract class LocalSubscriber implements EventSubscriberInterface
 
         if ($locale = $request->attributes->get('_locale')) {
             $request->getSession()->set('_locale', $locale);
+            $request->setLocale($request->attributes->get('_locale'));
         } else {
             $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
         }

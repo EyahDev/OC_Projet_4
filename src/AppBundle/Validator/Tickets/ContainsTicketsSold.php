@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class ContainsTicketsSold extends Constraint
 {
-    public $message = "Le musée a depassé sa capacité d'accueil pour la journée, veuillez choisir une autre date";
+    public $message = "validator.step.1.visit.date.tickets";
 
     public function validatedBy()
     {

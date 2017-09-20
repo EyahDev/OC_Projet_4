@@ -42,16 +42,7 @@ class OrderManager
         if ($this->session->has('CommandeLouvre')) {
             $order = $this->session->get('CommandeLouvre');
             foreach ($order->getTickets() as $ticket) {
-                // Mise à 0 de l'age
-                $age = 0;
-
-                if ($ticket->getAge()) {
-                    $now = new \DateTime();
-                    $birthdayDate = $ticket->getAge();
-                    $age = $now->diff($birthdayDate)->y;
-                }
-
-                if ($ticket->getName() === null || $ticket->getlastName() === null || $ticket->getAge() === null || $age > 120 || $age < 1 ) {
+                if (count($order->getTickets()) < $order->getNbTickets()) {
                     $order->removeTicket($ticket);
                 }
             }
@@ -225,6 +216,11 @@ class OrderManager
             $ticketPrice = $ticket->getPrice();
             $total = $total + $ticketPrice;
 
+        }
+
+        // Vérification si le total est à 0
+        if ($total <= 0) {
+            return 'error';
         }
 
         $order->setPrice($total);

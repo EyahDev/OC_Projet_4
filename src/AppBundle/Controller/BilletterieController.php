@@ -13,18 +13,19 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class BilletterieController extends Controller
 {
     /**
-     * @Route("/setlocale/{language}", name="setlocale")
+     * @Route("/setlocale/{_locale}", name="setlocale")
      */
-    public function setLocaleAction($language)
+    public function setLocaleAction( Request $request)
     {
-        if($language != null)
-        {
-            // On enregistre la langue en session
-            $this->get('session')->set('_locale', $language);
-        }
+//        if($language != null)
+//        {
+//            // On enregistre la langue en session
+//            $request->setLocale($language);
+//        }
 
         // on tente de rediriger vers la page d'origine
-        $url = $this->container->get('request_stack')->getCurrentRequest()->headers->get('referer');
+        $url = $request->headers->get('referer');
+
         if(empty($url))
         {
             $url = $this->container->get('router')->generate('homepage');
@@ -35,8 +36,7 @@ class BilletterieController extends Controller
 
 
     /**
-     * @Route("{_locale}/", requirements={"_locale" = "fr|en"}, name="homepage")
-     * @Route("/", defaults={"_locale" = "fr"}, name="homepage")
+     * @Route("/", name="homepage")
      */
     public function indexAction(Request $request, OrderManager $orderManager)
     {
@@ -53,7 +53,7 @@ class BilletterieController extends Controller
             $orderManager->stepCheck(1);
 
             // Redirige vers la page des coordonnées
-            return $this->redirectToRoute('coordonnees');
+            return $this->redirectToRoute('vos-billets');
         }
 
         // Affiche la vue et les éléments nécessaire
@@ -63,7 +63,7 @@ class BilletterieController extends Controller
     }
 
     /**
-     * @Route("/coordonnees", name="coordonnees")
+     * @Route("/vos-billets", name="vos-billets")
      */
     public function coordonneesAction(Request $request, OrderManager $orderManager, SessionInterface $session) {
 
@@ -102,7 +102,7 @@ class BilletterieController extends Controller
     }
 
     /**
-     * @Route("/recapitulatif", name="recapitulatif")
+     * @Route("/recapitulatif-et-paiement", name="recapitulatif")
      */
     public function recapitulatifAction(OrderManager $orderManager, SessionInterface $session) {
 
@@ -121,12 +121,21 @@ class BilletterieController extends Controller
             // Mise en place des tarifs associés à l'âge du titulaire et récupération du tarif spéciale si il existe
             $specialRate = $orderManager->summaryAction();
 
+            if ($specialRate == 'error')
+            {
+                // Génération d'un message d'erreur
+                $session->getFlashBag()->add('notice', 'Un enfant de moins de 12 ans doit être accompagné d\'un adulte');
+
+                // Redirection vers la page coordonnees
+                return $this->redirectToRoute('vos-billets');
+            }
+
             // Affiche la vue et les éléments nécessaire
             return $this->render('ticket/summary.html.twig', array('specialRate' => $specialRate));
         }
 
         // Redirection vers la page coordonnees
-        return $this->redirectToRoute('coordonnees');
+        return $this->redirectToRoute('vos-billets');
     }
 
     /**
@@ -160,7 +169,7 @@ class BilletterieController extends Controller
             }
 
             // Génération d'un message d'erreur
-            $error = $session->getFlashBag()->add('notice', 'Une erreur s\'est produit avec le paiement, veuillez réessayer. Si le problème persiste, merci de nous contacter');
+            $error = $session->getFlashBag()->add('notice', 'appbundle.step.3.stripe.error');
 
             // Redirection vers la page de paiement
             return $this->redirectToRoute('recapitulatif', array('error' => $error));
