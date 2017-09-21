@@ -151,7 +151,7 @@ appbundle:
             Confirmation de votre réservation : retrouvez les informations importantes de votre réservation
         text.information.title: Confirmation de réservation
         text.information: |
-            Votre réservation a bien effectuée voici le votre numéro de confirmation : %token%
+            Votre réservation a bien été effectuée voici votre numéro de confirmation : %token%
             Vous allez recevoir un email avec vos e-billet d'ici quelques minutes, vous pouvez imprimer vos billets depuis cette page ou simplement présenter votre mail à l'accueil du Louvre."
         tickets: "Votre billet|Vos billets"
 
@@ -160,7 +160,7 @@ appbundle:
         text.information.title: Confirmation de réservation
         text.pres.redirect: Affichage de votre mail de confirmation
         text.information: |
-            Votre réservation a bien effectuée voici le votre numéro de confirmation : %token%
+            Votre réservation a bien été effectuée voici votre numéro de confirmation : %token%
             Vous pouvez imprimer vos billets depuis cette page ou simplement présenter ce mail à l'accueil du Louvre.
         text.reduced.rate: Pour toutes personnes bénéficiant du tarif réduit, un justificatif vous sera demandé, ne l'oubliez pas !
         tickets: "Votre billet|Vos billets"

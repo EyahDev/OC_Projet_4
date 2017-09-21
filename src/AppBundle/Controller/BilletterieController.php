@@ -135,7 +135,7 @@ class BilletterieController extends Controller
     /**
      * @Route("/paiement", name="paiement")
      */
-    public function paiementAction(OrderManager $orderManager, SessionInterface $session) {
+    public function paiementAction(OrderManager $orderManager, SessionInterface $session, Request $request) {
 
         // Vérification si la session a expiré
         if (!$session->isStarted()) {
@@ -156,7 +156,9 @@ class BilletterieController extends Controller
             if ($paiement) {
 
                 // Enregistrement de la commande et envoi du mail de confirmation
-                $orderManager->enregistrement();
+                if ($request->isMethod('POST')) {
+                    $orderManager->enregistrement();
+                }
 
                 // Redirection vers la confirmation
                 return $this->redirectToRoute('confirmation');
@@ -170,6 +172,35 @@ class BilletterieController extends Controller
         }
         // Redirection vers la page de paiement
         return $this->redirectToRoute('recapitulatif');
+    }
+
+    /**
+     * @Route("/sans-facturation", name="gratuit")
+     */
+    public function paiementFreeAction(OrderManager $orderManager, SessionInterface $session) {
+
+        // Vérification si la session a expiré
+        if (!$session->isStarted()) {
+            // Génération d'un message d'erreur
+            $error = $session->getFlashBag()->add('notice', 'session_expire.text');
+
+            // Redirection vers la première étape
+            return $this->redirectToRoute('homepage', array('error' => $error));
+        }
+
+        // Vérification si l'étape 3 est passé avec succès
+        if ($orderManager->getStepIsCheck(3)) {
+
+            // Enregistrement de la commande et envoi du mail de confirmation
+            $orderManager->enregistrement();
+
+            // Redirection vers la confirmation
+            return $this->redirectToRoute('confirmation');
+        }
+
+        // Redirection vers la page de paiement
+        return $this->redirectToRoute('recapitulatif');
+
     }
 
     /**

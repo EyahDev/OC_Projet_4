@@ -197,11 +197,6 @@ class OrderManager
         // Parcours de la variable de sessions et attribution des valeurs
         foreach ($order->getTickets() as $ticket)
         {
-            // Vérification de la présence d'un adulte dans les billets commandé
-            $adult = $this->isAdult($ticket->getAge());
-            if ($adult === true) {
-                $adultCount++;
-            }
 
             $rate = $this->rates->getPrice($ticket->getAge(), $ticket->getReducedPrice());
 
@@ -226,28 +221,12 @@ class OrderManager
             $total = $total + $ticketPrice;
 
         }
-        // Vérification si un adulte et présent dans la commande
-        if ($adultCount === 0) {
-            return 'error';
-        }
 
         $order->setPrice($total);
 
         $this->stepCheck(3);
 
         return $specialRate;
-    }
-
-    public function isAdult($birthday) {
-        // Calcul de l'âge
-        $now = new \DateTime();
-        $birthdayDate = $birthday;
-        $age = $now->diff($birthdayDate)->y;
-
-        if ($age >= 18) {
-            return true;
-        }
-        return false;
     }
 
     public function paiement() {
@@ -281,14 +260,18 @@ class OrderManager
 
     public function enregistrement() {
 
-        // Mise à jour de la commande avec les données POST
-        if ($this->request->isMethod('POST')) {
-
             // Récupération de la commande en session
             $order = $this->getOrder();
 
             //Récupération du token de paiement
-            $token = $this->request->get('stripeToken');
+            if ($order->getPrice() === 0) {
+                // Création d'un token pour la gratuité du billet
+                $generateToken = bin2hex(random_bytes(10));
+                $token = 'tok_'.$generateToken;
+            } else {
+                $token = $this->request->get('stripeToken');
+            }
+
 
             // Création de la date de paiement de la commande
             $date = new \DateTime();
@@ -322,7 +305,6 @@ class OrderManager
 
             // Validation de l'étape 4
             $this->stepCheck(4);
-        }
     }
 
     public function confirmationAction() {

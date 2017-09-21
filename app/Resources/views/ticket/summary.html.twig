@@ -108,22 +108,28 @@
         <div class="precedent">
             <a href="{{ path('vos-billets') }}"><button type="button" class="btnPrecedent">{{ 'appbundle.form.generic.prev'|trans }}</button></a>
         </div>
-        <form action="{{path('paiement')}}" method="POST">
-            <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-label="{{ 'appbundle.form.generic.payment'|trans }}"
-                    data-key="pk_test_UkrYg88qxXhhJYayypUNfFuk"
-                    data-email = "{{ app.session.get('CommandeLouvre').email }}"
-                    data-amount="{{ app.session.get('CommandeLouvre').price * 100 }}"
-                    data-name="{{ 'appbundle.step.3.stripe.louvre'|trans }}"
-                    data-description="{{ 'appbundle.step.3.stripe.text'|trans }}"
-                    data-image="{{ asset('img/logo-louvre.jpg') }}"
-                    data-locale="{{ app.request.locale }}"
-                    data-allow-remember-me="false"
-                    data-zip-code="false"
-                    data-currency="eur">
-            </script>
-        </form>
+        {% if app.session.get('CommandeLouvre').price == 0 %}
+            <div class="suivant">
+                <a href="{{ path('gratuit') }}"><button type="button" class="btnSuivant">{{'appbundle.form.generic.next'|trans}}</button></a>
+            </div>
+        {% else %}
+            <form action="{{path('paiement')}}" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-label="{{ 'appbundle.form.generic.payment'|trans }}"
+                        data-key="pk_test_UkrYg88qxXhhJYayypUNfFuk"
+                        data-email = "{{ app.session.get('CommandeLouvre').email }}"
+                        data-amount="{{ app.session.get('CommandeLouvre').price * 100 }}"
+                        data-name="{{ 'appbundle.step.3.stripe.louvre'|trans }}"
+                        data-description="{{ 'appbundle.step.3.stripe.text'|trans }}"
+                        data-image="{{ asset('img/logo-louvre.jpg') }}"
+                        data-locale="{{ app.request.locale }}"
+                        data-allow-remember-me="false"
+                        data-zip-code="false"
+                        data-currency="eur">
+                </script>
+            </form>
+        {% endif %}
         </div>
     </div>
 {% endblock %}
