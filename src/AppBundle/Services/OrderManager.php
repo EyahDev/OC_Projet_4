@@ -184,9 +184,6 @@ class OrderManager
         // Mise à 0 du total de la commande
         $total = 0;
 
-        // Mise à 0 du compteur d'adulte de la commande
-        $adultCount = 0;
-
         // Définition de la valeur de la remise spécial
         if ($order->getDuration() == "demi-journée") {
             $specialRate = 'demi-journée (-50%)';
