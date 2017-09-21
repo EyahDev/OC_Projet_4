@@ -191,16 +191,16 @@ class BilletterieController extends Controller
         // Vérification si l'étape 3 est passé avec succès
         if ($orderManager->getStepIsCheck(3)) {
 
-            // Enregistrement de la commande et envoi du mail de confirmation
-            $orderManager->enregistrement();
+            if ($orderManager->getOrder()->getPrice() == 0) {
+                // Enregistrement de la commande et envoi du mail de confirmation
+                $orderManager->enregistrement();
 
-            // Redirection vers la confirmation
-            return $this->redirectToRoute('confirmation');
+                // Redirection vers la confirmation
+                return $this->redirectToRoute('confirmation');
+            }
         }
-
         // Redirection vers la page de paiement
         return $this->redirectToRoute('recapitulatif');
-
     }
 
     /**
