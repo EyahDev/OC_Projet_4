@@ -32,6 +32,8 @@ framework:
     assets: ~
     php_errors:
         log: true
+    session:
+        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
 
 # Twig Configuration
 twig:

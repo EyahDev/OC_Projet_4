@@ -5,7 +5,6 @@ namespace Tests\AppBundle\Services;
 use AppBundle\Services\PricesManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-
 class PriceManagerTest extends KernelTestCase
 {
     /**

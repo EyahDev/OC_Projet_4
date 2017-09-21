@@ -1,10 +1,7 @@
 <?php
 namespace Tests\AppBundle\Controller;
 
-use AppBundle\Entity\OrderCustomer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 
 class billetterieControllerTest extends WebTestCase
 {
@@ -28,7 +25,7 @@ class billetterieControllerTest extends WebTestCase
         $client = self::createClient();
 
         // Définition de la route
-        $crawler = $client->request('GET', '/coordonnees');
+        $crawler = $client->request('GET', '/vos-billets');
 
         // Vérification si on a un retour 302
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
@@ -50,7 +47,7 @@ class billetterieControllerTest extends WebTestCase
         $client = self::createClient();
 
         // Définition de la route
-        $crawler = $client->request('GET', '/recapitulatif');
+        $crawler = $client->request('GET', '/recapitulatif-et-paiement');
 
         // Vérification si on a un retour 302
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
@@ -94,7 +91,7 @@ class billetterieControllerTest extends WebTestCase
         $client = self::createClient();
 
         // Définition de la route
-        $crawler = $client->request('GET', '/paiement');
+        $crawler = $client->request('GET', '/confirmation');
 
         // Vérification si on a un retour 302
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
