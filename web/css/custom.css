@@ -1,0 +1,544 @@
+/* Custom Responsive */
+
+@media (max-width: 991px) {
+    .containerFirstStepForm {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .flatpickr-calendar {
+        margin: auto;
+    }
+
+    .infoLouvre {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .textForm {
+        width: 90%
+    }
+
+    .stepNav {
+        padding: 0 15px;
+    }
+
+    select {
+        width: 90%
+    }
+
+    .secondStepForm, .thirdStep .fourthStep{
+        text-align: center;
+    }
+
+
+    .secondStepInfo h3, .thirdStep h3, .fourthStep h3{
+        text-align: center;
+    }
+
+    .secondStepInfo .infoLouvreText, .fourthStep, .thirdStep{
+        padding: 25px;
+    }
+
+
+    .containerFirstStepForm {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .infoLouvreText {
+        text-align: left;
+    }
+
+    .flatpickr-calendar {
+        margin: auto;
+    }
+}
+
+@media (min-width: 280px) {
+    input[type=email] {
+        width: 90%;
+    }
+
+    input[type=number] {
+        width: 90%;
+    }
+
+    .firstStepForm {
+        width: 100%;
+    }
+
+    .infoLouvre {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 460px) {
+    input[type=email] {
+        width: 50%;
+    }
+
+    input[type=number] {
+        width: 50%;
+    }
+
+    .textForm {
+        width: 24%
+    }
+
+    select {
+        width: 24%
+    }
+
+    .firstStepForm {
+        width: 100%;
+    }
+
+    .infoLouvre {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 991px) {
+
+    input[type=email] {
+        width: 75%;
+    }
+
+    input[type=number] {
+        width:75%;
+    }
+
+    .textForm {
+        width: 24%
+    }
+
+    select {
+        width: 24%
+    }
+
+    .firstStepForm {
+        width: 37%;
+    }
+
+    .infoLouvre {
+        width: 25%;
+    }
+
+}
+
+@media (min-width: 1199px) {
+
+    input[type=email] {
+        width: 75%;
+    }
+
+    input[type=number] {
+        width: 75%;
+    }
+
+    .textForm {
+        width: 24%
+    }
+
+
+    select {
+        width: 24%
+    }
+
+    .firstStepForm {
+        width: 37%;
+    }
+
+    .infoLouvre {
+        width: 25%;
+    }
+
+}
+
+/* Custom */
+
+::selection {
+    color: white;
+    background-color: #1ba39c;
+}
+
+
+.content-section {
+    padding-top: 50px;
+}
+
+#intro {
+    height: 370px;
+    background-image: url(../img/pres.jpg);
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 25px;
+}
+
+.col-lg-8 {
+    width: auto;
+}
+.col-lg-8 p{
+    font-size: 18px;
+}
+
+.col-lg-offset-2 {
+    margin-left: 0;
+}
+
+.MailLogo {
+    margin-bottom: 75px;
+}
+
+
+/* Billets édités */
+
+.billetsEdites {
+    display: inline-block;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    background-color: white;
+    border: 1px grey solid;
+    padding: 10px;
+    width: 270px;
+    min-height: 300px;
+}
+
+.logoLouvre, .codeBarre {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.codeBarre {
+    margin-top: 15px;
+}
+
+
+.textSMBillets, .textSMBilletsLeft {
+    font-size: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.textSMBilletsLeft {
+    text-align: left;
+}
+
+.textSMBillets {
+    font-size: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.textLGBillets {
+    line-height: 20px;
+    margin-bottom: 15px;
+}
+
+/* First Step */
+
+.flashBag {
+    border-radius: 0;
+    margin-bottom: 50px;
+}
+
+.containerFirstStepForm {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+}
+
+.infoLouvreText {
+    font-size: 16px;
+}
+
+.stepInfo {
+    text-align: center;
+}
+
+.titleForm {
+    margin-top: 50px;
+}
+
+.informationText {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+}
+
+.formCenter {
+    text-align: center;
+}
+
+/* Second Step */
+
+.secondStepInfo {
+    width: 100%;
+}
+
+/* Step Nav */
+
+.stepNav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.stepNav .stripe-button-el {
+    margin-left: auto;
+}
+
+.stepNav .stripe-button-el:not(:disabled):active, .stripe-button-el.active  {
+    background: none;
+}
+
+.stepNav .stripe-button-el:not(:disabled):active span, .stripe-button-el.active span {
+    background: #333;
+    background-image: none;
+
+}
+
+.stepNav .stripe-button-el span{
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    text-shadow: none;
+    position: inherit;
+    height: inherit;
+    line-height: inherit;
+    background-image: none;
+    background: none;
+    border-radius: 0;
+    width: 100px;
+    border: 1px solid black;
+    background-color: white;
+    letter-spacing: 2px;
+    padding: 10px;
+    box-shadow: 1px 0 0 #eee, -1px 0 0 #eee, 0 1px 0 #eee, 0 -1px 0 #eee, 0 3px 13px rgba(0,0,0,0.08);
+}
+
+.stepNav .stripe-button-el {
+    overflow: inherit;
+    display: inherit;
+    visibility: inherit;
+    background-image: none;
+    background-color: inherit;
+    border: 0;
+    padding: 0;
+    text-decoration: none;
+    box-shadow: none;
+    border-radius: inherit;
+}
+.stepNav .stripe-button-el span:hover {
+    background-color: #333;
+    border: 1px solid black;
+    color: #fff;
+}
+
+.suivantFirst {
+    margin-left: auto;
+}
+
+.suivant {
+    text-align: right;
+}
+
+.precedent {
+    text-align: left;
+}
+
+.btnPrecedent {
+    margin-right: 10px;
+    width: 110px;
+    border: 1px solid black;
+    background-color: white;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 1px 0 0 #eee, -1px 0 0 #eee, 0 1px 0 #eee, 0 -1px 0 #eee, 0 3px 13px rgba(0,0,0,0.08);
+}
+
+.btnSuivant {
+    width: 90px;
+    border: 1px solid black;
+    background-color: white;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 1px 0 0 #eee, -1px 0 0 #eee, 0 1px 0 #eee, 0 -1px 0 #eee, 0 3px 13px rgba(0,0,0,0.08);
+}
+
+/* Form */
+
+.formError {
+    border-radius: 0;
+    color: white;
+    border: 1px #b60109 solid;
+    background-color: #ff3a3a;
+}
+
+input[type=email], input[type=number], .textForm, select {
+    border: 1px solid black;
+    height: 43px;
+    background-color: white;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 1px 0 0 #eee, -1px 0 0 #eee, 0 1px 0 #eee, 0 -1px 0 #eee, 0 3px 13px rgba(0,0,0,0.08);
+}
+
+input[type=number]:focus,  input[type=email]:focus, .textForm:focus, select:focus {
+    border: 1px solid #1ba39c;
+    outline: 0;
+    outline: none;
+}
+
+.btnSuivant:hover, .btnPrecedent:hover, .btnRedirect:hover{
+    background-color: #333;
+    border: 1px solid black;
+    color: #fff;
+}
+
+.btn {
+    border: 1px solid #1a1a1a;
+    background-color: white;
+    display: inline-block;
+    padding: 10px;
+    margin-bottom: 15px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: background 400ms ease, color 400ms ease;
+    transition: background 400ms ease, color 400ms ease;
+}
+
+input[type="radio"].toggle {
+    display: none;
+}
+
+input[type="radio"].toggle + label {
+    cursor: pointer;
+    min-width: 150px;
+}
+
+input[type="radio"].toggle + label:after {
+    background: #1a1a1a;
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    -webkit-transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+    transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+    width: 100%;
+    z-index: -1;
+}
+input[type="radio"].toggle.radio-left + label {
+    border-right: 0;
+}
+input[type="radio"].toggle.radio-left + label:after {
+    left: 100%;
+}
+input[type="radio"].toggle.radio-left-right + label {
+    margin-left: -5px;
+}
+input[type="radio"].toggle.radio-left + label:after {
+    left: -100%;
+}
+input[type="radio"].toggle:checked + label {
+    cursor: default;
+    background-color: #1ba39c;
+    color: white;
+    -webkit-transition: color 200ms;
+    transition: color 200ms;
+}
+input[type="radio"].toggle:checked + label:after {
+    left: 0;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: #1ba39c;
+    color: white;
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.infoDuration {
+    font-size: 16px;
+    padding-top: 5px;
+    padding-left: 7px;
+}
+
+.infoTR {
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+
+/* Custom StepWizard */
+
+#stepblock {
+    width: 95%;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+.progress-indicator>li .stepWarning a:hover .bubble, .progress-indicator>li .stepWarning a:hover .bubble:after, .progress-indicator>li .stepWarning a:hover .bubble:before {
+    background-color: #edb10a;
+    border-color: #5a4304;
+}
+
+.progress-indicator>li .stepWarning a {
+    color: #6f6f6f;
+}
+
+.progress-indicator>li .stepCompleted a:hover .bubble, .progress-indicator>li .stepCompleted a:hover #bubble:after, .progress-indicator>li .stepCompleted a:hover .bubble:before {
+    background-color: #65d074;
+    border-color: #247830;
+}
+
+.progress-indicator>li:hover>.stepDisabled{
+    color: #bbb;
+}
+
+/* DatePicker */
+
+.flatpickr-day.selected, .flatpickr-day.startRange,
+.flatpickr-day.endRange, .flatpickr-day.selected.inRange,
+.flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange,
+.flatpickr-day.selected:focus, .flatpickr-day.startRange:focus,
+.flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay,
+.flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay,
+.flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay,
+.flatpickr-day.endRange.nextMonthDay {
+    background: #1ba39c;
+    border-color: #1ba39c;
+}
+
+span.flatpickr-day.today:not(.selected), span.flatpickr-day.prevMonthDay.today:not(.selected),
+span.flatpickr-day.nextMonthDay.today:not(.selected) {
+    border-bottom-color: #1ba39c;
+}
+
+span.flatpickr-day.today:not(.selected):hover, span.flatpickr-day.prevMonthDay.today:not(.selected):hover,
+span.flatpickr-day.nextMonthDay.today:not(.selected):hover {
+    border-color: #1ba39c;
+    background-color: #1ba39c;
+}

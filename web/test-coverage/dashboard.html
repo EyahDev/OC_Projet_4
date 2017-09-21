@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\Users\Adrien\Desktop\cours\Projet\Projet_4\src\AppBundle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href=".css/bootstrap.min.css" rel="stylesheet">
+  <link href=".css/nv.d3.min.css" rel="stylesheet">
+  <link href=".css/style.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src=".js/html5shiv.min.js"></script>
+  <script src=".js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="index.html">C:\Users\Adrien\Desktop\cours\Projet\Projet_4\src\AppBundle</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateMardiValidator.php.html#8">ContainsVisitDateMardiValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Tickets/ContainsTicketsSold.php.html#11">ContainsTicketsSold</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateMardi.php.html#11">ContainsVisitDateMardi</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateFerieValidator.php.html#8">ContainsVisitDateFerieValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateFerie.php.html#11">ContainsVisitDateFerie</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateDimancheValidator.php.html#8">ContainsVisitDateDimancheValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateDimanche.php.html#11">ContainsVisitDateDimanche</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateCloseHoursValidator.php.html#8">ContainsVisitDateCloseHoursValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateCloseHours.php.html#11">ContainsVisitDateCloseHours</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitCloseFeriesValidator.php.html#8">ContainsVisitCloseFeriesValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitCloseFeries.php.html#11">ContainsVisitCloseFeries</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Tickets/ContainsTicketsSoldValidator.php.html#9">ContainsTicketsSoldValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Duration/ContainsDurationValidator.php.html#8">ContainsDurationValidator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Duration/ContainsDuration.php.html#11">ContainsDuration</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/AgeExtension.php.html#6">AgeExtension</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/TicketRepository.php.html#11">TicketRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/RateRepository.php.html#11">RateRepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/TicketType.php.html#15">TicketType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/TicketSecondStepType.php.html#15">TicketSecondStepType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/OrderCustomerType.php.html#13">OrderCustomerType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/OrderCustomerSecondStepType.php.html#10">OrderCustomerSecondStepType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#14">Ticket</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#13">Rate</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#12">BilletterieController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#17">OrderManager</a></td><td class="text-right">19%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#15">OrderCustomer</a></td><td class="text-right">20%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Services/OrderManager.php.html#17">OrderManager</a></td><td class="text-right">931</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#12">BilletterieController</a></td><td class="text-right">338</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateCloseHoursValidator.php.html#8">ContainsVisitDateCloseHoursValidator</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitCloseFeriesValidator.php.html#8">ContainsVisitCloseFeriesValidator</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateFerieValidator.php.html#8">ContainsVisitDateFerieValidator</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Validator/Duration/ContainsDurationValidator.php.html#8">ContainsDurationValidator</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Validator/Tickets/ContainsTicketsSoldValidator.php.html#9">ContainsTicketsSoldValidator</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateDimancheValidator.php.html#8">ContainsVisitDateDimancheValidator</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateMardiValidator.php.html#8">ContainsVisitDateMardiValidator</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateMardiValidator.php.html#10"><abbr title="ContainsVisitDateMardiValidator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/TicketSecondStepType.php.html#51"><abbr title="TicketSecondStepType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#58"><abbr title="OrderManager::getOrder">getOrder</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/AgeExtension.php.html#29"><abbr title="AgeExtension::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/AgeExtension.php.html#17"><abbr title="AgeExtension::ageCalculate">ageCalculate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/AgeExtension.php.html#9"><abbr title="AgeExtension::getFilters">getFilters</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/TicketRepository.php.html#16"><abbr title="TicketRepository::getTickets">getTickets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/RateRepository.php.html#13"><abbr title="RateRepository::getPriceAndRate">getPriceAndRate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/TicketType.php.html#68"><abbr title="TicketType::getBlockPrefix">getBlockPrefix</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/TicketType.php.html#58"><abbr title="TicketType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/TicketType.php.html#20"><abbr title="TicketType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/TicketSecondStepType.php.html#20"><abbr title="TicketSecondStepType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#110"><abbr title="OrderManager::getStepIsCheck">getStepIsCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/OrderCustomerType.php.html#43"><abbr title="OrderCustomerType::getBlockPrefix">getBlockPrefix</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/OrderCustomerType.php.html#33"><abbr title="OrderCustomerType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/OrderCustomerType.php.html#18"><abbr title="OrderCustomerType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Type/OrderCustomerSecondStepType.php.html#15"><abbr title="OrderCustomerSecondStepType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#364"><abbr title="Ticket::getTokenTicket">getTokenTicket</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#352"><abbr title="Ticket::setTokenTicket">setTokenTicket</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#340"><abbr title="Ticket::getReducedPrice">getReducedPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#328"><abbr title="Ticket::setReducedPrice">setReducedPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#316"><abbr title="Ticket::getOrderCustomer">getOrderCustomer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#91"><abbr title="OrderManager::stepCheck">stepCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#136"><abbr title="OrderManager::secondStepAction">secondStepAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#45"><abbr title="BilletterieController::coordonneesAction">coordonneesAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitCloseFeriesValidator.php.html#10"><abbr title="ContainsVisitCloseFeriesValidator::getHolidays">getHolidays</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateMardi.php.html#15"><abbr title="ContainsVisitDateMardi::validatedBy">validatedBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateFerieValidator.php.html#44"><abbr title="ContainsVisitDateFerieValidator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateFerieValidator.php.html#10"><abbr title="ContainsVisitDateFerieValidator::getHolidays">getHolidays</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateFerie.php.html#15"><abbr title="ContainsVisitDateFerie::validatedBy">validatedBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateDimancheValidator.php.html#10"><abbr title="ContainsVisitDateDimancheValidator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateDimanche.php.html#15"><abbr title="ContainsVisitDateDimanche::validatedBy">validatedBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateCloseHoursValidator.php.html#10"><abbr title="ContainsVisitDateCloseHoursValidator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateCloseHours.php.html#15"><abbr title="ContainsVisitDateCloseHours::validatedBy">validatedBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitCloseFeriesValidator.php.html#29"><abbr title="ContainsVisitCloseFeriesValidator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitCloseFeries.php.html#15"><abbr title="ContainsVisitCloseFeries::validatedBy">validatedBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#175"><abbr title="OrderManager::summaryAction">summaryAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Tickets/ContainsTicketsSoldValidator.php.html#17"><abbr title="ContainsTicketsSoldValidator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Tickets/ContainsTicketsSoldValidator.php.html#13"><abbr title="ContainsTicketsSoldValidator::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Tickets/ContainsTicketsSold.php.html#15"><abbr title="ContainsTicketsSold::validatedBy">validatedBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Duration/ContainsDurationValidator.php.html#10"><abbr title="ContainsDurationValidator::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Validator/Duration/ContainsDuration.php.html#15"><abbr title="ContainsDuration::validatedBy">validatedBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#349"><abbr title="OrderManager::mailAction">mailAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#331"><abbr title="OrderManager::confirmationAction">confirmationAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#285"><abbr title="OrderManager::enregistrement">enregistrement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#256"><abbr title="OrderManager::paiement">paiement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#304"><abbr title="Ticket::setOrderCustomer">setOrderCustomer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#291"><abbr title="Ticket::getTickets">getTickets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#279"><abbr title="Ticket::setTickets">setTickets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#220"><abbr title="OrderCustomer::setOrderDate">setOrderDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#58"><abbr title="Rate::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#348"><abbr title="OrderCustomer::getAccess">getAccess</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#336"><abbr title="OrderCustomer::setAccess">setAccess</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#312"><abbr title="OrderCustomer::setDuration">setDuration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#288"><abbr title="OrderCustomer::setVisitDate">setVisitDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#276"><abbr title="OrderCustomer::getTickets">getTickets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#266"><abbr title="OrderCustomer::removeTicket">removeTicket</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#253"><abbr title="OrderCustomer::addTicket">addTicket</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#232"><abbr title="OrderCustomer::getOrderDate">getOrderDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#208"><abbr title="OrderCustomer::getOrderToken">getOrderToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#82"><abbr title="Rate::getMinAge">getMinAge</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#196"><abbr title="OrderCustomer::setOrderToken">setOrderToken</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#184"><abbr title="OrderCustomer::getPrice">getPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#172"><abbr title="OrderCustomer::setPrice">setPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#148"><abbr title="OrderCustomer::setNbTickets">setNbTickets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#124"><abbr title="OrderCustomer::setEmail">setEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/OrderCustomer.php.html#112"><abbr title="OrderCustomer::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#179"><abbr title="BilletterieController::affichageMailAction">affichageMailAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#152"><abbr title="BilletterieController::confirmationAction">confirmationAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#112"><abbr title="BilletterieController::paiementAction">paiementAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#84"><abbr title="BilletterieController::recapitulatifAction">recapitulatifAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#70"><abbr title="Rate::setMinAge">setMinAge</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#94"><abbr title="Rate::setMaxAge">setMaxAge</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#266"><abbr title="Ticket::getPrice">getPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#134"><abbr title="Ticket::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#254"><abbr title="Ticket::setPrice">setPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#242"><abbr title="Ticket::getRate">getRate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#230"><abbr title="Ticket::setRate">setRate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#218"><abbr title="Ticket::getCountry">getCountry</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#206"><abbr title="Ticket::setCountry">setCountry</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#194"><abbr title="Ticket::getAge">getAge</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#182"><abbr title="Ticket::setAge">setAge</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#170"><abbr title="Ticket::getLastName">getLastName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#158"><abbr title="Ticket::setLastName">setLastName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#146"><abbr title="Ticket::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Ticket.php.html#122"><abbr title="Ticket::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#195"><abbr title="Rate::getTickets">getTickets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#185"><abbr title="Rate::removeTicket">removeTicket</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#173"><abbr title="Rate::addTicket">addTicket</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#161"><abbr title="Rate::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#154"><abbr title="Rate::getPrice">getPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#142"><abbr title="Rate::setPrice">setPrice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#130"><abbr title="Rate::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#118"><abbr title="Rate::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Rate.php.html#106"><abbr title="Rate::getMaxAge">getMaxAge</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#38"><abbr title="OrderManager::createOrder">createOrder</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#18"><abbr title="BilletterieController::indexAction">indexAction</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#69"><abbr title="OrderManager::stepUncheck">stepUncheck</abbr></a></td><td class="text-right">75%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateCloseHoursValidator.php.html#10"><abbr title="ContainsVisitDateCloseHoursValidator::validate">validate</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#175"><abbr title="OrderManager::summaryAction">summaryAction</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#136"><abbr title="OrderManager::secondStepAction">secondStepAction</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#91"><abbr title="OrderManager::stepCheck">stepCheck</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#45"><abbr title="BilletterieController::coordonneesAction">coordonneesAction</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#112"><abbr title="BilletterieController::paiementAction">paiementAction</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#152"><abbr title="BilletterieController::confirmationAction">confirmationAction</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Validator/Duration/ContainsDurationValidator.php.html#10"><abbr title="ContainsDurationValidator::validate">validate</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Validator/Tickets/ContainsTicketsSoldValidator.php.html#17"><abbr title="ContainsTicketsSoldValidator::validate">validate</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#84"><abbr title="BilletterieController::recapitulatifAction">recapitulatifAction</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateFerieValidator.php.html#44"><abbr title="ContainsVisitDateFerieValidator::validate">validate</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#256"><abbr title="OrderManager::paiement">paiement</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitCloseFeriesValidator.php.html#29"><abbr title="ContainsVisitCloseFeriesValidator::validate">validate</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#38"><abbr title="OrderManager::createOrder">createOrder</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateFerieValidator.php.html#10"><abbr title="ContainsVisitDateFerieValidator::getHolidays">getHolidays</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateDimancheValidator.php.html#10"><abbr title="ContainsVisitDateDimancheValidator::validate">validate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitDateMardiValidator.php.html#10"><abbr title="ContainsVisitDateMardiValidator::validate">validate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Validator/VisitDate/ContainsVisitCloseFeriesValidator.php.html#10"><abbr title="ContainsVisitCloseFeriesValidator::getHolidays">getHolidays</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#285"><abbr title="OrderManager::enregistrement">enregistrement</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#110"><abbr title="OrderManager::getStepIsCheck">getStepIsCheck</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#58"><abbr title="OrderManager::getOrder">getOrder</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#179"><abbr title="BilletterieController::affichageMailAction">affichageMailAction</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Services/OrderManager.php.html#69"><abbr title="OrderManager::stepUncheck">stepUncheck</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Controller/BilletterieController.php.html#18"><abbr title="BilletterieController::indexAction">indexAction</abbr></a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 5.2.2</a> using <a href="https://secure.php.net/" target="_top">PHP 7.0.10</a> with <a href="https://xdebug.org/">Xdebug 2.5.4</a> and <a href="https://phpunit.de/">PHPUnit 6.3.0</a> at Sat Sep 16 13:43:35 UTC 2017.</small>
+    </p>
+   </footer>
+  </div>
+  <script src=".js/jquery.min.js" type="text/javascript"></script>
+  <script src=".js/bootstrap.min.js" type="text/javascript"></script>
+  <script src=".js/holder.min.js" type="text/javascript"></script>
+  <script src=".js/d3.min.js" type="text/javascript"></script>
+  <script src=".js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([23,0,2,1,0,0,0,0,0,0,0,3], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([95,0,0,0,0,0,1,0,2,0,0,9], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,0,"<a href=\"AppBundle.php.html#7\">AppBundle<\/a>"],[10.416666666667,21,"<a href=\"Controller\/BilletterieController.php.html#12\">BilletterieController<\/a>"],[20.588235294118,21,"<a href=\"Entity\/OrderCustomer.php.html#15\">OrderCustomer<\/a>"],[0,13,"<a href=\"Entity\/Rate.php.html#13\">Rate<\/a>"],[0,21,"<a href=\"Entity\/Ticket.php.html#14\">Ticket<\/a>"],[100,2,"<a href=\"Form\/Type\/OrderCustomerFirstStepType.php.html#14\">OrderCustomerFirstStepType<\/a>"],[0,1,"<a href=\"Form\/Type\/OrderCustomerSecondStepType.php.html#10\">OrderCustomerSecondStepType<\/a>"],[0,3,"<a href=\"Form\/Type\/OrderCustomerType.php.html#13\">OrderCustomerType<\/a>"],[0,2,"<a href=\"Form\/Type\/TicketSecondStepType.php.html#15\">TicketSecondStepType<\/a>"],[0,3,"<a href=\"Form\/Type\/TicketType.php.html#15\">TicketType<\/a>"],[100,0,"<a href=\"Repository\/OrderCustomerRepository.php.html#11\">OrderCustomerRepository<\/a>"],[0,1,"<a href=\"Repository\/RateRepository.php.html#11\">RateRepository<\/a>"],[0,1,"<a href=\"Repository\/TicketRepository.php.html#11\">TicketRepository<\/a>"],[0,3,"<a href=\"Services\/AgeExtension.php.html#6\">AgeExtension<\/a>"],[19.083969465649,41,"<a href=\"Services\/OrderManager.php.html#17\">OrderManager<\/a>"],[0,1,"<a href=\"Validator\/Duration\/ContainsDuration.php.html#11\">ContainsDuration<\/a>"],[0,4,"<a href=\"Validator\/Duration\/ContainsDurationValidator.php.html#8\">ContainsDurationValidator<\/a>"],[0,1,"<a href=\"Validator\/Tickets\/ContainsTicketsSold.php.html#11\">ContainsTicketsSold<\/a>"],[0,4,"<a href=\"Validator\/Tickets\/ContainsTicketsSoldValidator.php.html#9\">ContainsTicketsSoldValidator<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitCloseFeries.php.html#11\">ContainsVisitCloseFeries<\/a>"],[0,5,"<a href=\"Validator\/VisitDate\/ContainsVisitCloseFeriesValidator.php.html#8\">ContainsVisitCloseFeriesValidator<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitDateCloseHours.php.html#11\">ContainsVisitDateCloseHours<\/a>"],[0,7,"<a href=\"Validator\/VisitDate\/ContainsVisitDateCloseHoursValidator.php.html#8\">ContainsVisitDateCloseHoursValidator<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitDateDimanche.php.html#11\">ContainsVisitDateDimanche<\/a>"],[0,2,"<a href=\"Validator\/VisitDate\/ContainsVisitDateDimancheValidator.php.html#8\">ContainsVisitDateDimancheValidator<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitDateFerie.php.html#11\">ContainsVisitDateFerie<\/a>"],[0,5,"<a href=\"Validator\/VisitDate\/ContainsVisitDateFerieValidator.php.html#8\">ContainsVisitDateFerieValidator<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitDateMardi.php.html#11\">ContainsVisitDateMardi<\/a>"],[0,2,"<a href=\"Validator\/VisitDate\/ContainsVisitDateMardiValidator.php.html#8\">ContainsVisitDateMardiValidator<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[71.428571428571,3,"<a href=\"Controller\/BilletterieController.php.html#18\">BilletterieController::indexAction<\/a>"],[0,5,"<a href=\"Controller\/BilletterieController.php.html#45\">BilletterieController::coordonneesAction<\/a>"],[0,3,"<a href=\"Controller\/BilletterieController.php.html#84\">BilletterieController::recapitulatifAction<\/a>"],[0,4,"<a href=\"Controller\/BilletterieController.php.html#112\">BilletterieController::paiementAction<\/a>"],[0,4,"<a href=\"Controller\/BilletterieController.php.html#152\">BilletterieController::confirmationAction<\/a>"],[0,2,"<a href=\"Controller\/BilletterieController.php.html#179\">BilletterieController::affichageMailAction<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#112\">OrderCustomer::getId<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#124\">OrderCustomer::setEmail<\/a>"],[100,1,"<a href=\"Entity\/OrderCustomer.php.html#136\">OrderCustomer::getEmail<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#148\">OrderCustomer::setNbTickets<\/a>"],[100,1,"<a href=\"Entity\/OrderCustomer.php.html#160\">OrderCustomer::getNbTickets<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#172\">OrderCustomer::setPrice<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#184\">OrderCustomer::getPrice<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#196\">OrderCustomer::setOrderToken<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#208\">OrderCustomer::getOrderToken<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#220\">OrderCustomer::setOrderDate<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#232\">OrderCustomer::getOrderDate<\/a>"],[100,1,"<a href=\"Entity\/OrderCustomer.php.html#240\">OrderCustomer::__construct<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#253\">OrderCustomer::addTicket<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#266\">OrderCustomer::removeTicket<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#276\">OrderCustomer::getTickets<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#288\">OrderCustomer::setVisitDate<\/a>"],[100,1,"<a href=\"Entity\/OrderCustomer.php.html#300\">OrderCustomer::getVisitDate<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#312\">OrderCustomer::setDuration<\/a>"],[100,1,"<a href=\"Entity\/OrderCustomer.php.html#324\">OrderCustomer::getDuration<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#336\">OrderCustomer::setAccess<\/a>"],[0,1,"<a href=\"Entity\/OrderCustomer.php.html#348\">OrderCustomer::getAccess<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#58\">Rate::getId<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#70\">Rate::setMinAge<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#82\">Rate::getMinAge<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#94\">Rate::setMaxAge<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#106\">Rate::getMaxAge<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#118\">Rate::setName<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#130\">Rate::getName<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#142\">Rate::setPrice<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#154\">Rate::getPrice<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#161\">Rate::__construct<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#173\">Rate::addTicket<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#185\">Rate::removeTicket<\/a>"],[0,1,"<a href=\"Entity\/Rate.php.html#195\">Rate::getTickets<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#122\">Ticket::getId<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#134\">Ticket::setName<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#146\">Ticket::getName<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#158\">Ticket::setLastName<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#170\">Ticket::getLastName<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#182\">Ticket::setAge<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#194\">Ticket::getAge<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#206\">Ticket::setCountry<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#218\">Ticket::getCountry<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#230\">Ticket::setRate<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#242\">Ticket::getRate<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#254\">Ticket::setPrice<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#266\">Ticket::getPrice<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#279\">Ticket::setTickets<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#291\">Ticket::getTickets<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#304\">Ticket::setOrderCustomer<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#316\">Ticket::getOrderCustomer<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#328\">Ticket::setReducedPrice<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#340\">Ticket::getReducedPrice<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#352\">Ticket::setTokenTicket<\/a>"],[0,1,"<a href=\"Entity\/Ticket.php.html#364\">Ticket::getTokenTicket<\/a>"],[100,1,"<a href=\"Form\/Type\/OrderCustomerFirstStepType.php.html#19\">OrderCustomerFirstStepType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/OrderCustomerFirstStepType.php.html#39\">OrderCustomerFirstStepType::anonymousFunction:39#321<\/a>"],[0,1,"<a href=\"Form\/Type\/OrderCustomerSecondStepType.php.html#15\">OrderCustomerSecondStepType::buildForm<\/a>"],[0,1,"<a href=\"Form\/Type\/OrderCustomerType.php.html#18\">OrderCustomerType::buildForm<\/a>"],[0,1,"<a href=\"Form\/Type\/OrderCustomerType.php.html#33\">OrderCustomerType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/Type\/OrderCustomerType.php.html#43\">OrderCustomerType::getBlockPrefix<\/a>"],[0,1,"<a href=\"Form\/Type\/TicketSecondStepType.php.html#20\">TicketSecondStepType::buildForm<\/a>"],[0,1,"<a href=\"Form\/Type\/TicketSecondStepType.php.html#51\">TicketSecondStepType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/Type\/TicketType.php.html#20\">TicketType::buildForm<\/a>"],[0,1,"<a href=\"Form\/Type\/TicketType.php.html#58\">TicketType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/Type\/TicketType.php.html#68\">TicketType::getBlockPrefix<\/a>"],[0,1,"<a href=\"Repository\/RateRepository.php.html#13\">RateRepository::getPriceAndRate<\/a>"],[0,1,"<a href=\"Repository\/TicketRepository.php.html#16\">TicketRepository::getTickets<\/a>"],[0,1,"<a href=\"Services\/AgeExtension.php.html#9\">AgeExtension::getFilters<\/a>"],[0,1,"<a href=\"Services\/AgeExtension.php.html#17\">AgeExtension::ageCalculate<\/a>"],[0,1,"<a href=\"Services\/AgeExtension.php.html#29\">AgeExtension::getName<\/a>"],[100,1,"<a href=\"Services\/OrderManager.php.html#27\">OrderManager::__construct<\/a>"],[50,6,"<a href=\"Services\/OrderManager.php.html#38\">OrderManager::createOrder<\/a>"],[0,2,"<a href=\"Services\/OrderManager.php.html#58\">OrderManager::getOrder<\/a>"],[75,5,"<a href=\"Services\/OrderManager.php.html#69\">OrderManager::stepUncheck<\/a>"],[0,5,"<a href=\"Services\/OrderManager.php.html#91\">OrderManager::stepCheck<\/a>"],[0,2,"<a href=\"Services\/OrderManager.php.html#110\">OrderManager::getStepIsCheck<\/a>"],[100,1,"<a href=\"Services\/OrderManager.php.html#120\">OrderManager::firstStepAction<\/a>"],[0,6,"<a href=\"Services\/OrderManager.php.html#136\">OrderManager::secondStepAction<\/a>"],[0,6,"<a href=\"Services\/OrderManager.php.html#175\">OrderManager::summaryAction<\/a>"],[0,3,"<a href=\"Services\/OrderManager.php.html#256\">OrderManager::paiement<\/a>"],[0,2,"<a href=\"Services\/OrderManager.php.html#285\">OrderManager::enregistrement<\/a>"],[0,1,"<a href=\"Services\/OrderManager.php.html#331\">OrderManager::confirmationAction<\/a>"],[0,1,"<a href=\"Services\/OrderManager.php.html#349\">OrderManager::mailAction<\/a>"],[0,1,"<a href=\"Validator\/Duration\/ContainsDuration.php.html#15\">ContainsDuration::validatedBy<\/a>"],[0,4,"<a href=\"Validator\/Duration\/ContainsDurationValidator.php.html#10\">ContainsDurationValidator::validate<\/a>"],[0,1,"<a href=\"Validator\/Tickets\/ContainsTicketsSold.php.html#15\">ContainsTicketsSold::validatedBy<\/a>"],[0,1,"<a href=\"Validator\/Tickets\/ContainsTicketsSoldValidator.php.html#13\">ContainsTicketsSoldValidator::__construct<\/a>"],[0,3,"<a href=\"Validator\/Tickets\/ContainsTicketsSoldValidator.php.html#17\">ContainsTicketsSoldValidator::validate<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitCloseFeries.php.html#15\">ContainsVisitCloseFeries::validatedBy<\/a>"],[0,2,"<a href=\"Validator\/VisitDate\/ContainsVisitCloseFeriesValidator.php.html#10\">ContainsVisitCloseFeriesValidator::getHolidays<\/a>"],[0,3,"<a href=\"Validator\/VisitDate\/ContainsVisitCloseFeriesValidator.php.html#29\">ContainsVisitCloseFeriesValidator::validate<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitDateCloseHours.php.html#15\">ContainsVisitDateCloseHours::validatedBy<\/a>"],[0,7,"<a href=\"Validator\/VisitDate\/ContainsVisitDateCloseHoursValidator.php.html#10\">ContainsVisitDateCloseHoursValidator::validate<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitDateDimanche.php.html#15\">ContainsVisitDateDimanche::validatedBy<\/a>"],[0,2,"<a href=\"Validator\/VisitDate\/ContainsVisitDateDimancheValidator.php.html#10\">ContainsVisitDateDimancheValidator::validate<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitDateFerie.php.html#15\">ContainsVisitDateFerie::validatedBy<\/a>"],[0,2,"<a href=\"Validator\/VisitDate\/ContainsVisitDateFerieValidator.php.html#10\">ContainsVisitDateFerieValidator::getHolidays<\/a>"],[0,3,"<a href=\"Validator\/VisitDate\/ContainsVisitDateFerieValidator.php.html#44\">ContainsVisitDateFerieValidator::validate<\/a>"],[0,1,"<a href=\"Validator\/VisitDate\/ContainsVisitDateMardi.php.html#15\">ContainsVisitDateMardi::validatedBy<\/a>"],[0,2,"<a href=\"Validator\/VisitDate\/ContainsVisitDateMardiValidator.php.html#10\">ContainsVisitDateMardiValidator::validate<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ 'appbundle.step.step.1'|trans }}{% endblock %}
+
+{% block flash %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info flashBag">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message|trans }}</strong>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block stepwizard %}
+    <div class="row">
+        <ul class="progress-indicator">
+            {# Step 1 #}
+            <li class="warning"><div class="stepWarning"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</a></div></li>
+
+            {# Step 2 #}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</div></li>
+
+            {# Step 3 #}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</div></li>
+
+            {# Step 4 #}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
+
+        </ul>
+    </div>
+{% endblock %}
+
+{% block informationTitle %}
+    {{ 'appbundle.step.1.pres.title'|trans }}
+{% endblock %}
+
+{% block informationText %}
+    {{ 'appbundle.step.1.pres.step'|trans }}
+{% endblock %}
+
+{% block form %}
+    {{ include('ticket/form/firststepform.html.twig') }}
+{% endblock %}

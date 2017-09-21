@@ -1,0 +1,135 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ 'appbundle.step.step.3'|trans }}{% endblock %}
+
+{% block flash %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger formError">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message|trans }}</strong>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block stepwizard %}
+    <div class="row">
+        <ul class="progress-indicator">
+            {# Step 1 #}
+            <li class="completed"><div class="stepCompleted"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</a></div></li>
+
+            {# Step 2 #}
+            <li class="completed"><div class="stepCompleted"><a href="{{ path('vos-billets')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</a></div></li>
+
+            {# Step 3 #}
+            <li class="warning"><div class="stepWarning"><a href="{{ path('recapitulatif')}}"><span class="bubble" id="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</a></div></li>
+
+            {# Step 4 #}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
+
+        </ul>
+    </div>
+{% endblock %}
+
+{% block informationTitle %}
+    {{ 'appbundle.step.3.pres.title'|trans }}
+{% endblock %}
+
+{% block informationText %}
+    {{ 'appbundle.step.3.pres.step'|trans }}
+{% endblock %}
+
+{% block form %}
+    <div class="thirdStep">
+
+        <h3>{{ 'appbundle.step.3.text.information.title'|trans }}</h3>
+
+        <p class="infoLouvreText">
+            {{ 'appbundle.step.3.text.information'|trans({
+                '%date%': app.session.get('CommandeLouvre').visitDate|date('d/m/Y'),
+                '%duration%': app.session.get('CommandeLouvre').duration|trans,
+                '%access%': app.session.get('CommandeLouvre').access|trans }
+            )}}
+        </p>
+
+        <h3>{{ 'appbundle.step.3.tickets'|transchoice(app.session.get('CommandeLouvre').nbTickets) }}</h3>
+        <div class="table-responsive-vertical shadow-z-1">
+            <table id="table" class="table table-hover table-mc-light-blue">
+                <thead>
+                <tr>
+                    <th>{{ 'appbundle.step.3.tickets.table.ticket'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.tickets.table.titu'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.tickets.table.age'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.tickets.table.rate'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.tickets.table.special.rate'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.tickets.table.price'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ticket in app.session.get('CommandeLouvre').tickets %}
+                    <tr>
+                        <td data-title="{{ 'appbundle.step.3.tickets.table.ticket'|trans }}">{{ loop.index }}</td>
+                        <td data-title="{{ 'appbundle.step.3.tickets.table.titu'|trans }}">{{ ticket.name }} {{ ticket.lastName }}</td>
+                        <td data-title="{{ 'appbundle.step.3.tickets.table.age'|trans }}">{{ ticket.age|age }} {{ 'appbundle.step.3.tickets.table.tickets.content.age'|trans }}</td>
+                        <td data-title="{{ 'appbundle.step.3.tickets.table.rate'|trans }}">{{ ticket.rate|trans }}</td>
+                        <td data-title="{{ 'appbundle.step.3.tickets.table.special.rate'|trans }}">{{ specialRate|trans }}</td>
+                        <td data-title="{{ 'appbundle.step.3.tickets.table.price'|trans }}">{{ ticket.price }} €</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Total</h3>
+        <div class="table-responsive-vertical shadow-z-1">
+            <table id="table" class="table table-hover table-mc-light-blue">
+                <thead>
+                <tr>
+                    <th>{{ 'appbundle.step.3.total.table.visite.date'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.total.table.access'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.total.table.duration'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.total.table.nb.tickets'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.total.table.special.rate'|trans }}</th>
+                    <th>{{ 'appbundle.step.3.total.table.total'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-title="{{ 'appbundle.step.3.total.table.visite.date'|trans }}">{{ app.session.get('CommandeLouvre').visitDate|date('d/m/Y') }}</td>
+                        <td data-title="{{ 'appbundle.step.3.total.table.access'|trans }}">{{ 'appbundle.step.3.total.table.total.content.access'|trans }} {{ app.session.get('CommandeLouvre').duration|trans }}</td>
+                        <td data-title="{{ 'appbundle.step.3.total.table.duration'|trans }}">{{ 'appbundle.step.3.total.table.total.content.duration'|trans }} {{ app.session.get('CommandeLouvre').access|trans }}</td>
+                        <td data-title="{{ 'appbundle.step.3.total.table.nb.tickets'|trans }}">{{ app.session.get('CommandeLouvre').nbTickets }}</td>
+                        <td data-title="{{ 'appbundle.step.3.total.table.special.rate'|trans }}">{{ specialRate|trans }}</td>
+                        <td data-title="{{ 'appbundle.step.3.total.table.total'|trans }}">{{ app.session.get('CommandeLouvre').price }} €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="stepNav">
+        <div class="precedent">
+            <a href="{{ path('vos-billets') }}"><button type="button" class="btnPrecedent">{{ 'appbundle.form.generic.prev'|trans }}</button></a>
+        </div>
+        {% if app.session.get('CommandeLouvre').price == 0 %}
+            <div class="suivant">
+                <a href="{{ path('gratuit') }}"><button type="button" class="btnSuivant">{{'appbundle.form.generic.next'|trans}}</button></a>
+            </div>
+        {% else %}
+            <form action="{{path('paiement')}}" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-label="{{ 'appbundle.form.generic.payment'|trans }}"
+                        data-key="pk_test_UkrYg88qxXhhJYayypUNfFuk"
+                        data-email = "{{ app.session.get('CommandeLouvre').email }}"
+                        data-amount="{{ app.session.get('CommandeLouvre').price * 100 }}"
+                        data-name="{{ 'appbundle.step.3.stripe.louvre'|trans }}"
+                        data-description="{{ 'appbundle.step.3.stripe.text'|trans }}"
+                        data-image="{{ asset('img/logo-louvre.jpg') }}"
+                        data-locale="{{ app.request.locale }}"
+                        data-allow-remember-me="false"
+                        data-zip-code="false"
+                        data-currency="eur">
+                </script>
+            </form>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

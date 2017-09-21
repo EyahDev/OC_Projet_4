@@ -1,0 +1,50 @@
+validator:
+    step.1:
+        mail:
+            same: Les adresses mails ne sont pas identiques, veuillez vérifier.
+            valid: Veuillez choisir une date valide.
+            not_blank: Veuillez renseigner votre adresse email.
+        tickets:
+            greater: Veuillez choisir au moins 1 billet.
+            lesser: Si vous souhaitez réserver plus de 10 billets, veuillez nous contacter.
+            not_blank: Veuillez choisir un nombre de billet valide.
+            valid: Veuillez choisir un nombre de billet valide.
+        visit.date:
+            not_blank: Veuillez choisir une date valide.
+            greater: Veuillez choisir une date supérieure à la date du jour.
+            close.feries: Le musée est fermé ce jour férié, veuillez choisir une autre date.
+            close.hours: Le musée est actuellement fermé, veuillez choisir une autre date.
+            sunday: La vente de billet est désactivée le dimanche, veuillez choisir une autre date ou vous déplacer directement au musée.
+            ferie: La vente de billet est désactivée les jours fériés, veuillez choisir une autre date ou vous déplacer directement au musée.
+            tuesday: Le musée est fermé le mardi, veuillez saisir une autre date.
+            valid: Veuillez choisir une date valide.
+            tickets: Le musée a depassé sa capacité d'accueil pour la journée, veuillez choisir une autre date.
+        duration:
+            not_blank: Veuillez choisir un horaire d'accès.
+            contains: |
+                Il est plus de 14h, veuillez choisir l'horaire d'accès : demi-journée.
+            valid: Veuillez choisir un horaire d'accès valide.
+
+    step.2:
+        lastname:
+            not_blank: Veuillez renseigner un nom valide.
+            short: Votre nom doit contenir au moins {{ limit }} caractères.
+            long: Votre nom doit contenir au maximum {{ limit }} caractères.
+            string: Votre nom ne peut pas contenir de chiffres.
+        name:
+            not_blank: Veuillez renseigner un prénom valide.
+            short: Votre prénom doit contenir au moins {{ limit }} caractères.
+            long: Votre prénom doit contenir au maximum {{ limit }} caractères.
+            string: Votre prénom ne peut pas contenir de chiffres.
+        age:
+            not_blank: Veuillez saisir une date de naissance valide.
+            lesser: Veuillez saisir une date de naissance valide.
+            valid: Veuillez saisir une date de naissance valide.
+            contains: Veuillez saisir une date de naissance valide.
+        country:
+            not_blank: Veuillez choisir un pays valide.
+            country: Veuillez choisir un pays valide.
+            valid: Veuillez choisir un pays valide.
+
+    step.3:
+        payment: Une erreur s'est produit avec le paiement, veuillez réessayer. Si le problème persiste, merci de nous contacter.

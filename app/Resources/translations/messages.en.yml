@@ -1,0 +1,191 @@
+Next: Next
+mail@exemple.com: mail@exemple.com
+Repeat your email address: Repeat your email address
+
+journée: full day
+9h:	9:00 am
+Aucune: None
+
+Gratuit: Free
+Enfant: Children
+Normal: Normal
+Sénior: Senior
+Réduit: Reduced ticket
+
+demi-journée (-50%): half-day (-50%)
+demi-journée: half-day
+14h: 2:00 pm
+
+
+error_404:
+    title: Error 404
+    text: Oops, the page you requested is not available !
+    redirect: Return to home page
+
+error:
+    title: Error
+    text: An error has occurred please try again later
+    redirect: Return to home page
+
+
+session_expire:
+    text: Sorry, your session has expired due to inactivity.
+
+appbundle:
+    nav:
+        informations: Practical information
+        visites: Visits
+        expositions: Exhibitions
+        oeuvres: Work
+        arts: Arts
+        billetterie: Tickets
+
+    pres.billetterie:
+        title: Tickets
+        pres.section: Purchase tickets
+
+    step:
+        step.1: Your visit
+        step.2: Your tickets
+        step.3: Order summary and payment
+        step.4: Confirmation
+
+    step.wizard:
+        step.1: Your visit
+        step.2: Your tickets
+        step.3: Order summary and payment
+        step.4: confirmation
+
+    footer: edited by
+
+    ticket: ticket
+
+    form.generic:
+        next: Next
+        prev: Previous
+        payment: Payment
+
+    step.1:
+        pres.title: Your visit
+        pres.step: Choose a date, an access time and a number of tickets
+        text.information:
+            first: |
+                The Louvre museum is open every day, except Tuesdays , 1st January, 1st May and the 25th of December, from 9:00 a.m. to 6:00 pm, until 9:45 pm on Wednesdays and Fridays except on public holidays.
+                Rooms close at 5:30 pm and at 9:30 pm on Wednesdays and Fridays
+            second:
+                Due to a large number of visitors on Sundays and public holidays, it is not possible to book online. Tickets can be purchased at the museum ticket windows.
+        form.title:
+            email: Email address
+            billets: Number of tickets
+            visitDate: Date of visit
+            informations: Practical info
+        form.placeholder:
+            email.first: mail@exemple.com
+            email.second: Repeat your email address
+            duration.first: Full day
+            duration.text.first: Museum access from 9:00 am.
+            duration.second: Half-day
+            duration.text.second: Museum access from 2:00 pm.
+
+    step.2:
+        pres.title: Your tickets
+        pres.step: Enter the personnal information for each ticket (Lastname, name, date of birth, nationality)
+        text.information.first.title: Your order
+        text.information.first: You plan to visit the Louvre on %date% at  %duration%. Access to the museum will be from %access%.
+        text.information.second.title: Practical info
+        text.information.second: |
+            The ticket purchased online is time-stamped and nominative, an identity document may be demanded.
+            It is valid only for the chosen service, date and time. It is not a queue jump but gives access to the pyramid between 9.00 am and 2 pm for a full day ticket and between 2 pm and 5 pm, and up to 8.45 pm on Wednesdays and Fridays pour a half-day ticket.
+            If the holder of the print@home ticket does not arrive within the allocated time slot for admission to the pyramid, they are subject to the same admission and waiting conditions as visitors without tickets
+        form.placeholder:
+            name: Name
+            lastname: Last name
+            birthday.date: Date of birth (DD/MM/YYYY)
+            country: -- Nationality --
+            reduced.price: Reduced fare
+            reduced.price.message: For students, museum employees, job seekeers and military men, a valid ID or proof of entitlement will be required.
+            year: Year
+            month: Month
+            day: Day
+        adult: A child must be accompanied by an adult.
+
+    step.3:
+        pres.title: Order summary and payment
+        pres.step: Summary and payment of your order
+        text.information.title: Your order
+        text.information: You plan to visit the Louvre on %date% at  %duration%. Access to the museum will be from %access%.
+        tickets: "Your ticket|Your tickets"
+        tickets.table:
+            ticket: Ticket
+            titu: Ticket holder
+            age: Age
+            rate: Rate
+            special.rate: Special rate
+            price: price
+
+            tickets.content:
+                age: years old
+                rate: Reduced ticket
+                special.rate: None
+
+        total.table:
+            visite.date: Visit date
+            duration: Duration
+            access: Access
+            nb.tickets: Number of tickets
+            special.rate: Special rate
+            total: total price
+
+            total.content:
+                access: At
+                duration: From
+                special.rate: None
+        stripe:
+            text: Payment of your tickets
+            error: An error occurred with the payment, please try again. If the light persists, please contact us.
+            louvre: The Louvre museum
+    step.4:
+        pres.title: Confirmation
+        pres.step: |
+            Confirmation of your order : find below the necessary information
+        text.information.title: Order confirmation
+        text.information: |
+            Your reservation/order has been made, your reservation number is %token%.
+            You will receive an email with your print@home tickets within a few minutes. You can print your tickets from this webpage or show your email at the museum front desk.
+        tickets: "Your ticket|Your tickets"
+
+    mail:
+        redirect: if this message doesn't display properly, click here
+        text.information.title: Order confirmation
+        text.pres.redirect: Confirmation mail display
+        text.information: |
+            Your reservation/order has been made, your reservation number is %token%.
+            You can print your tickets from this webpage or show this email at the museum front desk.
+        text.reduced.rate: Those with a reduced ticket, a valid ID or proof of entitlement will be required, do not forget it !
+        tickets: "Your ticket|Your tickets"
+        text.important.title: Vigipirate
+        text.important: |
+            Following the terror attacks in Paris on November 13, 2015, the Musée du Louvre is strictly applying the security measures decided by the French authorities to ensure visitor safety, while remaining open as usual.
+            It is strongly recommended not to bring suitcases and luggage to the museum.
+            Only luggage not exceeding 55 x 35 x 20 cm (21.5 x 13.5 x 7.5 inches) can be accepted and must be placed in the lockers after being checked.
+            All visitors must comply with the security checks. Please accept our apologies for any inconvenience or delay caused by the extra security checks at the entrances.
+            In the event of an incident, visitors must vacate the danger zone, alert our security staff and follow their instructions. Visitors may be confined or evacuated to a secure area while waiting for the police to arrive.
+        text.advices.title: Conseils de prudence
+        text.advices: |
+            Pickpockets may be present in the museum.
+
+            They operate in crowded areas while you are looking at or taking pictures of the artworks.
+
+            Please follow these rules:
+
+            • Keep your bags closed and hold them in front of you
+            • Do not keep your money on display
+            • Divide up your cash and keep it in several different inside pockets or in different compartments of your bag
+            • Do not put your wallet in your back pocket
+            • Do not follow the advice of strangers at ticket machines
+            • Pay attention to your bags and pockets while taking photos
+            • In the event of a problem, contact a security officer for assistance
+
+            Thank you for reading this prevention message.
+
+            We hope you enjoy your visit to the Louvre.

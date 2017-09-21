@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="FR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Projet Openclassrooms : Réaliser un backend pour un client">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="author" content="Adrien Desmet">
+        <title>Musée du Louvre - {% block title %}{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon" />
+
+            <!-- Bootstrap Core CSS -->
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+            <!-- DatePicker -->
+            {#<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">#}
+            <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
+
+            <!-- StepWizard -->
+            <link href="{{asset('stepwizard/progress-wizard.min.css')}}" rel="stylesheet">
+
+            <!-- Theme CSS -->
+            <link href="{{asset('css/theme.css')}}" rel="stylesheet">
+
+            <!-- Custom CSS -->
+            <link href="{{asset('css/custom.css')}}" rel="stylesheet" type="text/css">
+            <link href="{{asset('css/table.css')}}" rel="stylesheet" type="text/css">
+
+            <!-- Custom Fonts -->
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic" rel="stylesheet" type="text/css">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        {% endblock %}
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="{{ path('homepage')}}">
+                    LOUVRE</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">{{ 'appbundle.nav.informations'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ 'appbundle.nav.visites'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ 'appbundle.nav.expositions'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ 'appbundle.nav.oeuvres'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ 'appbundle.nav.arts'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('homepage')}}">{{ 'appbundle.nav.billetterie'|trans }}</a>
+                    </li>
+                    <li>
+                        {% if app.request.locale == 'fr' %}
+                            <a href="{{ path('setlocale', {'_locale': 'en'}) }}">EN</a>
+                        {% else %}
+                            <a href="{{ path('setlocale', {'_locale': 'fr'}) }}">FR</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Intro Header -->
+    <header class="intro" id="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <a href="#">
+                            <h1 class="brand-heading">{{ 'appbundle.pres.billetterie.title'|trans }}</h1>
+                            <p class="intro-text">
+                                {{ 'appbundle.pres.billetterie.pres.section'|trans }}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Billetterie Section -->
+    <section id="page-sample">
+        <div class="container content-section text-left">
+                {% block flash %}
+                {% endblock %}
+            <div class="row" id="stepblock">
+                {% block stepwizard %}
+                {% endblock %}
+                <hr/>
+                <div class="stepInfo" style="text-align: center">
+                    <h2 class="text-center">
+                        {% block informationTitle %}
+                        {% endblock %}
+                    </h2>
+                    <p class="informationText">
+                        {% block informationText %}
+                        {% endblock %}
+                    </p>
+                </div>
+                <hr/>
+            </div>
+
+            {% block form %}
+
+            {% endblock %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="credits">
+                Copyright &copy; <a href="http://www.adriendesmet.com">Adrien Desmet</a> - 2017<br/>
+                "Aries" Template by WowThemes.net {{ 'appbundle.footer'|trans }} <a href="http://www.adriendesmet.com">Adrien Desmet</a>
+            </p>
+        </div>
+    </footer>
+
+    {% block javascripts %}
+        <!-- jQuery -->
+        <script src="{{asset('js/jquery.js')}}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+        <!-- Plugin JavaScript -->
+        <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="{{asset('js/theme.js')}}"></script>
+
+        <!-- FlatPickr-->
+        <script src="https://unpkg.com/flatpickr"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+
+        <!-- Custom -->
+        <script src="{{asset('js/custom.js')}}"></script>
+
+        <script>
+            // Fonctionnement du calendrier FlatPickr
+            $(".datepicker").flatpickr({
+                {% if app.request.locale == 'fr' %}
+                    locale: "{{ app.request.locale }}",
+                {% else %}
+                    locale: {
+                        'firstDayOfWeek': 1
+                    },
+                {% endif %}
+                inline: true,
+                minDate: 'today',
+                disable: [
+                    function(date) {
+                        return (date.getDay() === 2 || date.getDay() === 0);
+                    },
+                    function(date) {
+                        // Récupération de l'année
+                        var years = date.getFullYear();
+
+                        // Récupération d'un tableau de jours fériés
+                        var holidays = JoursFeries(years);
+                        var ret = false;
+
+                        holidays.forEach(function(test) {
+                            if(test.getTime() === date.getTime()) {
+                                console.log(test);
+                                ret = true;
+                            }
+                        });
+                        return ret;
+                    }]
+            });
+
+            // Ajout d'une information lors d'une coche sur tarif réduit
+            $('input:checkbox').change(
+                function(){
+                    if ($(this).is(':checked')) {
+                        $(this).parent().append('<p class="infoTR" id="infoTR">{{ 'appbundle.step.2.form.placeholder.reduced.price.message'|trans }}</p>');
+                    } else {
+                        $(this).parent().find('#infoTR').remove();
+                    }
+                }
+            );
+            $('input:checkbox').trigger("change");
+
+            // Ajout d'une information lors d'une coche d'un bouton radio (journée ou demi-journée)
+            $('input:radio[name="order_customer_first_step[duration]"]').change(
+                function(){
+                    var $input = $("#order_customer_first_step_duration");
+                    if ($(this).is(':checked') && this.value === "journée") {
+                        $input.find('#infoDuration').remove();
+                        $input.append('<p class="infoDuration" id="infoDuration">{{ 'appbundle.step.1.form.placeholder.duration.text.first'|trans }}</p>');
+                    } else if ($(this).is(':checked') && this.value === "demi-journée") {
+                        $input.find('#infoDuration').remove();
+                        $input.append('<p class="infoDuration" id="infoDuration">{{ 'appbundle.step.1.form.placeholder.duration.text.second'|trans }}</p>');
+                    }
+                }
+            );
+            $('input:radio').trigger("change");
+        </script>
+    {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ 'appbundle.step.step.4'|trans }}{% endblock %}
+
+{% block stepwizard %}
+    <div class="row">
+        <ul class="progress-indicator">
+            {# Step 1 #}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</div></li>
+
+            {# Step 2 #}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</div></li>
+
+            {# Step 3 #}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</div></li>
+
+            {# Step 4 #}
+            <li class="completed"><div class="stepCompleted"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
+
+        </ul>
+    </div>
+{% endblock %}
+
+{% block informationTitle %}
+    {{ 'appbundle.step.4.pres.title'|trans }}
+{% endblock %}
+
+{% block informationText %}
+    {{ 'appbundle.step.4.pres.step'|trans }}
+{% endblock %}
+
+{% block form %}
+    <div class="fourthStep">
+        <h3>{{ 'appbundle.step.4.text.information.title'|trans }}</h3>
+        <p class="infoLouvreText">
+            {{ 'appbundle.step.4.text.information'|trans({'%token%':  order.orderToken|replace({'tok_': ''}) })|nl2br}}
+        </p>
+        <h3>{{ 'appbundle.step.4.tickets'|transchoice(order.nbTickets) }}</h3>
+
+        <div class="listBillets" style="text-align: center">
+            {% for ticket in order.tickets %}
+                <div class="billetsEdites">
+                    <img class="logoLouvre" src="{{ asset('img/logo-louvre.jpg') }}" alt="logoLouvre">
+                    <p class="textSMBillets">www.louvre.fr</p>
+                    <p class="textLGBillets"><b>MUSÉE {{ order.duration|upper }}</b><br/>
+                        <b>{{ order.visitDate|date('d/m/Y') }}  - {{ order.access}}</b></p>
+                    <p class="textSMBilletsLeft">{{ ticket.name }} {{ ticket.lastName }}<br/>{{ ticket.age|date('d/m/Y') }} ({{ ticket.age|age }} ans) - {{ ticket.country }}</p>
+                    <p class="textSMBilletsLeft">Tarif : {{ ticket.rate }} -<b> {{ ticket.price }}€</b></p>
+                    <img class="codeBarre" src="{{ qrcode_path(ticket.tokenTicket, { size: 100}) }}" alt="QRCode">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Coordonnées{% endblock %}
+
+{% block informationTitle %}
+    {{ 'error.title'|trans}}
+{% endblock %}
+
+{% block informationText %}
+    <p>{{ 'error.text'|trans}}</p>
+    <a href="{{ path('homepage') }}"><button type="button" class="btn btnRedirect">{{ 'error.redirect'|trans}}</button></a>
+{% endblock %}
+
+{% block form %}
+{% endblock %}

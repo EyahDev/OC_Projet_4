@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ 'appbundle.step.step.2'|trans }}{% endblock %}
+
+{% block flash %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger formError">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message|trans }}</strong>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block stepwizard %}
+    <div class="row">
+        <ul class="progress-indicator">
+            {# Step 1 #}
+            <li class="completed"><div class="stepCompleted"><a href="{{ path('homepage')}}"><span class="bubble" id="bubble"></span><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.1'|trans }}</a></div></li>
+
+            {# Step 2 #}
+            <li class="warning"><div class="stepWarning"><a href="{{ path('vos-billets')}}"><span class="bubble" id="bubble"></span><i class="fa fa-ticket" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.2'|trans }}</a></div></li>
+
+            {# Step 3 #}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-list" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.3'|trans }}</div></li>
+
+            {# Step 4 #}
+            <li><div class="stepDisabled"><span class="bubble"></span><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'appbundle.step.wizard.step.4'|trans }}</div></li>
+
+        </ul>
+    </div>
+{% endblock %}
+
+{% block informationTitle %}
+    {{ 'appbundle.step.2.pres.title'|trans }}
+{% endblock %}
+
+{% block informationText %}
+    {{ 'appbundle.step.2.pres.step'|trans }}
+{% endblock %}
+
+
+{% block form %}
+
+        <div class="secondStepInfo" >
+            <h3 class="titleForm">{{ 'appbundle.step.2.text.information.first.title'|trans }}</h3>
+            <p class="infoLouvreText">
+                {{ 'appbundle.step.2.text.information.first'|trans({
+                    '%date%': app.session.get('CommandeLouvre').visitDate|date('d/m/Y'),
+                    '%duration%': app.session.get('CommandeLouvre').duration|trans,
+                    '%access%': app.session.get('CommandeLouvre').access|trans }
+                )}}
+            </p>
+
+            <h3 class="titleForm">{{ 'appbundle.step.2.text.information.second.title'|trans }}</h3>
+            <p class="infoLouvreText">{{ 'appbundle.step.2.text.information.second'|trans}}
+        </div>
+
+        {{ include(':ticket/form:secondstepform.html.twig') }}
+
+{% endblock %}
