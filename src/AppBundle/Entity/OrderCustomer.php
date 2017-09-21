@@ -33,7 +33,7 @@ class OrderCustomer
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\NotBlank(message="Veuillez renseigner votre adresse email", groups={"step_1"})
+     * @Assert\NotBlank(message="validator.step.1.mail.not_blank", groups={"step_1"})
      * @Assert\Email(message="validator.step.1.mail.valid", checkMX=true, groups={"step_1"})
      */
     private $email;

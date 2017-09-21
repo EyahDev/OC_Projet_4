@@ -107,7 +107,7 @@ appbundle:
             year: Year
             month: Month
             day: Day
-        adult: One child under 12 years old must be accompanied by an adult.
+        adult: A child must be accompanied by an adult.
 
     step.3:
         pres.title: Order summary and payment

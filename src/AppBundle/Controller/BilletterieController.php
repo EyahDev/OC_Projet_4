@@ -118,7 +118,7 @@ class BilletterieController extends Controller
             if ($specialRate == 'error')
             {
                 // Génération d'un message d'erreur
-                $session->getFlashBag()->add('notice', 'Un enfant de moins de 12 ans doit être accompagné d\'un adulte');
+                $session->getFlashBag()->add('notice', 'appbundle.step.2.adult');
 
                 // Redirection vers la page coordonnees
                 return $this->redirectToRoute('vos-billets');

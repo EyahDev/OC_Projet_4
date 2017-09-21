@@ -22,19 +22,13 @@ class ContainsTicketsSoldValidator extends ConstraintValidator {
         // Récupération du nombre de tickets vendu dans la journée selectionné
         $orderCustomers = $this->em->getRepository('AppBundle:OrderCustomer')->findBy(array('visitDate' => $value ));
 
-        // Récupération des valeurs transmis par le formulaire
-        $orderForm = $this->context->getRoot()->getData();
-
-        // Récupération du nombre de billet demandé par l'utilisateur
-        $nbTickets = $orderForm->getNbTickets();
-
         // Parcours des commandes de la base de données et ajout du nombre de billets demandés au total
         foreach($orderCustomers as $order) {
             $tickets = $tickets + $order->getNbTickets();
         }
 
         // Vérification si le nombre de billets vendu est supérieur ou égal à 1000
-        if ($tickets + $nbTickets >= 1000) {
+        if ($tickets >= 1000) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }

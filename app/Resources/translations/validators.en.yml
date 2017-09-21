@@ -3,7 +3,7 @@ validator:
         mail:
             same: The emails do not match, please try again.
             valid: Please enter a valid email address.
-            not_blank: Please enter your email address
+            not_blank: Please enter your email address.
         tickets:
             greater: Please select at least one ticket.
             lesser: If you wish to order more than 10 tickets, please contact us.
@@ -22,7 +22,7 @@ validator:
             not_blank: Please select an access time.
             contains: |
                 It is after 2 pm, please select the half-day ticket
-            valid: Please choose a valid access date
+            valid: Please choose a valid access date.
 
     step.2:
         lastname:

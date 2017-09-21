@@ -184,6 +184,9 @@ class OrderManager
         // Mise à 0 du total de la commande
         $total = 0;
 
+        // Mise à 0 du compteur d'adulte de la commande
+        $adultCount = 0;
+
         // Définition de la valeur de la remise spécial
         if ($order->getDuration() == "demi-journée") {
             $specialRate = 'demi-journée (-50%)';
@@ -194,6 +197,12 @@ class OrderManager
         // Parcours de la variable de sessions et attribution des valeurs
         foreach ($order->getTickets() as $ticket)
         {
+            // Vérification de la présence d'un adulte dans les billets commandé
+            $adult = $this->isAdult($ticket->getAge());
+            if ($adult === true) {
+                $adultCount++;
+            }
+
             $rate = $this->rates->getPrice($ticket->getAge(), $ticket->getReducedPrice());
 
             // Ajout d'une réduction de 50% si demi-journée choisi
@@ -217,9 +226,8 @@ class OrderManager
             $total = $total + $ticketPrice;
 
         }
-
-        // Vérification si le total est à 0
-        if ($total <= 0) {
+        // Vérification si un adulte et présent dans la commande
+        if ($adultCount === 0) {
             return 'error';
         }
 
@@ -228,6 +236,18 @@ class OrderManager
         $this->stepCheck(3);
 
         return $specialRate;
+    }
+
+    public function isAdult($birthday) {
+        // Calcul de l'âge
+        $now = new \DateTime();
+        $birthdayDate = $birthday;
+        $age = $now->diff($birthdayDate)->y;
+
+        if ($age >= 18) {
+            return true;
+        }
+        return false;
     }
 
     public function paiement() {

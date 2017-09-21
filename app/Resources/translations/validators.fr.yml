@@ -27,7 +27,7 @@ validator:
 
     step.2:
         lastname:
-            not_blank: La vente de billet est désactivée les jours fériés, veuillez choisir une autre date ou vous déplacer directement au musée.
+            not_blank: Veuillez renseigner un nom valide.
             short: Votre nom doit contenir au moins {{ limit }} caractères.
             long: Votre nom doit contenir au maximum {{ limit }} caractères.
             string: Votre nom ne peut pas contenir de chiffres.
@@ -48,4 +48,3 @@ validator:
 
     step.3:
         payment: Une erreur s'est produit avec le paiement, veuillez réessayer. Si le problème persiste, merci de nous contacter.
-

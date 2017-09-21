@@ -108,7 +108,7 @@ appbundle:
             year: Année
             month: Mois
             day: Jour
-        adult: Un enfant de moins de 12 ans doit être accompagné d'un adulte
+        adult: Un enfant doit être accompagné d'un adulte.
 
     step.3:
         pres.title: Récapitulatif et paiement
