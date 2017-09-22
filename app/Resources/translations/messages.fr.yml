@@ -125,7 +125,7 @@ appbundle:
             price: Prix
 
             tickets.content:
-                age: ans
+                age: "an|ans"
                 rate: Réduit
                 special.rate: Aucun
 
@@ -176,23 +176,18 @@ appbundle:
         text.advices: |
             Des pickpockets sont susceptibles d’être présents dans le musée.
 
-            Ils agissent dans la foule au moment où vous regardez ou
-            photographiez les oeuvres.
+            Ils agissent dans la foule au moment où vous regardez ou photographiez les oeuvres.
 
             Voici les règles à respecter :
 
             • Fermez vos sacs et placez-les devant vous
             • Ne montrez pas votre argent
-            • Répartissez vos billets dans plusieurs poches intérieures
-            ou dans plusieurs poches de votre sac
+            • Répartissez vos billets dans plusieurs poches intérieures ou dans plusieurs poches de votre sac
             • Ne mettez pas votre portefeuille dans vos poches arrière
-            • N’écoutez pas les conseils d’inconnus aux distributeurs
-            automatiques
-            • Faites attention à vos sacs et poches quand vous prenez
-            une photo
+            • N’écoutez pas les conseils d’inconnus aux distributeurs automatiques
+            • Faites attention à vos sacs et poches quand vous prenez une photo
             • Demandez l’aide d’un agent de surveillance en cas de problème
 
-            Nous vous remercions d’avoir pris connaissance de ce message de
-            prévention.
+            Nous vous remercions d’avoir pris connaissance de ce message de prévention.
 
             Bonne visite.
