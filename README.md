@@ -1,6 +1,6 @@
 Développez un back-end pour un client
 ========
-Le projet 4 a été validé et est en ligne, a cette [adresse](https://projet-4.adriendesmet.com)
+Le projet 4 a été validé et est en ligne a cette [adresse](https://projet-4.adriendesmet.com)
 
 Contexte
 --------
